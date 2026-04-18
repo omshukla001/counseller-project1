@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import { Award, Users, Star, CheckCircle, Phone, ArrowRight, GraduationCap, Heart } from 'lucide-react'
 
 const STATS = [
-  { value: '15+', label: 'Years Experience' },
-  { value: '30k+', label: 'Students Guided' },
-  { value: '98%', label: 'Success Rate' },
-  { value: '10+', label: 'Partner Colleges' },
+  { value: '6+', label: 'Years Experience' },
+  { value: '13k+', label: 'Students Guided' },
+  { value: '1500+', label: 'Admissions Done' },
+  { value: '12+', label: 'Partner Colleges' },
 ]
 
 const VALUES = [
@@ -34,7 +34,7 @@ export default function AboutPage({ onApply, onBack }) {
         </motion.h1>
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
           className="text-white/70 max-w-xl mx-auto text-base">
-          AdmitBangalore is Bangalore's most trusted engineering admission consultancy, founded with one mission — making quality engineering education accessible to every deserving student.
+          Knowledge Park 360 is Bangalore's most trusted engineering admission consultancy, founded with one mission — making quality engineering education accessible to every deserving student.
         </motion.p>
       </div>
 
@@ -45,7 +45,7 @@ export default function AboutPage({ onApply, onBack }) {
             <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
               className="bg-white rounded-2xl shadow-lg p-4 text-center border border-gray-100">
               <p className="text-2xl font-black text-blue-800">{s.value}</p>
-              <p className="text-gray-500 text-xs mt-1">{s.label}</p>
+              <p className="text-gray-600 text-sm mt-1">{s.label}</p>
             </motion.div>
           ))}
         </div>
@@ -54,7 +54,7 @@ export default function AboutPage({ onApply, onBack }) {
       {/* Meet Kunal — Main Counsellor */}
       <div className="max-w-5xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <span className="inline-block bg-blue-50 text-blue-800 text-xs font-bold px-4 py-1.5 rounded-full border border-blue-200 mb-3">
+          <span className="inline-block bg-blue-50 text-blue-800 text-sm font-bold px-4 py-1.5 rounded-full border border-blue-200 mb-3">
             Meet Our Expert
           </span>
           <h2 className="text-3xl md:text-4xl font-black text-gray-900">The Face Behind Your Admission</h2>
@@ -80,22 +80,22 @@ export default function AboutPage({ onApply, onBack }) {
 
             {/* Info side */}
             <div className="p-8 md:p-10 flex flex-col justify-center">
-              <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-1">Kunal</h3>
-              <p className="text-blue-800 font-bold text-sm mb-1">Senior Admission Counsellor & Founder</p>
-              <p className="text-gray-400 text-xs mb-5">AdmitBangalore · Bangalore, Karnataka</p>
+              <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-1">Kunal Issar</h3>
+              <p className="text-blue-800 font-bold text-base mb-1">Senior Admission Counsellor & Founder</p>
+              <p className="text-gray-500 text-sm mb-5">Knowledge Park 360 · Bangalore, Karnataka</p>
 
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                With over <strong>15 years of experience</strong> in engineering admissions, Kunal has personally guided more than <strong>30,000 students</strong> into top Bangalore colleges like RVCE, BMSCE, MSRIT, and PES University. His deep knowledge of KCET, COMEDK, and Management Quota processes has made him the go-to counsellor for families across Karnataka and beyond.
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
+                With over <strong>6 years of experience</strong> in engineering admissions, Kunal Issar has personally guided more than <strong>13,000 students</strong> into top colleges like RVCE, BMSCE, PES University, SRM, and Jain University. His deep knowledge of KCET, COMEDK, SRMJEE, and Management Quota processes has made him the go-to counsellor for families across Karnataka and beyond.
               </p>
 
               <div className="space-y-2 mb-6">
                 {[
-                  'Expert in KCET, COMEDK & Management Quota',
-                  'Personally handled 30,000+ admissions',
-                  'Strong network with all Top 10 Bangalore colleges',
+                  'Expert in KCET, COMEDK, SRMJEE & Management Quota',
+                  'Personally handled 13,000+ admissions',
+                  'Strong network with Jain, SRM, RV, PES & top colleges',
                   'Free, transparent & student-first counselling',
                 ].map((pt, i) => (
-                  <div key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                  <div key={i} className="flex items-start gap-2 text-sm md:text-base text-gray-700">
                     <CheckCircle size={14} className="text-blue-700 shrink-0 mt-0.5" /> {pt}
                   </div>
                 ))}
@@ -104,11 +104,11 @@ export default function AboutPage({ onApply, onBack }) {
               <div className="flex flex-wrap gap-3">
                 <button onClick={onApply}
                   className="bg-[#1E3A8A] hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-full text-sm transition-all hover:scale-105 flex items-center gap-2">
-                  <Phone size={14} /> Talk to Kunal
+                  <Phone size={14} /> Talk to Kunal Issar
                 </button>
-                <a href="tel:+918100636959"
+                <a href="tel:+917296087953"
                   className="border-2 border-blue-700 text-blue-800 font-bold px-6 py-3 rounded-full text-sm hover:bg-blue-50 transition-colors">
-                  +91-8100-636-959
+                  +91-72960-87953
                 </a>
               </div>
             </div>
@@ -120,7 +120,7 @@ export default function AboutPage({ onApply, onBack }) {
       <div className="bg-[#F8FAFC] py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <span className="inline-block bg-blue-50 text-blue-800 text-xs font-bold px-4 py-1.5 rounded-full border border-blue-200 mb-3">
+            <span className="inline-block bg-blue-50 text-blue-800 text-sm font-bold px-4 py-1.5 rounded-full border border-blue-200 mb-3">
               Our Values
             </span>
             <h2 className="text-3xl font-black text-gray-900">What We Stand For</h2>
@@ -133,8 +133,8 @@ export default function AboutPage({ onApply, onBack }) {
                 <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
                   <v.icon size={22} className="text-blue-800" />
                 </div>
-                <h4 className="font-bold text-gray-900 text-sm mb-1">{v.title}</h4>
-                <p className="text-gray-500 text-xs leading-relaxed">{v.desc}</p>
+                <h4 className="font-bold text-gray-900 text-sm md:text-base mb-1">{v.title}</h4>
+                <p className="text-gray-600 text-xs md:text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -144,7 +144,7 @@ export default function AboutPage({ onApply, onBack }) {
       {/* CTA */}
       <div className="py-16 px-4 text-center bg-white">
         <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">Ready to Secure Your Seat?</h2>
-        <p className="text-gray-500 mb-6 text-sm">Book a free 30-minute session with Kunal today.</p>
+        <p className="text-gray-600 mb-6 text-base">Book a free 30-minute session with Kunal Issar today.</p>
         <button onClick={onApply}
           className="bg-[#1E3A8A] hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full text-base transition-all hover:scale-105 hover:shadow-xl hover:shadow-blue-700/30 inline-flex items-center gap-2">
           Get Free Consultation <ArrowRight size={16} />

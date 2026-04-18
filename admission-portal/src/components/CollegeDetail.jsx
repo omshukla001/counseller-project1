@@ -38,8 +38,8 @@ export default function CollegeDetail({ college, onBack, onApply }) {
                 <s.icon size={18} className={s.color} />
               </div>
               <div>
-                <p className="font-black text-gray-900 text-xs md:text-sm leading-tight">{s.value}</p>
-                <p className="text-gray-400 text-[9px] md:text-[10px] font-semibold uppercase tracking-wider mt-0.5">{s.label}</p>
+                <p className="font-black text-gray-900 text-sm md:text-base leading-tight">{s.value}</p>
+                <p className="text-gray-500 text-[10px] md:text-xs font-semibold uppercase tracking-wider mt-0.5">{s.label}</p>
               </div>
             </motion.div>
           ))}
@@ -57,7 +57,7 @@ export default function CollegeDetail({ college, onBack, onApply }) {
             <h2 className="text-2xl font-black text-[#102C57] mb-1">{college.fullName}</h2>
             <div className="w-16 h-1 bg-[#1E3A8A] rounded mb-4" />
             {college.about.split('\n\n').map((p, i) => (
-              <p key={i} className="text-gray-600 leading-relaxed mb-3 text-sm">{p}</p>
+              <p key={i} className="text-gray-700 leading-relaxed mb-3 text-sm md:text-base">{p}</p>
             ))}
           </section>
 
@@ -77,16 +77,21 @@ export default function CollegeDetail({ college, onBack, onApply }) {
             </div>
             <ul className="space-y-2 mb-5">
               {college.placements.points.map((pt, i) => (
-                <li key={i} className="flex gap-2 text-sm text-gray-600">
+                <li key={i} className="flex gap-2 text-sm md:text-base text-gray-700">
                   <CheckCircle size={15} className="text-[#1E3A8A] shrink-0 mt-0.5" />{pt}
                 </li>
               ))}
             </ul>
-            <p className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Top Recruiters</p>
+            <p className="text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wider">Top Recruiters</p>
             <div className="flex flex-wrap gap-2">
               {college.placements.companies.map(c => (
-                <span key={c} className="bg-[#102C57]/5 text-[#102C57] text-xs font-semibold px-3 py-1 rounded-full border border-[#102C57]/10">{c}</span>
+                <span key={c} className="bg-[#102C57]/5 text-[#102C57] text-sm font-semibold px-3 py-1.5 rounded-full border border-[#102C57]/10">{c}</span>
               ))}
+            </div>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-3 mt-5">
+              <p className="text-yellow-800 text-xs md:text-sm leading-relaxed">
+                <strong>Note:</strong> Placement figures and package data represent historical information from the respective institution based on publicly available sources. Individual outcomes depend on academic performance, skills, and market conditions. Past results do not guarantee future outcomes.
+              </p>
             </div>
           </section>
 
@@ -98,7 +103,7 @@ export default function CollegeDetail({ college, onBack, onApply }) {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {college.courses.map((c, i) => (
-                <div key={i} className="flex items-center gap-2 bg-[#F8FAFC] rounded-lg px-3 py-2 text-sm text-gray-700 border border-gray-100">
+                <div key={i} className="flex items-center gap-2 bg-[#F8FAFC] rounded-lg px-3 py-2.5 text-sm md:text-base text-gray-800 border border-gray-100">
                   <div className="w-1.5 h-1.5 bg-[#1E3A8A] rounded-full shrink-0" />{c}
                 </div>
               ))}
@@ -111,18 +116,18 @@ export default function CollegeDetail({ college, onBack, onApply }) {
               <Shield size={20} className="text-[#1E3A8A]" />
               Admission Process
             </h3>
-            <p className="text-sm font-semibold text-gray-700 mb-3">Eligibility Criteria</p>
+            <p className="text-base font-semibold text-gray-800 mb-3">Eligibility Criteria</p>
             <ul className="space-y-2 mb-6">
               {college.eligibility.map((e, i) => (
-                <li key={i} className="flex gap-2 text-sm text-gray-600">
+                <li key={i} className="flex gap-2 text-sm md:text-base text-gray-700">
                   <CheckCircle size={15} className="text-[#1E3A8A] shrink-0 mt-0.5" />{e}
                 </li>
               ))}
             </ul>
-            <p className="text-sm font-semibold text-gray-700 mb-3">Admission Guidance</p>
+            <p className="text-base font-semibold text-gray-800 mb-3">Admission Guidance</p>
             <ul className="space-y-2">
               {['Expert Guidance on eligibility, documentation, and admission process.', 'Personalized Counseling based on academic background and career goals.', 'Document Preparation: certificates, identity proofs, and paperwork.', 'Application Strategy: personal statement and timeline planning.'].map((pt, i) => (
-                <li key={i} className="flex gap-2 text-sm text-gray-600">
+                <li key={i} className="flex gap-2 text-sm md:text-base text-gray-700">
                   <CheckCircle size={15} className="text-[#1E3A8A] shrink-0 mt-0.5" />{pt}
                 </li>
               ))}
@@ -135,14 +140,14 @@ export default function CollegeDetail({ college, onBack, onApply }) {
           <div className="sticky top-20 space-y-4">
             <div className="bg-[#102C57] rounded-2xl p-5 text-white">
               <h4 className="font-black text-lg mb-1">Need Admission Guidance?</h4>
-              <p className="text-white/60 text-xs mb-4">Our expert will call you within 30 minutes</p>
+              <p className="text-white/70 text-sm mb-4">Our expert will call you within 30 minutes</p>
               <button onClick={onApply}
                 className="w-full bg-[#1E3A8A] hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 mb-2">
                 <Phone size={16} /> Get Free Guidance
               </button>
-              <a href="tel:+918100636959"
+              <a href="tel:+917296087953"
                 className="w-full border border-white/20 text-white/80 hover:border-[#1E3A8A] hover:text-[#1E3A8A] font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm">
-                Call: +91-8100-636-959
+                Call: +91-72960-87953
               </a>
             </div>
 
@@ -153,15 +158,15 @@ export default function CollegeDetail({ college, onBack, onApply }) {
                 [Users, `${college.seats} total seats`],
                 [Award, college.accreditation],
               ].map(([Icon, text], i) => (
-                <div key={i} className="flex gap-2 text-xs text-gray-600">
+                <div key={i} className="flex gap-2 text-sm text-gray-700">
                   <Icon size={13} className="text-[#1E3A8A] shrink-0 mt-0.5" />{text}
                 </div>
               ))}
             </div>
 
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
-              <p className="text-amber-800 text-xs leading-relaxed">
-                <strong>Disclaimer:</strong> AdmitBangalore is an independent educational consultancy. Not the official admission office of any college. Institution names used for informational purposes only.
+              <p className="text-amber-800 text-sm leading-relaxed">
+                <strong>Disclaimer:</strong> Knowledge Park 360 is an independent educational consultancy. Not the official admission office of any college. Institution names used for informational purposes only.
               </p>
             </div>
           </div>
@@ -170,7 +175,7 @@ export default function CollegeDetail({ college, onBack, onApply }) {
 
       {/* Mobile bottom CTA */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 p-3 flex gap-3 shadow-2xl">
-        <a href="tel:+918100636959"
+        <a href="tel:+917296087953"
           className="flex-1 border-2 border-blue-700 text-blue-800 font-bold py-3 rounded-xl text-sm text-center">
           📞 Call Expert
         </a>

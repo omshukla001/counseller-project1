@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Phone, CheckCircle } from 'lucide-react'
+import { saveLead } from '../utils/leads'
 
 export default function CounselorSidebar({ onApply }) {
   const [sent, setSent] = useState(false)
@@ -7,6 +8,7 @@ export default function CounselorSidebar({ onApply }) {
 
   const submit = e => {
     e.preventDefault()
+    saveLead({ ...form, rank: '', branch: '', source: 'Sidebar Callback' })
     setSent(true)
   }
 

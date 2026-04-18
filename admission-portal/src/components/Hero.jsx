@@ -1,237 +1,334 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin, GraduationCap, Building2, Users, ChevronDown, Shield } from 'lucide-react'
 
-const HERO_BG = 'https://images.unsplash.com/photo-1562774053-701939374585?w=1600&q=80'
+const COLLEGES = [
+  { name: 'SRM Chennai', img: '/srm1.jpg' },
+  { name: 'RVCE Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/RV_College_Admin_block.JPG' },
+  { name: 'BMSCE Bangalore', img: '/bmsce1.webp' },
+  { name: 'MSRIT Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/a/af/MSRIT_from_front_gate.jpg' },
+  { name: 'PES University', img: '/pes12.jpeg' },
+  { name: 'BMSIT Bangalore', img: '/bmsit1.webp' },
+  { name: 'BIT Bangalore', img: '/bit1.webp' },
+  { name: 'DSCE Bangalore', img: '/dsce12.webp' },
+  { name: 'NMIT Bangalore', img: '/nmit1.webp' },
+  { name: 'RNSIT Bangalore', img: '/rnsit1.webp' },
+  { name: 'Sir MVIT Bangalore', img: '/smvit12.jpeg' },
+  { name: 'Jain University', img: '/jain1.webp' },
+]
 
-function CircularProgress({ pct = 98 }) {
-  const r = 54, circ = 2 * Math.PI * r
+function RotatingCollege({ idx }) {
+  return (
+    <AnimatePresence mode="wait">
+      <motion.span key={idx}
+        initial={{ y: 24, opacity: 0, filter: 'blur(4px)' }}
+        animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+        exit={{ y: -24, opacity: 0, filter: 'blur(4px)' }}
+        transition={{ duration: 0.35 }}
+        className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-200 to-cyan-400 drop-shadow-sm">
+        {COLLEGES[idx].name}
+      </motion.span>
+    </AnimatePresence>
+  )
+}
+
+function CircularProgress({ pct = 96 }) {
+  const r = 42, circ = 2 * Math.PI * r
   const [offset, setOffset] = useState(circ)
   useEffect(() => {
     const t = setTimeout(() => setOffset(circ - (pct / 100) * circ), 600)
     return () => clearTimeout(t)
   }, [circ, pct])
   return (
-    <div className="relative w-36 h-36 mx-auto">
-      <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+    <div className="relative w-24 h-24 mx-auto">
+      <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
         <defs>
           <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#60a5fa" />
             <stop offset="100%" stopColor="#818cf8" />
           </linearGradient>
         </defs>
-        <circle cx="60" cy="60" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="10" />
-        <circle cx="60" cy="60" r={r} fill="none" stroke="url(#ringGrad)" strokeWidth="10"
+        <circle cx="50" cy="50" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="7" />
+        <circle cx="50" cy="50" r={r} fill="none" stroke="url(#ringGrad)" strokeWidth="7"
           strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round"
           style={{ transition: 'stroke-dashoffset 1.8s cubic-bezier(0.4,0,0.2,1)' }} />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-        <span className="text-3xl font-black">{pct}%</span>
-        <span className="text-[10px] text-blue-300 font-semibold tracking-wide">Success Rate</span>
+        <span className="text-xl font-black">{pct}%</span>
+        <span className="text-[8px] text-blue-300 font-semibold">Satisfaction</span>
       </div>
     </div>
   )
 }
 
-const fadeUp = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
-const stagger = { show: { transition: { staggerChildren: 0.13 } } }
-
-const PARTICLES = [
-  { top: '15%', left: '8%', size: 3, delay: 0 },
-  { top: '25%', left: '92%', size: 2, delay: 1.5 },
-  { top: '60%', left: '5%', size: 4, delay: 0.8 },
-  { top: '75%', left: '88%', size: 2, delay: 2 },
-  { top: '40%', left: '50%', size: 2, delay: 1 },
-  { top: '85%', left: '30%', size: 3, delay: 0.4 },
-]
+const fadeUp = (d = 0) => ({ initial: { opacity: 0, y: 25 }, animate: { opacity: 1, y: 0, transition: { duration: 0.55, delay: d, ease: [0.22, 1, 0.36, 1] } } })
 
 export default function Hero({ onApply }) {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+  const [idx, setIdx] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i + 1) % COLLEGES.length), 2800)
+    return () => clearInterval(t)
+  }, [])
 
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img src={HERO_BG} alt="campus" className="w-full h-full object-cover scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f1e]/60 via-[#1e3a8a]/40 to-[#0a0f1e]/55" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-500/5 to-transparent" />
+  return (
+    <section id="home" className="relative min-h-screen overflow-hidden">
+
+      {/* BG — slides with college name */}
+      <div className="absolute inset-0 overflow-hidden bg-[#080e1e]">
+        <AnimatePresence mode="sync">
+          <motion.div key={idx}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0">
+            <img src={COLLEGES[idx].img} alt="" className="w-full h-full object-cover scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#080e1e]/70 via-[#12244a]/55 to-[#080e1e]/80" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/15 via-transparent to-indigo-900/15" />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* Floating particles */}
-      {PARTICLES.map((p, i) => (
-        <motion.div key={i}
-          className="absolute rounded-full bg-blue-300/50 pointer-events-none"
-          style={{ top: p.top, left: p.left, width: p.size, height: p.size }}
-          animate={{ y: [-8, 8, -8], opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 4 + i, repeat: Infinity, delay: p.delay }} />
-      ))}
-
       {/* Glows */}
-      <motion.div className="absolute top-24 right-10 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.3, 1], opacity: [0.25, 0.5, 0.25] }} transition={{ duration: 7, repeat: Infinity }} />
-      <motion.div className="absolute bottom-20 left-1/4 w-[28rem] h-[28rem] bg-blue-600/15 rounded-full blur-3xl pointer-events-none"
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.35, 0.1] }} transition={{ duration: 9, repeat: Infinity }} />
-      <motion.div className="absolute top-1/2 -left-10 w-72 h-72 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.4, 1], opacity: [0.1, 0.25, 0.1] }} transition={{ duration: 11, repeat: Infinity }} />
+      <motion.div className="absolute -top-20 -right-20 w-[28rem] h-[28rem] bg-blue-500/15 rounded-full blur-[80px] pointer-events-none"
+        animate={{ scale: [1, 1.25, 1], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 8, repeat: Infinity }} />
+      <motion.div className="absolute -bottom-32 -left-32 w-96 h-96 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none"
+        animate={{ scale: [1.1, 0.9, 1.1], opacity: [0.15, 0.3, 0.15] }} transition={{ duration: 10, repeat: Infinity }} />
 
-      <div className="relative max-w-7xl mx-auto px-4 pt-24 pb-20 grid md:grid-cols-2 gap-10 items-center w-full">
+      {/* ─── MOBILE ─── */}
+      <div className="md:hidden relative flex flex-col min-h-[100svh]">
 
-        {/* LEFT */}
-        <motion.div variants={stagger} initial="hidden" animate="show" className="text-white space-y-6">
+        {/* Top bar — pinned at top */}
+        <motion.div {...fadeUp(0.1)} className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-[72px] pb-2 z-10">
+          <span className="inline-flex items-center gap-1.5 bg-white/[0.08] border border-white/[0.12] rounded-full px-2.5 py-1 backdrop-blur-md">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative rounded-full h-1.5 w-1.5 bg-emerald-400" />
+            </span>
+            <span className="text-white/90 text-[10px] font-semibold">Admissions Open</span>
+          </span>
+          <span className="flex items-center gap-0.5">
+            {[...Array(5)].map((_, i) => <Star key={i} size={9} className="fill-yellow-400 text-yellow-400" />)}
+            <span className="text-white/50 text-[9px] font-semibold ml-0.5">Google</span>
+          </span>
+        </motion.div>
 
-          {/* Badge */}
-          <motion.span variants={fadeUp}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400/20 to-orange-400/10 text-yellow-200 text-xs font-bold px-4 py-2 rounded-full border border-yellow-400/40 backdrop-blur tracking-wide shadow-lg shadow-yellow-500/10">
-            <Sparkles size={13} className="text-yellow-300" /> India's #1 SRM & Bangalore Admission Experts
-          </motion.span>
+        <div className="flex-1 flex flex-col justify-center px-4 pt-[68px] pb-4">
 
           {/* Headline */}
-          <motion.h1 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-black leading-[1.08] tracking-tight drop-shadow-lg">
-            Secure Your Seat at{' '}
-            <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-cyan-300 to-blue-300">
-                SRM Chennai
-              </span>
-              <motion.span
-                className="absolute -bottom-1 left-0 h-[3px] bg-gradient-to-r from-yellow-400 via-cyan-400 to-blue-400 rounded-full"
-                initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ delay: 0.9, duration: 0.7 }} />
-            </span>
-            <br />
-            <span className="text-white drop-shadow-md">& Top Bangalore Colleges</span>
-          </motion.h1>
+          <motion.div {...fadeUp(0.15)} className="mb-3">
+            <h1 className="text-[1.55rem] font-extrabold leading-[1.15] tracking-tight text-white">
+              Secure Your Seat at
+              <br />
+              <span className="inline-block min-h-[1.2em]"><RotatingCollege idx={idx} /></span>
+            </h1>
+            <p className="text-white/45 text-[13px] font-bold mt-1">& Top Engineering Colleges</p>
+          </motion.div>
 
-          <motion.p variants={fadeUp} className="text-white/90 text-base md:text-lg max-w-lg leading-relaxed font-normal drop-shadow">
-            Expert guidance for <strong className="text-yellow-300 font-bold">SRMJEE, KCET & COMEDK</strong>.{' '}
-            <strong className="text-cyan-300 font-bold">30,000+ students</strong> placed in SRM, RVCE, BMSCE & top colleges.
+          {/* Description */}
+          <motion.p {...fadeUp(0.2)} className="text-white/65 text-[12.5px] leading-[1.6] mb-4">
+            Expert guidance for <span className="text-white font-semibold">SRMJEE, KCET & COMEDK</span>.{' '}
+            <span className="text-cyan-400 font-semibold">13,000+ students</span> placed in top colleges.
           </motion.p>
 
-          {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+          {/* CTA buttons */}
+          <motion.div {...fadeUp(0.25)} className="flex flex-col gap-2 mb-4">
             <button onClick={onApply}
-              className="group relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-black px-7 py-3.5 rounded-full transition-all hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 flex items-center gap-2 text-sm overflow-hidden">
-              <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-              Get Free Consultation
-              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+              className="w-full bg-white text-[#0f172a] font-extrabold py-3 rounded-xl flex items-center justify-center gap-2 text-[13px] shadow-lg active:scale-[0.97] transition-transform">
+              Get Free Consultation <ArrowRight size={14} />
             </button>
-            <a href="#colleges"
-              className="border-2 border-white/30 hover:border-cyan-400/70 text-white font-semibold px-7 py-3.5 rounded-full transition-all hover:bg-white/10 hover:text-cyan-200 backdrop-blur text-sm">
-              Explore Colleges
-            </a>
+            <div className="grid grid-cols-2 gap-2">
+              <a href="tel:+917296087953"
+                className="border border-white/20 text-white font-semibold py-2.5 rounded-xl text-[11px] flex items-center justify-center gap-1 backdrop-blur-sm active:scale-[0.97] transition-transform">
+                <Phone size={11} /> 72960 87953
+              </a>
+              <a href="https://wa.me/917296087953" target="_blank" rel="noreferrer"
+                className="bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] font-semibold py-2.5 rounded-xl text-[11px] flex items-center justify-center gap-1 backdrop-blur-sm active:scale-[0.97] transition-transform">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.71-1.233A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.818-6.296-2.186l-.44-.352-3.263.855.87-3.178-.386-.461A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                WhatsApp
+              </a>
+            </div>
           </motion.div>
 
-          {/* Tags */}
-          <motion.div variants={fadeUp} className="flex flex-wrap gap-3 pt-1">
-            {['SRMJEE Guidance', 'KCET Support', 'COMEDK Help', 'Management Quota', 'Direct Admission'].map(b => (
-              <span key={b} className="flex items-center gap-1.5 text-xs text-white font-medium bg-white/10 border border-white/20 px-3 py-1 rounded-full">
-                <CheckCircle size={11} className="text-cyan-400" /> {b}
-              </span>
+          {/* Stat boxes */}
+          <motion.div {...fadeUp(0.3)} className="grid grid-cols-4 gap-1.5">
+            {[['6+', 'Years'], ['12+', 'Colleges'], ['13k+', 'Students'], ['12k+', 'Admissions']].map(([v, l]) => (
+              <div key={l} className="bg-white/[0.07] backdrop-blur border border-white/[0.1] rounded-xl py-2.5 text-center">
+                <div className="text-white font-black text-[15px] leading-none">{v}</div>
+                <div className="text-white/45 text-[8px] font-semibold mt-1 uppercase tracking-wider">{l}</div>
+              </div>
             ))}
           </motion.div>
 
-          {/* Stats */}
-          <motion.div variants={fadeUp} className="grid grid-cols-4 gap-2 pt-1">
-            {[['15+', 'Years Exp.'], ['50+', 'Institutes'], ['30k+', 'Students'], ['98%', 'Success']].map(([v, l]) => (
-              <motion.div key={l}
-                className="bg-white/10 backdrop-blur rounded-xl p-3 text-center border border-white/20 hover:border-cyan-400/50 hover:bg-white/15 transition-all cursor-default"
-                whileHover={{ y: -3, scale: 1.04 }}>
-                <div className="text-xl font-black text-white drop-shadow">{v}</div>
-                <div className="text-[9px] sm:text-[10px] text-white/80 mt-0.5 leading-tight font-medium">{l}</div>
+          {/* Trust strip */}
+          <motion.div {...fadeUp(0.35)} className="flex items-center justify-center gap-3 mt-3 text-white/40 text-[10px]">
+            <span className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-400" /> 6+ Years Trusted</span>
+            <span className="w-px h-2.5 bg-white/15" />
+            <span className="flex items-center gap-1"><Shield size={9} className="text-blue-400" /> Verified Consultancy</span>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ─── DESKTOP ─── */}
+      <div className="hidden md:block relative">
+        <div className="max-w-7xl mx-auto px-12 lg:px-16 min-h-screen flex items-center">
+          <div className="grid grid-cols-5 gap-10 items-center w-full">
+
+            {/* LEFT — 3 cols */}
+            <div className="col-span-3">
+              <motion.div {...fadeUp(0.1)} className="mb-4">
+                <span className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] rounded-full px-4 py-2 backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
+                  </span>
+                  <span className="text-white/90 text-xs font-semibold tracking-wide">Admissions Open 2026–27</span>
+                </span>
               </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
 
-        {/* RIGHT */}
-        <motion.div initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }} className="hidden md:flex flex-col items-center gap-4">
+              <motion.h1 {...fadeUp(0.2)}
+                className="text-[2.6rem] lg:text-[3.2rem] font-extrabold leading-[1.08] tracking-[-0.01em] text-white mb-4">
+                Secure Your Seat at{' '}
+                <span className="relative inline-block">
+                  <RotatingCollege idx={idx} />
+                  <motion.span className="absolute -bottom-1 left-0 h-[2px] w-full bg-gradient-to-r from-yellow-400 via-cyan-400 to-blue-400 rounded-full"
+                    initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 1, duration: 0.6 }} style={{ transformOrigin: 'left' }} />
+                </span>
+                <br />
+                <span className="text-white/45 font-bold text-[0.52em]">& Top Engineering Colleges</span>
+              </motion.h1>
 
-          {/* SRM spotlight card */}
-          <motion.div
-            className="relative bg-white/8 backdrop-blur-xl rounded-3xl p-6 w-full max-w-sm border border-white/15 shadow-2xl overflow-hidden"
-            whileHover={{ scale: 1.02 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-yellow-500/15 rounded-full blur-2xl pointer-events-none" />
-            <div className="flex items-center gap-3 mb-4">
-              <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl p-2.5 shadow-lg shadow-yellow-500/30">
-                <Sparkles size={18} className="text-white" />
+              <motion.p {...fadeUp(0.3)} className="text-white/65 text-base max-w-xl leading-relaxed mb-6">
+                Expert counselling for <span className="text-white font-semibold">SRMJEE, KCET & COMEDK</span>.
+                {' '}We've helped <span className="text-cyan-400 font-semibold">13,000+ students</span> secure seats in India's top engineering colleges.
+              </motion.p>
+
+              <motion.div {...fadeUp(0.4)} className="flex flex-wrap gap-3 mb-6">
+                <button onClick={onApply}
+                  className="group bg-white text-[#0f172a] font-extrabold px-7 py-3 rounded-full flex items-center gap-2 text-sm shadow-xl shadow-white/10 hover:shadow-white/20 hover:scale-[1.03] transition-all">
+                  Get Free Consultation
+                  <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+                <a href="tel:+917296087953"
+                  className="flex items-center gap-2 text-white/80 hover:text-white text-sm font-semibold px-5 py-3 rounded-full border border-white/20 hover:border-white/40 transition-colors backdrop-blur-sm">
+                  <Phone size={15} /> +91 72960 87953
+                </a>
+              </motion.div>
+
+              <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-2 mb-5">
+                {['SRMJEE', 'KCET', 'COMEDK', 'Management Quota', 'Direct Admission'].map(b => (
+                  <span key={b} className="flex items-center gap-1.5 text-xs text-white font-semibold bg-white/[0.12] border border-white/[0.2] px-3.5 py-1.5 rounded-full shadow-sm shadow-white/5 backdrop-blur-sm">
+                    <CheckCircle size={11} className="text-cyan-400" /> {b}
+                  </span>
+                ))}
+              </motion.div>
+
+              <motion.div {...fadeUp(0.5)}
+                className="flex items-center gap-8 pt-4 border-t border-white/[0.07]">
+                {[
+                  { icon: GraduationCap, val: '13,000+', label: 'Students Guided' },
+                  { icon: Building2, val: '12+', label: 'Partner Colleges' },
+                  { icon: Users, val: '12,000+', label: 'Admissions Done' },
+                ].map(s => (
+                  <div key={s.label} className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
+                      <s.icon size={16} className="text-blue-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-[15px] leading-none">{s.val}</p>
+                      <p className="text-white/40 text-[10px] font-medium mt-0.5">{s.label}</p>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div {...fadeUp(0.55)}
+                className="flex items-center gap-4 text-white/40 text-xs mt-4">
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-yellow-400 text-yellow-400" />)}
+                  <span className="ml-1 text-white/60 font-semibold">Google Rated</span>
+                </div>
+                <span className="w-px h-3 bg-white/15" />
+                <span className="flex items-center gap-1"><CheckCircle size={11} className="text-emerald-400" /> 6+ Years Trusted</span>
+              </motion.div>
+            </div>
+
+            {/* RIGHT — 2 cols */}
+            <motion.div {...fadeUp(0.3)} className="col-span-2 flex flex-col items-center gap-3">
+
+              {/* SRM Card */}
+              <motion.div whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 200 }}
+                className="relative bg-white/[0.08] backdrop-blur-xl rounded-2xl w-full max-w-xs border border-white/[0.15] shadow-2xl overflow-hidden">
+                <div className="absolute -top-12 -right-12 w-36 h-36 bg-yellow-500/15 rounded-full blur-3xl pointer-events-none" />
+                <div className="bg-gradient-to-r from-blue-500/20 to-indigo-500/15 px-5 py-4 border-b border-white/[0.1]">
+                  <div className="flex items-center gap-2.5">
+                    <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl p-2 shadow-lg">
+                      <Sparkles size={16} className="text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-sm">SRM Institute of Science</p>
+                      <p className="text-white/45 text-[11px] flex items-center gap-1 mt-0.5"><MapPin size={9} /> Chennai, Tamil Nadu</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
+                  {[['Top 10', 'NIRF Rank'], ['50k+', 'Students'], ['92 LPA', 'Highest Pkg']].map(([v, l]) => (
+                    <div key={l} className="py-3 text-center">
+                      <div className="text-white font-bold text-sm">{v}</div>
+                      <div className="text-white/50 text-[10px] mt-0.5">{l}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="px-5 py-3.5 space-y-1.5 border-t border-white/[0.08]">
+                  {['SRMJEE Phase 1 & 2 Guidance', 'Management Quota Available', 'CSE, AI/ML, Data Science & more'].map(t => (
+                    <div key={t} className="flex items-center gap-2 text-xs text-white/75">
+                      <CheckCircle size={11} className="text-cyan-400 shrink-0" /> {t}
+                    </div>
+                  ))}
+                </div>
+                <div className="px-5 pb-4">
+                  <button onClick={() => onApply('SRM Chennai')}
+                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-sm py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-shadow">
+                    Apply for SRM <ArrowRight size={13} />
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Progress + Call row */}
+              <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
+                <motion.div whileHover={{ y: -3 }}
+                  className="bg-white/[0.08] backdrop-blur-xl rounded-2xl p-3 text-center border border-white/[0.12] shadow-xl">
+                  <CircularProgress pct={96} />
+                  <p className="text-white/60 text-[10px] font-medium mt-1">Students Guided</p>
+                </motion.div>
+                <motion.div whileHover={{ y: -3 }}
+                  className="bg-white/[0.08] backdrop-blur-xl rounded-2xl p-4 border border-white/[0.12] shadow-xl flex flex-col justify-between">
+                  <div>
+                    <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-2 shadow-lg shadow-blue-500/30">
+                      <Phone size={16} className="text-white" />
+                    </div>
+                    <p className="text-white font-bold text-sm leading-tight">Talk to Expert</p>
+                    <p className="text-white/55 text-[11px] mt-0.5">+91 72960 87953</p>
+                  </div>
+                  <a href="tel:+917296087953"
+                    className="mt-2 bg-white/[0.12] hover:bg-white/[0.18] text-white text-[11px] font-bold py-1.5 rounded-lg text-center transition-colors border border-white/[0.15]">
+                    Call Now
+                  </a>
+                </motion.div>
               </div>
-              <div>
-                <p className="text-white font-black text-sm">SRM Institute of Science</p>
-                <p className="text-white/60 text-xs flex items-center gap-1"><MapPin size={10} /> Kattankulathur, Chennai</p>
+
+              {/* Mini stats */}
+              <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
+                {[['1,500+', 'Seats Filled 2024'], ['12+ Colleges', 'Pan India Network']].map(([v, l]) => (
+                  <div key={l} className="bg-white/[0.08] backdrop-blur rounded-xl px-3 py-2.5 border border-white/[0.12] text-center">
+                    <div className="text-white font-bold text-sm">{v}</div>
+                    <div className="text-white/50 text-[10px] mt-0.5">{l}</div>
+                  </div>
+                ))}
               </div>
-            </div>
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              {[['Top 10', 'NIRF Rank'], ['50k+', 'Students'], ['92 LPA', 'Highest Pkg']].map(([v, l]) => (
-                <div key={l} className="bg-white/8 rounded-xl p-2.5 text-center border border-white/10">
-                  <div className="text-white font-bold text-sm">{v}</div>
-                  <div className="text-white/60 text-[10px]">{l}</div>
-                </div>
-              ))}
-            </div>
-            <div className="space-y-1.5">
-              {['SRMJEE Phase 1 & 2 Guidance', 'Management Quota Seats Available', 'CSE, AI/ML, Data Science & more'].map(t => (
-                <div key={t} className="flex items-center gap-2 text-xs text-white/80">
-                  <CheckCircle size={11} className="text-yellow-400 shrink-0" /> {t}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Success rate card */}
-          <motion.div
-            className="relative bg-white/8 backdrop-blur-xl rounded-3xl px-6 py-4 w-full max-w-sm text-center border border-white/15 shadow-2xl overflow-hidden"
-            whileHover={{ scale: 1.02 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl pointer-events-none" />
-            <p className="text-white/80 text-xs mb-3 font-medium tracking-wide">Admission Success Rate 2024</p>
-            <CircularProgress pct={98} />
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              {[['5,200+', 'Seats Filled'], ['50+ Colleges', 'Pan India']].map(([v, l]) => (
-                <div key={l} className="bg-white/8 rounded-xl p-2.5 text-center border border-white/10">
-                  <div className="text-white font-bold text-sm">{v}</div>
-                  <div className="text-white/60 text-xs">{l}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Call card */}
-          <motion.div className="bg-white/8 backdrop-blur-xl border border-white/15 rounded-2xl p-4 w-full max-w-sm shadow-2xl flex items-center gap-4"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }} whileHover={{ y: -4 }}>
-            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full p-3 shrink-0 shadow-lg shadow-blue-500/40">
-              <Phone size={20} className="text-white" />
-            </div>
-            <div className="flex-1">
-              <p className="text-white font-bold text-sm">Talk to an Expert Now</p>
-              <p className="text-white/55 text-xs">Free 30-min counselling session</p>
-            </div>
-            <button onClick={onApply}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-bold px-3 py-2 rounded-lg hover:from-cyan-500 hover:to-blue-600 transition-all shadow-md whitespace-nowrap">
-              Call Now
-            </button>
-          </motion.div>
-
-          {/* Stars */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
-            className="flex items-center gap-2 text-white/70 text-sm bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur">
-            <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} size={13} className="fill-yellow-400 text-yellow-400" />)}</div>
-            <span>4.9/5 from 2,400+ reviews</span>
-          </motion.div>
-        </motion.div>
-
-        {/* Mobile call card */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="md:hidden bg-white/8 backdrop-blur rounded-2xl p-4 flex items-center gap-3 border border-white/15">
-          <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full p-2.5 shrink-0">
-            <Phone size={18} className="text-white" />
+            </motion.div>
           </div>
-          <div className="flex-1">
-            <p className="text-white font-bold text-sm">Talk to an Expert</p>
-            <p className="text-white/60 text-xs">Free 30-min counselling</p>
-          </div>
-          <button onClick={onApply} className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap">
-            Call Now
-          </button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Wave */}
