@@ -98,74 +98,77 @@ export default function Hero({ onApply }) {
       {/* ─── MOBILE ─── */}
       <div className="md:hidden relative flex flex-col min-h-[100svh]">
 
-        {/* Top bar — pinned at top */}
-        <motion.div {...fadeUp(0.1)} className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-[72px] pb-2 z-10">
-          <span className="inline-flex items-center gap-1.5 bg-white/[0.08] border border-white/[0.12] rounded-full px-2.5 py-1 backdrop-blur-md">
-            <span className="relative flex h-1.5 w-1.5">
+        {/* Top bar */}
+        <motion.div {...fadeUp(0.1)} className="absolute top-0 left-0 right-0 flex items-center justify-between px-5 pt-[72px] pb-2 z-10">
+          <span className="inline-flex items-center gap-1.5 bg-white/[0.08] border border-white/[0.12] rounded-full px-3 py-1.5 backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative rounded-full h-1.5 w-1.5 bg-emerald-400" />
+              <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
             </span>
-            <span className="text-white/90 text-[10px] font-semibold">Admissions Open</span>
+            <span className="text-white/90 text-xs font-semibold">Admissions Open 2026–27</span>
           </span>
           <span className="flex items-center gap-0.5">
-            {[...Array(5)].map((_, i) => <Star key={i} size={9} className="fill-yellow-400 text-yellow-400" />)}
-            <span className="text-white/50 text-[9px] font-semibold ml-0.5">Google</span>
+            {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-yellow-400 text-yellow-400" />)}
+            <span className="text-white/50 text-[10px] font-semibold ml-1">Google</span>
           </span>
         </motion.div>
 
-        <div className="flex-1 flex flex-col justify-center px-4 pt-[68px] pb-4">
+        <div className="flex-1 flex flex-col px-5 pt-[140px] pb-16">
 
           {/* Headline */}
           <motion.div {...fadeUp(0.15)} className="mb-3">
-            <h1 className="text-[1.55rem] font-extrabold leading-[1.15] tracking-tight text-white">
+            <h1 className="text-[2rem] font-extrabold leading-[1.12] tracking-tight text-white">
               Secure Your Seat at
               <br />
               <span className="inline-block min-h-[1.2em]"><RotatingCollege idx={idx} /></span>
             </h1>
-            <p className="text-white/45 text-[13px] font-bold mt-1">& Top Engineering Colleges</p>
+            <p className="text-white/45 text-sm font-bold mt-1.5">& Top Engineering Colleges</p>
           </motion.div>
 
           {/* Description */}
-          <motion.p {...fadeUp(0.2)} className="text-white/65 text-[12.5px] leading-[1.6] mb-4">
+          <motion.p {...fadeUp(0.2)} className="text-white/65 text-sm leading-relaxed">
             Expert guidance for <span className="text-white font-semibold">SRMJEE, KCET & COMEDK</span>.{' '}
             <span className="text-cyan-400 font-semibold">13,000+ students</span> placed in top colleges.
           </motion.p>
 
-          {/* CTA buttons */}
-          <motion.div {...fadeUp(0.25)} className="flex flex-col gap-2 mb-4">
-            <button onClick={onApply}
-              className="w-full bg-white text-[#0f172a] font-extrabold py-3 rounded-xl flex items-center justify-center gap-2 text-[13px] shadow-lg active:scale-[0.97] transition-transform">
-              Get Free Consultation <ArrowRight size={14} />
-            </button>
-            <div className="grid grid-cols-2 gap-2">
-              <a href="tel:+917296087953"
-                className="border border-white/20 text-white font-semibold py-2.5 rounded-xl text-[11px] flex items-center justify-center gap-1 backdrop-blur-sm active:scale-[0.97] transition-transform">
-                <Phone size={11} /> 72960 87953
-              </a>
-              <a href="https://wa.me/917296087953" target="_blank" rel="noreferrer"
-                className="bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] font-semibold py-2.5 rounded-xl text-[11px] flex items-center justify-center gap-1 backdrop-blur-sm active:scale-[0.97] transition-transform">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.71-1.233A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.818-6.296-2.186l-.44-.352-3.263.855.87-3.178-.386-.461A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-                WhatsApp
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Stat boxes */}
-          <motion.div {...fadeUp(0.3)} className="grid grid-cols-4 gap-1.5">
-            {[['6+', 'Years'], ['12+', 'Colleges'], ['13k+', 'Students'], ['12k+', 'Admissions']].map(([v, l]) => (
-              <div key={l} className="bg-white/[0.07] backdrop-blur border border-white/[0.1] rounded-xl py-2.5 text-center">
-                <div className="text-white font-black text-[15px] leading-none">{v}</div>
-                <div className="text-white/45 text-[8px] font-semibold mt-1 uppercase tracking-wider">{l}</div>
+          {/* CTA + boxes pinned to bottom */}
+          <div className="mt-auto flex flex-col gap-2">
+            {/* CTA buttons */}
+            <motion.div {...fadeUp(0.25)} className="flex flex-col gap-2 mb-3">
+              <button onClick={onApply}
+                className="w-full bg-white text-[#0f172a] font-extrabold py-3.5 rounded-2xl flex items-center justify-center gap-2 text-sm shadow-lg active:scale-[0.97] transition-transform">
+                Get Free Consultation <ArrowRight size={15} />
+              </button>
+              <div className="grid grid-cols-2 gap-2">
+                <a href="tel:+917296087953"
+                  className="border border-white/20 text-white font-semibold py-2.5 rounded-2xl text-xs flex items-center justify-center gap-1.5 backdrop-blur-sm active:scale-[0.97] transition-transform">
+                  <Phone size={13} /> 72960 87953
+                </a>
+                <a href="https://wa.me/917296087953" target="_blank" rel="noreferrer"
+                  className="bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] font-semibold py-2.5 rounded-2xl text-xs flex items-center justify-center gap-1.5 backdrop-blur-sm active:scale-[0.97] transition-transform">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.71-1.233A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.818-6.296-2.186l-.44-.352-3.263.855.87-3.178-.386-.461A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                  WhatsApp
+                </a>
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
 
-          {/* Trust strip */}
-          <motion.div {...fadeUp(0.35)} className="flex items-center justify-center gap-3 mt-3 text-white/40 text-[10px]">
-            <span className="flex items-center gap-1"><CheckCircle size={9} className="text-emerald-400" /> 6+ Years Trusted</span>
-            <span className="w-px h-2.5 bg-white/15" />
-            <span className="flex items-center gap-1"><Shield size={9} className="text-blue-400" /> Verified Consultancy</span>
-          </motion.div>
+            {/* Stat boxes */}
+            <motion.div {...fadeUp(0.3)} className="grid grid-cols-4 gap-2 mb-3">
+              {[['6+', 'Years'], ['12+', 'Colleges'], ['13k+', 'Students'], ['12k+', 'Admissions']].map(([v, l]) => (
+                <div key={l} className="bg-white/[0.08] backdrop-blur border border-white/[0.12] rounded-xl py-2 text-center">
+                  <div className="text-white font-black text-sm leading-none">{v}</div>
+                  <div className="text-white/45 text-[9px] font-medium mt-1">{l}</div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Trust strip */}
+            <motion.div {...fadeUp(0.35)} className="flex items-center justify-center gap-4 text-white/40 text-[11px]">
+              <span className="flex items-center gap-1.5"><CheckCircle size={11} className="text-emerald-400" /> 6+ Years Trusted</span>
+              <span className="w-px h-3 bg-white/15" />
+              <span className="flex items-center gap-1.5"><Shield size={11} className="text-blue-400" /> Verified Consultancy</span>
+            </motion.div>
+          </div>
         </div>
       </div>
 

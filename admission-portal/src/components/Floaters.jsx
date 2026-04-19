@@ -31,7 +31,7 @@ function WhatsAppIcon({ size = 28 }) {
 export function WhatsAppFAB() {
   const [tip, setTip] = useState(false)
   return (
-    <div className="fixed bottom-6 left-6 z-50 flex items-center gap-2.5">
+    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5">
       {tip && (
         <div className="bg-white text-[#102C57] text-xs font-semibold px-3.5 py-2.5 rounded-xl shadow-xl whitespace-nowrap border border-gray-100">
           Chat on WhatsApp

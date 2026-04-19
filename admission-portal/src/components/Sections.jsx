@@ -228,7 +228,12 @@ export function Testimonials() {
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-black text-gray-900 mb-12">What Our Students Say</motion.h2>
 
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden"
+          onTouchStart={e => { const x = e.touches[0].clientX; e.currentTarget.dataset.tx = x }}
+          onTouchEnd={e => {
+            const dx = e.changedTouches[0].clientX - Number(e.currentTarget.dataset.tx)
+            if (Math.abs(dx) > 40) dx < 0 ? next() : prev()
+          }}>
           <AnimatePresence mode="wait">
             <motion.div key={idx}
               initial={{ opacity: 0, x: 60 }}
