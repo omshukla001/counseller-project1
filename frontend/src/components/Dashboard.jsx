@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import { getLeads, updateLead, deleteLead } from '../utils/leads'
+import { getLeads, updateLead, deleteLead, loginAdmin, logoutAdmin, getToken } from '../utils/leads'
 import {
   Users, Phone, Clock, CheckCircle, XCircle, Search,
   Trash2, Eye, ArrowLeft, PhoneCall, MessageCircle,
   Filter, Download, RefreshCw, UserCheck, AlertCircle
 } from 'lucide-react'
-
-const PASS = 'kunal123'
 
 const STATUS_CONFIG = {
   new: { label: 'New', color: 'bg-blue-100 text-blue-800', dot: 'bg-blue-500' },
@@ -144,30 +142,64 @@ function LeadDetail({ lead, onBack, onUpdate }) {
 }
 
 export default function Dashboard({ onBack }) {
-  const [authed, setAuthed] = useState(false)
+  const [authed, setAuthed] = useState(!!getToken())
   const [pass, setPass] = useState('')
   const [passError, setPassError] = useState(false)
+  const [loggingIn, setLoggingIn] = useState(false)
   const [leads, setLeads] = useState([])
+  const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
   const [filterStatus, setFilterStatus] = useState('all')
   const [selected, setSelected] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
 
-  useEffect(() => {
-    if (authed) setLeads(getLeads())
-  }, [authed])
-
-  const refresh = () => setLeads(getLeads())
-
-  const handleLogin = (e) => {
-    e.preventDefault()
-    if (pass === PASS) { setAuthed(true); setPassError(false) }
-    else setPassError(true)
+  const fetchLeads = async () => {
+    setLoading(true)
+    try {
+      setLeads(await getLeads())
+    } catch (err) {
+      if (err.status === 401) { logoutAdmin(); setAuthed(false) }
+    } finally {
+      setLoading(false)
+    }
   }
 
-  const handleUpdate = (id, updates) => { setLeads(updateLead(id, updates)); setSelected(null) }
-  const handleDelete = (id) => { setLeads(deleteLead(id)); setDeleteConfirm(null) }
-  const handleStatusQuick = (id, status) => setLeads(updateLead(id, { status }))
+  useEffect(() => {
+    if (authed) fetchLeads()
+  }, [authed])
+
+  const refresh = () => fetchLeads()
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    setLoggingIn(true)
+    setPassError(false)
+    try {
+      await loginAdmin(pass)
+      setAuthed(true)
+    } catch {
+      setPassError(true)
+    } finally {
+      setLoggingIn(false)
+    }
+  }
+
+  const handleLogout = () => { logoutAdmin(); setAuthed(false); setLeads([]) }
+
+  const handleUpdate = async (id, updates) => {
+    const updated = await updateLead(id, updates)
+    setLeads(prev => prev.map(l => (l.id === id ? updated : l)))
+    setSelected(null)
+  }
+  const handleDelete = async (id) => {
+    await deleteLead(id)
+    setLeads(prev => prev.filter(l => l.id !== id))
+    setDeleteConfirm(null)
+  }
+  const handleStatusQuick = async (id, status) => {
+    const updated = await updateLead(id, { status })
+    setLeads(prev => prev.map(l => (l.id === id ? updated : l)))
+  }
 
   const exportCSV = () => {
     const headers = ['Name', 'Phone', 'Rank', 'Branch', 'College', 'Source', 'Status', 'Notes', 'Date']
@@ -219,8 +251,8 @@ export default function Dashboard({ onBack }) {
                 className={`w-full border rounded-xl px-4 py-3.5 text-base focus:outline-none focus:border-[#1E3A8A] ${passError ? 'border-red-400 bg-red-50' : 'border-gray-200'}`} />
               {passError && <p className="text-red-500 text-sm mt-1.5 flex items-center gap-1"><AlertCircle size={14} /> Incorrect password</p>}
             </div>
-            <button type="submit" className="w-full bg-[#1E3A8A] hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-colors text-base">
-              Login
+            <button type="submit" disabled={loggingIn} className="w-full bg-[#1E3A8A] hover:bg-blue-700 disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-colors text-base">
+              {loggingIn ? 'Signing in…' : 'Login'}
             </button>
             <button type="button" onClick={onBack} className="w-full text-gray-400 hover:text-gray-600 text-sm font-medium py-2">
               ← Back to Website
@@ -265,6 +297,9 @@ export default function Dashboard({ onBack }) {
             </button>
             <button onClick={exportCSV} className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Export">
               <Download size={16} className="text-gray-500" />
+            </button>
+            <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600 text-sm font-medium px-2 md:px-4 py-2 hidden md:inline">
+              Logout
             </button>
             <button onClick={onBack} className="text-gray-400 hover:text-gray-600 text-sm font-medium px-2 md:px-4 py-2">
               ← Site

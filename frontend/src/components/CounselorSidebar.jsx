@@ -4,12 +4,22 @@ import { saveLead } from '../utils/leads'
 
 export default function CounselorSidebar({ onApply }) {
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', phone: '' })
 
-  const submit = e => {
+  const submit = async e => {
     e.preventDefault()
-    saveLead({ ...form, rank: '', branch: '', source: 'Sidebar Callback' })
-    setSent(true)
+    setSubmitting(true)
+    setError('')
+    try {
+      await saveLead({ ...form, rank: '', branch: '', source: 'Sidebar Callback' })
+      setSent(true)
+    } catch (err) {
+      setError(err.message || 'Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -38,8 +48,9 @@ export default function CounselorSidebar({ onApply }) {
             <input required placeholder="Phone Number" type="tel" value={form.phone}
               onChange={e => setForm({ ...form, phone: e.target.value })}
               className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A]" />
-            <button type="submit" className="w-full bg-[#1E3A8A] hover:bg-blue-800 text-white font-bold py-2.5 rounded-xl text-sm transition-colors flex items-center justify-center gap-2">
-              <Phone size={14} /> Request Callback
+            {error && <p className="text-red-500 text-xs text-center">{error}</p>}
+            <button type="submit" disabled={submitting} className="w-full bg-[#1E3A8A] hover:bg-blue-800 disabled:opacity-60 text-white font-bold py-2.5 rounded-xl text-sm transition-colors flex items-center justify-center gap-2">
+              <Phone size={14} /> {submitting ? 'Sending…' : 'Request Callback'}
             </button>
           </form>
         )}

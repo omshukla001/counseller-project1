@@ -5,6 +5,8 @@ import { saveLead } from '../utils/leads'
 
 export default function LeadModal({ onClose, college }) {
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', phone: '', rank: '', branch: '' })
 
   const source = college ? `${college} Admission` : 'Lead Modal'
@@ -13,10 +15,18 @@ export default function LeadModal({ onClose, college }) {
     ? `Get expert guidance for ${college} admission`
     : 'Our expert will call you within 30 minutes'
 
-  const submit = e => {
+  const submit = async e => {
     e.preventDefault()
-    saveLead({ ...form, source, college: college || '' })
-    setSent(true)
+    setSubmitting(true)
+    setError('')
+    try {
+      await saveLead({ ...form, source, college: college || '' })
+      setSent(true)
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -101,8 +111,11 @@ export default function LeadModal({ onClose, college }) {
                   </select>
                 </div>
               )}
-              <button type="submit" className="w-full bg-[#1E3A8A] hover:bg-blue-800 text-white font-bold py-3.5 rounded-xl transition-colors text-[15px] md:text-base flex items-center justify-center gap-2">
-                <Phone size={16} /> {college ? `Apply for ${college}` : 'Request Free Callback'}
+              {error && (
+                <p className="text-red-500 text-sm text-center">{error}</p>
+              )}
+              <button type="submit" disabled={submitting} className="w-full bg-[#1E3A8A] hover:bg-blue-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl transition-colors text-[15px] md:text-base flex items-center justify-center gap-2">
+                <Phone size={16} /> {submitting ? 'Sending…' : (college ? `Apply for ${college}` : 'Request Free Callback')}
               </button>
               <p className="text-center text-[11px] md:text-xs text-gray-400 pb-1">
                 🔒 Your data is protected per our{' '}

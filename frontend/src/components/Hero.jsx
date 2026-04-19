@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useReducer } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin, GraduationCap, Building2, Users, ChevronDown, Shield } from 'lucide-react'
 
@@ -65,8 +65,32 @@ const fadeUp = (d = 0) => ({ initial: { opacity: 0, y: 25 }, animate: { opacity:
 
 export default function Hero({ onApply }) {
   const [idx, setIdx] = useState(0)
+  const loadedRef = useRef(new Set([0]))
+  const [, forceRender] = useReducer(x => x + 1, 0)
+
+  // Preload every slide image once on mount so rotation is instant
   useEffect(() => {
-    const t = setInterval(() => setIdx(i => (i + 1) % COLLEGES.length), 2800)
+    COLLEGES.forEach((c, i) => {
+      const img = new Image()
+      img.decoding = 'async'
+      img.onload = () => {
+        loadedRef.current.add(i)
+        forceRender()
+      }
+      img.src = c.img
+    })
+  }, [])
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setIdx(cur => {
+        for (let step = 1; step <= COLLEGES.length; step++) {
+          const next = (cur + step) % COLLEGES.length
+          if (loadedRef.current.has(next)) return next
+        }
+        return cur
+      })
+    }, 2800)
     return () => clearInterval(t)
   }, [])
 
@@ -82,7 +106,9 @@ export default function Hero({ onApply }) {
             exit={{ x: '-100%' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-0">
-            <img src={COLLEGES[idx].img} alt="" className="w-full h-full object-cover scale-105" />
+            <img src={COLLEGES[idx].img} alt="" loading="eager" decoding="async"
+              fetchPriority={idx === 0 ? 'high' : 'auto'}
+              className="w-full h-full object-cover scale-105" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#080e1e]/70 via-[#12244a]/55 to-[#080e1e]/80" />
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/15 via-transparent to-indigo-900/15" />
           </motion.div>
