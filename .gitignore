@@ -1,2 +1,7 @@
 *.mov
 *.mp4
+.DS_Store
+*.pdf
+node_modules
+dist
+.env
