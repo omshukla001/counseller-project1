@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin } from 'lucide-react'
 
 const SocialIcons = [
@@ -7,18 +7,32 @@ const SocialIcons = [
   { label: 'IG', href: 'https://www.instagram.com/KnowledgeParkEducation' },
 ]
 
+const QUICK_LINKS = [
+  { label: 'About Us', to: '/about' },
+  { label: 'SRM Chennai', to: '/college/srm' },
+  { label: 'RV College of Engineering', to: '/college/rvce' },
+  { label: 'BMS College of Engineering', to: '/college/bmsce' },
+  { label: 'PES University', to: '/college/pesu' },
+  { label: 'MS Ramaiah (MSRIT)', to: '/college/msrit' },
+  { label: 'Jain University', to: '/college/jain' },
+]
+
+const MORE_COLLEGES = [
+  { label: 'BMS Institute of Technology', to: '/college/bmsit' },
+  { label: 'Bangalore Institute of Technology', to: '/college/bit' },
+  { label: 'Dayananda Sagar (DSCE)', to: '/college/dsce' },
+  { label: 'Nitte Meenakshi (NMIT)', to: '/college/nmit' },
+  { label: 'RNS Institute of Technology', to: '/college/rnsit' },
+  { label: 'Sir M. Visvesvaraya (Sir MVIT)', to: '/college/smvit' },
+]
+
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [subbed, setSubbed] = useState(false)
-  const navigate = useNavigate()
-
-  const navTo = (path) => {
-    navigate(path)
-  }
 
   return (
     <footer id="contact" className="bg-[#0A192F] text-white">
-      <div className="max-w-7xl mx-auto px-4 py-14 grid md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-14 grid md:grid-cols-5 gap-10">
 
         {/* Brand */}
         <div className="md:col-span-1">
@@ -43,11 +57,23 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h4 className="font-bold text-sm mb-4 text-[#1E3A8A] uppercase tracking-wider">Quick Links</h4>
+          <h4 className="font-bold text-sm mb-4 text-[#1E3A8A] uppercase tracking-wider">Top Colleges</h4>
           <ul className="space-y-2 text-sm md:text-base text-white/70">
-            {['Direct Admission Guidance', 'Management Quota Seats', 'KCET Counselling', 'COMEDK Guidance', 'Top 10 Colleges', 'College Predictor'].map(l => (
-              <li key={l}>
-                <button type="button" onClick={() => navTo('/')} className="text-left hover:text-[#1E3A8A] transition-colors">{l}</button>
+            {QUICK_LINKS.map(l => (
+              <li key={l.to}>
+                <Link to={l.to} className="text-left hover:text-[#1E3A8A] transition-colors">{l.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* More colleges */}
+        <div>
+          <h4 className="font-bold text-sm mb-4 text-[#1E3A8A] uppercase tracking-wider">More Colleges</h4>
+          <ul className="space-y-2 text-sm md:text-base text-white/70">
+            {MORE_COLLEGES.map(l => (
+              <li key={l.to}>
+                <Link to={l.to} className="text-left hover:text-[#1E3A8A] transition-colors">{l.label}</Link>
               </li>
             ))}
           </ul>
@@ -100,13 +126,13 @@ export default function Footer() {
             © 2024 Knowledge Park 360. All rights reserved.
           </p>
           <div className="flex gap-4 text-sm">
-            <button onClick={() => navTo('/privacy')} className="text-white/50 hover:text-[#1E3A8A] transition-colors">
+            <Link to="/privacy" className="text-white/50 hover:text-[#1E3A8A] transition-colors">
               Privacy Policy
-            </button>
+            </Link>
             <span className="text-white/20">|</span>
-            <button onClick={() => navTo('/terms')} className="text-white/50 hover:text-[#1E3A8A] transition-colors">
+            <Link to="/terms" className="text-white/50 hover:text-[#1E3A8A] transition-colors">
               Terms & Conditions
-            </button>
+            </Link>
           </div>
         </div>
       </div>

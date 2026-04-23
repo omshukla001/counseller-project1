@@ -1,0 +1,32 @@
+# Knowledge Park 360
+
+> Knowledge Park 360 is an admission consultancy guiding students into SRM Chennai and Bangalore's top engineering colleges. We provide end-to-end counselling for KCET, COMEDK, SRMJEE, JET, and management quota admissions, with 13,000+ students placed across leading institutions.
+
+We help families compare colleges by rank, fee, placement record, and entrance-exam cutoffs, then handle the full admission process — counselling rounds, document verification, and seat confirmation.
+
+## Pages
+
+- [Home](https://knowledgepark360.com/): Overview of services, featured colleges, testimonials, and counsellor contact.
+- [About Knowledge Park 360](https://knowledgepark360.com/about): Mission, team, methodology, and admission track record.
+- [Privacy Policy](https://knowledgepark360.com/privacy): How we collect, use, and protect lead information.
+- [Terms & Conditions](https://knowledgepark360.com/terms): Service terms governing the consultancy engagement.
+
+## Colleges
+
+- [SRM Institute of Science and Technology (Chennai)](https://knowledgepark360.com/college/srm): NAAC A++, Top 10 NIRF, 92 LPA highest package, 800+ recruiters. SRMJEE and management quota admissions.
+- [RV College of Engineering (RVCE)](https://knowledgepark360.com/college/rvce): #1 ranked in Karnataka, NAAC A+, 67 LPA highest package. KCET / COMEDK admissions.
+- [BMS College of Engineering (BMSCE)](https://knowledgepark360.com/college/bmsce): Oldest private engineering college in Karnataka, NAAC A+, 52 LPA highest package.
+- [MS Ramaiah Institute of Technology (MSRIT)](https://knowledgepark360.com/college/msrit): Top placements, NAAC A, 45 LPA highest package.
+- [PES University](https://knowledgepark360.com/college/pesu): NAAC A+, tier-1 infrastructure, 58 LPA highest package, COMEDK / PESSAT admissions.
+- [BMS Institute of Technology (BMSIT)](https://knowledgepark360.com/college/bmsit): NAAC A, research-focused, 38 LPA highest package.
+- [Bangalore Institute of Technology (BIT)](https://knowledgepark360.com/college/bit): Central V.V. Puram location, NAAC A, 32 LPA highest package.
+- [Dayananda Sagar College of Engineering (DSCE)](https://knowledgepark360.com/college/dsce): NAAC A, vibrant campus, 30 LPA highest package.
+- [Nitte Meenakshi Institute of Technology (NMIT)](https://knowledgepark360.com/college/nmit): Autonomous, NAAC A+, 28 LPA highest package.
+- [RNS Institute of Technology (RNSIT)](https://knowledgepark360.com/college/rnsit): Strong CSE placements, NAAC A, 26 LPA highest package.
+- [Sir M. Visvesvaraya Institute of Technology (Sir MVIT)](https://knowledgepark360.com/college/smvit): Legacy autonomous campus, NAAC A, 24 LPA highest package.
+- [Jain (Deemed-to-be University)](https://knowledgepark360.com/college/jain): NAAC A++, multidisciplinary deemed university, 50 LPA highest package, JET admissions.
+
+## Contact
+
+- Phone: +91 72960 87953
+- Website: https://knowledgepark360.com/
