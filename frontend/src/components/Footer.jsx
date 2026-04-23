@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Mail, Phone, MapPin } from 'lucide-react'
 
 const SocialIcons = [
@@ -6,13 +7,13 @@ const SocialIcons = [
   { label: 'IG', href: 'https://www.instagram.com/KnowledgeParkEducation' },
 ]
 
-export default function Footer({ onNav }) {
+export default function Footer() {
   const [email, setEmail] = useState('')
   const [subbed, setSubbed] = useState(false)
+  const navigate = useNavigate()
 
-  const navTo = (page) => {
-    if (onNav) { onNav(page) }
-    window.scrollTo({ top: 0, behavior: 'instant' })
+  const navTo = (path) => {
+    navigate(path)
   }
 
   return (
@@ -97,11 +98,11 @@ export default function Footer({ onNav }) {
             © 2024 Knowledge Park 360. All rights reserved.
           </p>
           <div className="flex gap-4 text-sm">
-            <button onClick={() => navTo('privacy')} className="text-white/50 hover:text-[#1E3A8A] transition-colors">
+            <button onClick={() => navTo('/privacy')} className="text-white/50 hover:text-[#1E3A8A] transition-colors">
               Privacy Policy
             </button>
             <span className="text-white/20">|</span>
-            <button onClick={() => navTo('terms')} className="text-white/50 hover:text-[#1E3A8A] transition-colors">
+            <button onClick={() => navTo('/terms')} className="text-white/50 hover:text-[#1E3A8A] transition-colors">
               Terms & Conditions
             </button>
           </div>

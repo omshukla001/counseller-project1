@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
-export default function Header({ onApply, onNav }) {
+export default function Header({ onApply }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50)
@@ -11,14 +14,21 @@ export default function Header({ onApply, onNav }) {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
+  const scrollToAnchor = (id) => {
+    const el = document.getElementById(id)
+    el ? el.scrollIntoView({ behavior: 'smooth' }) : window.scrollTo(0, 0)
+  }
+
   const handleNav = (item) => {
     setOpen(false)
-    if (item === 'About') { onNav('about'); window.scrollTo(0, 0); return }
-    onNav('home')
-    setTimeout(() => {
-      const el = document.getElementById(item.toLowerCase())
-      el ? el.scrollIntoView({ behavior: 'smooth' }) : window.scrollTo(0, 0)
-    }, 50)
+    if (item === 'About') { navigate('/about'); return }
+    const anchorId = item.toLowerCase()
+    if (location.pathname === '/') {
+      scrollToAnchor(anchorId)
+      return
+    }
+    navigate('/')
+    setTimeout(() => scrollToAnchor(anchorId), 50)
   }
 
   return (

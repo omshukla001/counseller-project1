@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const consent = localStorage.getItem('cookie_consent')
@@ -37,7 +39,7 @@ export default function CookieConsent() {
               <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
                 We use cookies and similar technologies to improve your experience, analyse traffic, and show personalised ads via Google Ads.
                 By clicking "Accept All", you consent to our use of cookies. Read our{' '}
-                <button onClick={() => { accept(); window.__navTo?.('privacy') }} className="text-blue-700 underline font-medium">Privacy Policy</button> for more details.
+                <button onClick={() => { accept(); navigate('/privacy') }} className="text-blue-700 underline font-medium">Privacy Policy</button> for more details.
               </p>
             </div>
             <div className="flex gap-3 shrink-0">

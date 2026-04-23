@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, CheckCircle, Phone, ShieldCheck, Clock, Sparkles } from 'lucide-react'
 import { saveLead } from '../utils/leads'
 
 export default function LeadModal({ onClose, college, onSubmitted }) {
+  const navigate = useNavigate()
   const [sent, setSent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
@@ -184,7 +186,7 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
                 </button>
                 <p className="text-center text-[11px] md:text-xs text-gray-400">
                   🔒 Your data is protected per our{' '}
-                  <button type="button" onClick={() => { onClose(); window.__navTo?.('privacy') }} className="text-blue-600 underline">Privacy Policy</button>
+                  <button type="button" onClick={() => { onClose(); navigate('/privacy') }} className="text-blue-600 underline">Privacy Policy</button>
                 </p>
               </div>
             </form>

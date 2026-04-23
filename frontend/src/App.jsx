@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, Outlet, Navigate, useNavigate, useParams, useLocation } from 'react-router-dom'
 import './index.css'
 
 import Header from './components/Header'
@@ -19,14 +20,74 @@ import { COLLEGES, SRM_COLLEGE } from './data'
 
 const ALL_COLLEGES = [SRM_COLLEGE, ...COLLEGES]
 
-function parseHash() {
-  const raw = window.location.hash.replace(/^#\/?/, '')
-  if (!raw) return { page: 'home', slug: null }
-  if (['about', 'privacy', 'terms', 'dashboard'].includes(raw)) return { page: raw, slug: null }
-  if (raw.startsWith('college/')) {
-    return { page: 'home', slug: raw.slice('college/'.length) }
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
+  return null
+}
+
+function SiteLayout({ onApply, showLead, leadCollege, closeLead, markLeadSubmitted }) {
+  const { pathname } = useLocation()
+  const hideLead = pathname === '/privacy' || pathname === '/terms'
+  return (
+    <>
+      <ScrollProgress />
+      <Header onApply={onApply} />
+      <Outlet />
+      <Footer />
+      <WhatsAppFAB />
+      <CookieConsent />
+      {showLead && !hideLead && (
+        <LeadModal college={leadCollege} onSubmitted={markLeadSubmitted} onClose={closeLead} />
+      )}
+    </>
+  )
+}
+
+function HomePage({ onApply }) {
+  const navigate = useNavigate()
+  const openCollege = (college) => {
+    if (college && college.slug) navigate(`/college/${college.slug}`)
   }
-  return { page: 'home', slug: null }
+  return (
+    <>
+      <Hero onApply={onApply} />
+      <WhySRM onApply={onApply} />
+      <WhyBangalore />
+
+      <div className="bg-[#F8FAFC]">
+        <div className="max-w-7xl mx-auto px-4 lg:flex gap-8 items-start">
+          <div className="flex-1 min-w-0">
+            <CollegeGrid onApply={onApply} onViewCollege={openCollege} />
+          </div>
+          <CounselorSidebar onApply={onApply} />
+        </div>
+      </div>
+
+      <Expertise />
+      <Testimonials />
+    </>
+  )
+}
+
+function CollegeDetailRoute({ onApply }) {
+  const { slug } = useParams()
+  const navigate = useNavigate()
+  const college = ALL_COLLEGES.find(c => c.slug === slug)
+  if (!college) return <Navigate to="/" replace />
+  return <CollegeDetail college={college} onBack={() => navigate('/')} onApply={onApply} />
+}
+
+function AboutRoute({ onApply }) {
+  const navigate = useNavigate()
+  return <AboutPage onApply={onApply} onBack={() => navigate('/')} />
+}
+
+function AdminRoute() {
+  const navigate = useNavigate()
+  return <Dashboard onBack={() => navigate('/')} />
 }
 
 export default function App() {
@@ -35,60 +96,21 @@ export default function App() {
   const [leadSubmitted, setLeadSubmitted] = useState(() => {
     try { return sessionStorage.getItem('kp360_lead_submitted') === '1' } catch { return false }
   })
-  const initial = parseHash()
-  const [selectedCollege, setSelectedCollege] = useState(() =>
-    initial.slug ? (ALL_COLLEGES.find(c => c.slug === initial.slug) || null) : null
-  )
-  const [page, setPage] = useState(initial.page)
 
   const openApply = (college) => {
     setLeadCollege(typeof college === 'string' ? college : '')
     setShowLead(true)
   }
 
-  const openCollege = (college) => {
-    setSelectedCollege(college)
-    if (college && college.slug) {
-      window.location.hash = `/college/${college.slug}`
-    }
-    window.scrollTo({ top: 0, behavior: 'instant' })
+  const closeLead = () => {
+    setShowLead(false)
+    setLeadCollege('')
   }
 
-  const closeCollege = () => {
-    setSelectedCollege(null)
-    window.location.hash = ''
-    window.scrollTo({ top: 0, behavior: 'instant' })
+  const markLeadSubmitted = () => {
+    setLeadSubmitted(true)
+    try { sessionStorage.setItem('kp360_lead_submitted', '1') } catch {}
   }
-
-  const goNav = (p) => {
-    setSelectedCollege(null)
-    setPage(p)
-    window.location.hash = p === 'home' ? '' : p
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }
-
-  // Listen for hash changes (back/forward browser buttons)
-  useEffect(() => {
-    const onHash = () => {
-      const h = parseHash()
-      if (h.slug) {
-        const c = ALL_COLLEGES.find(x => x.slug === h.slug)
-        setSelectedCollege(c || null)
-        setPage('home')
-      } else {
-        setSelectedCollege(null)
-        setPage(h.page)
-      }
-    }
-    window.addEventListener('hashchange', onHash)
-    return () => window.removeEventListener('hashchange', onHash)
-  }, [])
-
-  // Expose nav function for cookie consent banner
-  useEffect(() => {
-    window.__navTo = goNav
-    return () => { delete window.__navTo }
-  }, [])
 
   // Auto-popup lead modal: 10s after load, then every 30s — stops once submitted
   useEffect(() => {
@@ -111,98 +133,30 @@ export default function App() {
     }
   }, [leadSubmitted])
 
-  const markLeadSubmitted = () => {
-    setLeadSubmitted(true)
-    try { sessionStorage.setItem('kp360_lead_submitted', '1') } catch {}
-  }
-
-  // Dashboard — full screen, no header/footer
-  if (page === 'dashboard') {
-    return <Dashboard onBack={() => goNav('home')} />
-  }
-
-  if (selectedCollege) {
-    return (
-      <>
-        <ScrollProgress />
-        <Header onApply={openApply} onNav={goNav} />
-        <CollegeDetail
-          college={selectedCollege}
-          onBack={closeCollege}
-          onApply={openApply}
-        />
-        <Footer onNav={goNav} />
-        <WhatsAppFAB />
-        <CookieConsent />
-        {showLead && <LeadModal college={leadCollege} onSubmitted={markLeadSubmitted} onClose={() => { setShowLead(false); setLeadCollege('') }} />}
-      </>
-    )
-  }
-
-  if (page === 'about') {
-    return (
-      <>
-        <ScrollProgress />
-        <Header onApply={openApply} onNav={goNav} />
-        <AboutPage onApply={openApply} onBack={() => goNav('home')} />
-        <Footer onNav={goNav} />
-        <WhatsAppFAB />
-        <CookieConsent />
-        {showLead && <LeadModal college={leadCollege} onSubmitted={markLeadSubmitted} onClose={() => { setShowLead(false); setLeadCollege('') }} />}
-      </>
-    )
-  }
-
-  if (page === 'privacy') {
-    return (
-      <>
-        <ScrollProgress />
-        <Header onApply={openApply} onNav={goNav} />
-        <PrivacyPolicy />
-        <Footer onNav={goNav} />
-        <WhatsAppFAB />
-        <CookieConsent />
-      </>
-    )
-  }
-
-  if (page === 'terms') {
-    return (
-      <>
-        <ScrollProgress />
-        <Header onApply={openApply} onNav={goNav} />
-        <TermsConditions />
-        <Footer onNav={goNav} />
-        <WhatsAppFAB />
-        <CookieConsent />
-      </>
-    )
-  }
-
   return (
     <>
-      <ScrollProgress />
-      <Header onApply={openApply} onNav={goNav} />
-      <Hero onApply={openApply} />
-      <WhySRM onApply={openApply} />
-      <WhyBangalore />
-
-      <div className="bg-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto px-4 lg:flex gap-8 items-start">
-          <div className="flex-1 min-w-0">
-            <CollegeGrid onApply={openApply} onViewCollege={openCollege} />
-          </div>
-          <CounselorSidebar onApply={openApply} />
-        </div>
-      </div>
-
-      <Expertise />
-      <Testimonials />
-      <Footer onNav={goNav} />
-
-      <WhatsAppFAB />
-      <CookieConsent />
-      {showLead && <LeadModal college={leadCollege} onSubmitted={markLeadSubmitted} onClose={() => { setShowLead(false); setLeadCollege('') }} />}
+      <ScrollToTop />
+      <Routes>
+        <Route path="/admin" element={<AdminRoute />} />
+        <Route
+          element={
+            <SiteLayout
+              onApply={openApply}
+              showLead={showLead}
+              leadCollege={leadCollege}
+              closeLead={closeLead}
+              markLeadSubmitted={markLeadSubmitted}
+            />
+          }
+        >
+          <Route path="/" element={<HomePage onApply={openApply} />} />
+          <Route path="/about" element={<AboutRoute onApply={openApply} />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/college/:slug" element={<CollegeDetailRoute onApply={openApply} />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
     </>
   )
 }
