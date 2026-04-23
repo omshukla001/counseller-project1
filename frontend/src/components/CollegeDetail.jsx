@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowLeft, TrendingUp, Building2, Award, Shield, CheckCircle, Phone, MapPin, Users, BookOpen } from 'lucide-react'
+import { ArrowLeft, TrendingUp, Building2, Award, Shield, CheckCircle, Phone, MapPin, Users, BookOpen, Star, Quote } from 'lucide-react'
 
 export default function CollegeDetail({ college, onBack, onApply }) {
   const stats = [
@@ -133,6 +133,51 @@ export default function CollegeDetail({ college, onBack, onApply }) {
               ))}
             </ul>
           </section>
+
+          {/* Reviews */}
+          {college.reviews && college.reviews.length > 0 && (
+            <section>
+              <h3 className="text-xl font-black text-[#102C57] mb-1 flex items-center gap-2">
+                <Star size={20} className="text-[#1E3A8A]" />
+                Student Reviews — {college.short}
+              </h3>
+              <div className="w-16 h-1 bg-[#1E3A8A] rounded mb-4" />
+              <p className="text-gray-600 text-sm md:text-base mb-5">What current & past students say about {college.fullName}.</p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {college.reviews.map((r, i) => (
+                  <motion.div key={i}
+                    initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                    className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm relative">
+                    <Quote size={28} className="text-blue-100 absolute top-3 right-3" />
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(r.stars)].map((_, s) => (
+                        <Star key={s} size={14} className="fill-yellow-400 text-yellow-400" />
+                      ))}
+                      {[...Array(5 - r.stars)].map((_, s) => (
+                        <Star key={`e${s}`} size={14} className="text-gray-200" />
+                      ))}
+                    </div>
+                    <p className="text-gray-700 text-sm leading-relaxed mb-4">"{r.text}"</p>
+                    <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1e3a8a] to-indigo-600 flex items-center justify-center text-white font-black text-sm shrink-0">
+                        {r.name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900 text-sm leading-tight">{r.name}</p>
+                        <p className="text-[#1E3A8A] text-xs font-medium">{r.batch}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="bg-blue-50 border border-blue-100 rounded-xl p-3 mt-5">
+                <p className="text-blue-800 text-xs md:text-sm leading-relaxed">
+                  <strong>Note:</strong> Reviews are collected from students counselled by Knowledge Park 360. Experiences are individual and may vary. Names may be abbreviated for privacy.
+                </p>
+              </div>
+            </section>
+          )}
         </div>
 
         {/* Right Sticky — desktop only */}

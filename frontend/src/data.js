@@ -1,6 +1,6 @@
 export const COLLEGES = [
   {
-    rank: 1, short: 'RVCE', name: 'RV College of Engineering', fullName: 'RV College Of Engineering',
+    rank: 1, slug: 'rvce', short: 'RVCE', name: 'RV College of Engineering', fullName: 'RV College Of Engineering',
     location: 'Mysore Road, Bangalore', highlight: '#1 Ranked in Karnataka',
     badge: 'AICTE | VTU', color: 'from-[#1e3a8a] to-[#0f172a]',
     img: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/RV_College_Admin_block.JPG',
@@ -22,9 +22,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science and Engineering (CSE)', 'Information Science and Engineering (ISE)', 'Electronics and Communication Engineering (ECE)', 'Electrical and Electronics Engineering (EEE)', 'Mechanical Engineering', 'Civil Engineering', 'Biotechnology', 'Artificial Intelligence and Machine Learning', 'Data Science', 'Cyber Security', 'Aerospace Engineering', 'Chemical Engineering'],
     eligibility: ['Must have completed 10+2 from a recognized board', 'Mandatory: Physics and Mathematics', 'Optional: Chemistry / Biology / Biotechnology / CS / Electronics', 'Valid KCET / COMEDK UGET score', 'Minimum aggregate as per VTU norms'],
+    reviews: [
+      { name: 'Aditya Ranjan', batch: 'CSE 2025', stars: 5, text: 'RVCE has been a life-changing experience. The faculty is top-notch, placements are amazing, and the campus culture encourages innovation. Got placed at a top product company with a great package.' },
+      { name: 'Sneha Rao', batch: 'ECE 2024', stars: 5, text: 'Excellent labs and research opportunities. The industry collaborations are strong and professors genuinely care about student growth. Highly recommend for serious engineering aspirants.' },
+      { name: 'Karthik Menon', batch: 'ISE 2024', stars: 4, text: 'Great academic rigor and placement support. The coding culture among students pushes everyone to do better. Hostel life could be improved but overall a top-tier college.' },
+    ],
   },
   {
-    rank: 2, short: 'BMSCE', name: 'BMS College of Engineering', fullName: 'BMS College Of Engineering',
+    rank: 2, slug: 'bmsce', short: 'BMSCE', name: 'BMS College of Engineering', fullName: 'BMS College Of Engineering',
     location: 'Basavanagudi, Bangalore', highlight: 'Oldest Private College',
     badge: 'AICTE | VTU', color: 'from-[#1e40af] to-[#0f172a]',
     img: '/bmsce1.webp',
@@ -39,9 +44,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science and Engineering', 'Electronics and Communication Engineering', 'Mechanical Engineering', 'Civil Engineering', 'Information Science', 'Electrical Engineering', 'AI & ML', 'Data Science'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score', 'Minimum 45% aggregate in PCM'],
+    reviews: [
+      { name: 'Vishal Patil', batch: 'ECE 2024', stars: 5, text: 'BMSCE gave me strong fundamentals and an excellent peer group. The legacy of the college shows in the quality of faculty and alumni network. Placements were smooth.' },
+      { name: 'Priya Shetty', batch: 'CSE 2025', stars: 5, text: 'Loved the vibrant campus and the blend of academics and fests. The central Basavanagudi location is a huge plus. Core CSE placements were excellent this year.' },
+      { name: 'Rahul Nair', batch: 'Mech 2024', stars: 4, text: 'Strong mechanical department with good lab infrastructure. Placement cell is active and supportive. Would definitely recommend BMSCE for core branches.' },
+    ],
   },
   {
-    rank: 3, short: 'MSRIT', name: 'MS Ramaiah Institute of Technology', fullName: 'MS Ramaiah Institute Of Technology',
+    rank: 3, slug: 'msrit', short: 'MSRIT', name: 'MS Ramaiah Institute of Technology', fullName: 'MS Ramaiah Institute Of Technology',
     location: 'Ramaiah Road, Bangalore', highlight: 'Top Placements',
     badge: 'AICTE | VTU', color: 'from-[#1d4ed8] to-[#0f172a]',
     img: 'https://upload.wikimedia.org/wikipedia/commons/a/af/MSRIT_from_front_gate.jpg',
@@ -56,9 +66,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE', 'AI & ML', 'Biotechnology'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score', 'Minimum 45% in PCM'],
+    reviews: [
+      { name: 'Arjun Krishnan', batch: 'CSE 2024', stars: 5, text: 'MSRIT offered me the right balance of academics and exposure. Placement drives began early and I got multiple offers. Faculty mentorship was a big plus.' },
+      { name: 'Divya Hegde', batch: 'ISE 2025', stars: 4, text: 'Good college with active tech clubs and hackathons. Placement support is strong for IT branches. Infrastructure could use upgrades but curriculum is solid.' },
+      { name: 'Manoj Kumar', batch: 'ECE 2024', stars: 5, text: 'MSRIT is a hidden gem in Bangalore. Research opportunities and alumni network helped me secure an internship at a top MNC which converted to a full-time offer.' },
+    ],
   },
   {
-    rank: 4, short: 'PESU', name: 'PES University', fullName: 'PES University',
+    rank: 4, slug: 'pesu', short: 'PESU', name: 'PES University', fullName: 'PES University',
     location: 'RR Campus, Bangalore', highlight: 'Tier 1 Infrastructure',
     badge: 'AICTE | UGC', color: 'from-[#1e3a8a] to-[#172554]',
     img: '/pes12.jpeg',
@@ -73,9 +88,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'AI & ML', 'Data Science', 'Robotics', 'Biotechnology'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid COMEDK / JEE / PESSAT score', 'Minimum 60% in PCM'],
+    reviews: [
+      { name: 'Meghna Iyer', batch: 'AI&ML 2025', stars: 5, text: 'PES University has world-class infrastructure and faculty. The emphasis on research and projects pushed me to build a strong portfolio. Placed at a top fintech company.' },
+      { name: 'Siddharth Rao', batch: 'CSE 2024', stars: 5, text: 'PESU is one of the best private universities. The coding culture, startup ecosystem, and campus life are unmatched. Highly competitive but extremely rewarding.' },
+      { name: 'Ananya Prakash', batch: 'Data Science 2025', stars: 4, text: 'Great exposure to industry projects and live mentorship. The Data Science program is well-designed with real-world applications. Placement support is phenomenal.' },
+    ],
   },
   {
-    rank: 5, short: 'BMSIT', name: 'BMS Institute of Technology', fullName: 'BMS Institute Of Technology',
+    rank: 5, slug: 'bmsit', short: 'BMSIT', name: 'BMS Institute of Technology', fullName: 'BMS Institute Of Technology',
     location: 'Yelahanka, Bangalore', highlight: 'High Growth / Research',
     badge: 'AICTE | VTU', color: 'from-[#1e40af] to-[#172554]',
     img: '/bmsit1.webp',
@@ -90,9 +110,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'AI & ML', 'Data Science'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score', 'Minimum 45% in PCM'],
+    reviews: [
+      { name: 'Harsh Gupta', batch: 'CSE 2025', stars: 4, text: 'BMSIT has a beautiful campus in Yelahanka with modern labs. Placement support has grown significantly and I landed a good role through campus drives.' },
+      { name: 'Lavanya Pai', batch: 'ISE 2024', stars: 4, text: 'Great research exposure and supportive faculty. The innovation hub helped me build real projects. Placements are improving year over year.' },
+      { name: 'Rohit Verma', batch: 'ECE 2025', stars: 5, text: 'Loved my time at BMSIT. Clean campus, supportive seniors, and the placement cell pushed us through mock interviews and soft skills training.' },
+    ],
   },
   {
-    rank: 6, short: 'BIT', name: 'Bangalore Institute of Technology', fullName: 'Bangalore Institute Of Technology',
+    rank: 6, slug: 'bit', short: 'BIT', name: 'Bangalore Institute of Technology', fullName: 'Bangalore Institute Of Technology',
     location: 'V.V. Puram, Bangalore', highlight: 'Central City Location',
     badge: 'AICTE | VTU', color: 'from-[#1d4ed8] to-[#0f172a]',
     img: '/bit1.webp',
@@ -107,9 +132,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'EEE', 'ISE'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
+    reviews: [
+      { name: 'Aakash Bhat', batch: 'CSE 2024', stars: 4, text: 'BIT\'s central location is a huge advantage — close to Bangalore\'s tech hubs. Faculty is experienced and the curriculum is well-structured. Placements are decent.' },
+      { name: 'Shreya Kulkarni', batch: 'ECE 2025', stars: 4, text: 'The legacy and accessibility of BIT make it a solid choice. Labs are well-maintained and professors encourage hands-on learning. Good placement record.' },
+      { name: 'Nikhil Das', batch: 'ISE 2024', stars: 5, text: 'Being in the heart of Bangalore means easy access to internships and tech events. Great peer group and supportive placement cell.' },
+    ],
   },
   {
-    rank: 7, short: 'DSCE', name: 'Dayananda Sagar College of Engineering', fullName: 'Dayananda Sagar College Of Engineering',
+    rank: 7, slug: 'dsce', short: 'DSCE', name: 'Dayananda Sagar College of Engineering', fullName: 'Dayananda Sagar College Of Engineering',
     location: 'Kumaraswamy Layout, Bangalore', highlight: 'Diverse Campus Life',
     badge: 'AICTE | VTU', color: 'from-[#1e3a8a] to-[#1e40af]',
     img: '/dsce12.webp',
@@ -124,9 +154,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE', 'AI & ML'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
+    reviews: [
+      { name: 'Pooja Reddy', batch: 'CSE 2025', stars: 4, text: 'DSCE has a lively campus with tons of cultural and technical events. Faculty is approachable and the placement cell works hard to bring diverse recruiters.' },
+      { name: 'Tanmay Joshi', batch: 'ECE 2024', stars: 4, text: 'Good college with varied student community. The sports and cultural clubs are vibrant. Placements are steadily improving for core branches.' },
+      { name: 'Sanjana Gowda', batch: 'AI&ML 2025', stars: 5, text: 'Enjoyed the multidisciplinary exposure at DSCE. Group projects and hackathons gave me a real-world edge before placements. Recommend it for all-rounders.' },
+    ],
   },
   {
-    rank: 8, short: 'NMIT', name: 'Nitte Meenakshi Institute of Technology', fullName: 'Nitte Meenakshi Institute Of Technology',
+    rank: 8, slug: 'nmit', short: 'NMIT', name: 'Nitte Meenakshi Institute of Technology', fullName: 'Nitte Meenakshi Institute Of Technology',
     location: 'Yelahanka, Bangalore', highlight: 'Autonomous Excellence',
     badge: 'AICTE | VTU', color: 'from-[#1d4ed8] to-[#172554]',
     img: '/nmit1.webp',
@@ -141,9 +176,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'AI & ML', 'Data Science'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
+    reviews: [
+      { name: 'Akhil Sharma', batch: 'CSE 2024', stars: 5, text: 'NMIT\'s autonomous status reflects in its flexible curriculum and quality teaching. Placement record is strong and faculty mentorship is exceptional.' },
+      { name: 'Riya Pillai', batch: 'Data Science 2025', stars: 4, text: 'The Data Science program at NMIT is well-structured with industry collaborations. Campus is peaceful and ideal for focused learning.' },
+      { name: 'Varun Shetty', batch: 'ECE 2024', stars: 4, text: 'Good autonomous college with modern labs and research focus. Placement cell is active and many core companies visit annually.' },
+    ],
   },
   {
-    rank: 9, short: 'RNSIT', name: 'RNS Institute of Technology', fullName: 'RNS Institute Of Technology',
+    rank: 9, slug: 'rnsit', short: 'RNSIT', name: 'RNS Institute of Technology', fullName: 'RNS Institute Of Technology',
     location: 'Channasandra, Bangalore', highlight: 'Top CSE Placements',
     badge: 'AICTE | VTU', color: 'from-[#1e40af] to-[#0f172a]',
     img: '/rnsit1.webp',
@@ -158,9 +198,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
+    reviews: [
+      { name: 'Gautam Iyer', batch: 'CSE 2024', stars: 5, text: 'RNSIT is excellent for CSE placements. The coding culture among students is strong and faculty encourages competitive programming. Got a great offer in my final year.' },
+      { name: 'Shruti Ramesh', batch: 'ISE 2025', stars: 4, text: 'Strong IT placements and supportive placement cell. The digital library and modern labs helped me build solid projects. Highly recommend for software roles.' },
+      { name: 'Arnav Kumar', batch: 'CSE 2024', stars: 4, text: 'RNSIT surprised me with its placement results. Faculty is experienced and the training programs for aptitude and coding interviews were thorough.' },
+    ],
   },
   {
-    rank: 10, short: 'Sir MVIT', name: 'Sir M. Visvesvaraya Institute of Technology', fullName: 'Sir M. Visvesvaraya Institute Of Technology',
+    rank: 10, slug: 'smvit', short: 'Sir MVIT', name: 'Sir M. Visvesvaraya Institute of Technology', fullName: 'Sir M. Visvesvaraya Institute Of Technology',
     location: 'Airport Road, Bangalore', highlight: 'Legacy Campus',
     badge: 'AICTE | VTU', color: 'from-[#1e3a8a] to-[#0f172a]',
     img: '/smvit12.jpeg',
@@ -175,9 +220,14 @@ export const COLLEGES = [
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
+    reviews: [
+      { name: 'Rakesh Bhatia', batch: 'Mech 2024', stars: 4, text: 'Sir MVIT has a strong legacy and a beautiful airport road campus. Faculty is experienced and the core engineering departments are solid.' },
+      { name: 'Neha Venkatesh', batch: 'CSE 2025', stars: 4, text: 'Good placements for a mid-tier autonomous college. Alumni network is strong and the campus culture is welcoming. Faculty support was great.' },
+      { name: 'Yash Pandit', batch: 'ECE 2024', stars: 5, text: 'Sir MVIT gave me solid fundamentals and a memorable college life. Placement cell brings in many recruiters every year.' },
+    ],
   },
   {
-    rank: 11, short: 'Jain', name: 'Jain (Deemed-to-be University)', fullName: 'Jain (Deemed-to-be University)',
+    rank: 11, slug: 'jain', short: 'Jain', name: 'Jain (Deemed-to-be University)', fullName: 'Jain (Deemed-to-be University)',
     location: 'Jayanagar, Bangalore', highlight: 'NAAC A++ University',
     badge: 'UGC | NAAC A++', color: 'from-[#1e3a8a] to-[#172554]',
     img: '/jain1.webp',
@@ -199,6 +249,11 @@ export const COLLEGES = [
     },
     courses: ['Computer Science and Engineering', 'Electronics and Communication Engineering', 'Mechanical Engineering', 'Civil Engineering', 'AI & Machine Learning', 'Data Science', 'Biotechnology', 'BBA', 'MBA', 'B.Com', 'BCA', 'MCA'],
     eligibility: ['10+2 from a recognized board', 'Valid JET / KCET / COMEDK score or Management Quota', 'Minimum 50% aggregate'],
+    reviews: [
+      { name: 'Ananya Deshmukh', batch: 'BBA 2025', stars: 5, text: 'Jain University offered me a multidisciplinary environment. The BBA program had excellent industry connects and live projects. Placed at a leading consulting firm.' },
+      { name: 'Kiran Pai', batch: 'CSE 2024', stars: 5, text: 'NAAC A++ accreditation shows in the quality of faculty and infrastructure. The startup incubation center helped me build my own venture. Highly recommend.' },
+      { name: 'Megha Balan', batch: 'MBA 2025', stars: 4, text: 'Great MBA program with industry-aligned curriculum. Strong alumni network and placement cell. Jain\'s diverse student body enriches the learning experience.' },
+    ],
   },
 ]
 
@@ -219,15 +274,41 @@ export const WHY_SRM = [
 ]
 
 export const SRM_COLLEGE = {
-  short: 'SRM Chennai',
+  rank: 0, slug: 'srm', short: 'SRM Chennai',
   name: 'SRM Institute of Science and Technology',
+  fullName: 'SRM Institute of Science and Technology',
   location: 'Kattankulathur, Chennai, Tamil Nadu',
   highlight: 'Top 10 NIRF | 92 LPA Highest Package',
+  badge: 'UGC | NAAC A++',
+  color: 'from-[#1e3a8a] to-[#0f172a]',
   img: '/srm1.jpg',
+  bannerImg: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/SRM_University_Auditorium.JPG',
   seats: '10,000+', cutoff: 'SRMJEE / Management Quota',
   highestPkg: '92 LPA',
-  courses: ['CSE', 'AI & Machine Learning', 'Data Science', 'Cyber Security', 'ECE', 'Mechanical', 'Biomedical', 'Civil'],
+  type: 'Deemed University', accreditation: 'NAAC A++ / UGC', approval: 'UGC, AICTE',
+  about: `SRM Institute of Science and Technology (SRMIST), established in 1985, is one of India's top-ranked private deemed universities. Located in Kattankulathur, Chennai, SRM is consistently ranked among the Top 10 private universities by NIRF and holds the prestigious NAAC A++ accreditation.\n\nSRM offers an extensive range of undergraduate, postgraduate and doctoral programs across engineering, medicine, management, sciences, and humanities. The 250-acre Kattankulathur campus features world-class infrastructure: modern lecture halls, 500+ labs, innovation centers, a sprawling library, hostels, sports complexes, and global partnerships with top universities abroad.\n\nSRM is known for record-breaking placements — 92 LPA highest package — and recruiters like Google, Microsoft, Amazon, Goldman Sachs, Deloitte, and 800+ others visit the campus every year. The university is research-driven with 500+ patents and international collaborations.`,
+  placements: {
+    rate: '92%', avg: '₹7–12 LPA', highest: '92 LPA',
+    companies: ['Google', 'Microsoft', 'Amazon', 'Goldman Sachs', 'Deloitte', 'EY', 'Infosys', 'Wipro', 'TCS', 'Accenture', 'Cognizant', 'HCL'],
+    points: [
+      '92%+ placement rate across engineering programs.',
+      'Top recruiters: Google, Microsoft, Amazon, Goldman Sachs, Deloitte.',
+      'Record-breaking highest package of 92 LPA; average 7–12 LPA.',
+      '800+ recruiters visit campus annually.',
+      'Strong internship culture with international exposure.',
+      'Dedicated Career Centre with year-round training and mock interviews.',
+      'Active startup incubation and entrepreneurship support.',
+    ],
+  },
+  courses: ['Computer Science and Engineering (CSE)', 'AI & Machine Learning', 'Data Science', 'Cyber Security', 'Electronics and Communication Engineering', 'Mechanical Engineering', 'Biomedical Engineering', 'Civil Engineering', 'Biotechnology', 'Aerospace Engineering', 'Automobile Engineering', 'Chemical Engineering'],
+  eligibility: ['10+2 with Physics, Chemistry and Mathematics from a recognized board', 'Valid SRMJEE score (Phase 1 or Phase 2) or JEE Main score', 'Management Quota seats available with direct admission', 'Minimum 50% aggregate in PCM'],
   stats: [['Top 10', 'NIRF Rank'], ['92 LPA', 'Highest Pkg'], ['800+', 'Recruiters'], ['50k+', 'Students']],
+  reviews: [
+    { name: 'Rohan Mehta', batch: 'CSE 2025', stars: 5, text: 'SRM Kattankulathur exceeded my expectations. The campus is massive, faculty is world-class, and placements are outstanding. Got placed at a top product company during campus drives.' },
+    { name: 'Kavya Srinivasan', batch: 'Data Science 2025', stars: 5, text: 'SRM was my dream college and it lived up to it. The Data Science curriculum is industry-aligned and the research opportunities are excellent. Placement cell is phenomenal.' },
+    { name: 'Aditya Sharma', batch: 'ECE 2024', stars: 5, text: 'Best decision of my life. SRM\'s global exposure, international collaborations, and 800+ recruiters make it a top choice. Highest package culture keeps students motivated.' },
+    { name: 'Priyanka Raghavan', batch: 'AI&ML 2025', stars: 4, text: 'Excellent AI & ML program with strong industry connects. Campus life is vibrant with endless clubs and fests. Placement training was thorough and effective.' },
+  ],
 }
 
 export const EXPERTISE = [

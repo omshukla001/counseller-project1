@@ -133,8 +133,6 @@ function BangaloreAccordion({ onApply, onViewCollege }) {
 }
 
 export default function CollegeGrid({ onApply, onViewCollege }) {
-  const [tab, setTab] = useState('srm')
-
   return (
     <section id="colleges" className="py-10 md:py-20">
       {/* Header */}
@@ -147,25 +145,15 @@ export default function CollegeGrid({ onApply, onViewCollege }) {
         </motion.h2>
       </div>
 
-      {/* Tab switcher */}
-      <div className="flex justify-center mb-8">
-        <div className="bg-gray-100 rounded-full p-1 flex gap-1">
-          <button onClick={() => setTab('srm')}
-            className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${tab === 'srm' ? 'bg-gradient-to-r from-[#1e3a8a] to-indigo-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-800'}`}>
-            ⭐ SRM Chennai
-          </button>
-          <button onClick={() => setTab('blr')}
-            className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${tab === 'blr' ? 'bg-gradient-to-r from-[#1e3a8a] to-indigo-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-800'}`}>
-            🏙️ Bangalore Colleges
-          </button>
+      {/* SRM Featured Block */}
+      <div className="mb-10">
+        <div className="flex items-center gap-2 mb-4 px-1">
+          <span className="bg-yellow-400 text-gray-900 text-[10px] font-black px-2 py-0.5 rounded-full">FEATURED</span>
+          <h3 className="text-lg md:text-xl font-black text-[#102C57]">⭐ SRM Chennai</h3>
         </div>
-      </div>
-
-      <AnimatePresence mode="wait">
-        {tab === 'srm' && (
-          <motion.div key="srm"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-            className="bg-gradient-to-br from-[#0c1631] via-[#162d6e] to-[#0e1a3d] rounded-3xl p-6 md:p-10 text-white relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="bg-gradient-to-br from-[#0c1631] via-[#162d6e] to-[#0e1a3d] rounded-3xl p-6 md:p-10 text-white relative overflow-hidden">
             {/* bg pattern + glows */}
             <div className="absolute inset-0 opacity-[0.03] rounded-3xl" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
             <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/15 rounded-full blur-[80px] pointer-events-none" />
@@ -207,10 +195,14 @@ export default function CollegeGrid({ onApply, onViewCollege }) {
                   ))}
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
+                  <button onClick={() => onViewCollege(SRM_COLLEGE)}
+                    className="bg-white text-[#102C57] font-black text-sm px-5 py-2.5 rounded-full hover:bg-blue-50 transition-colors shadow-lg">
+                    View SRM Details →
+                  </button>
                   <button onClick={() => onApply('SRM Chennai')}
-                    className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-black text-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-yellow-500/30">
-                    Apply for SRM →
+                    className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-black text-sm px-5 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-yellow-500/30">
+                    Apply for SRM
                   </button>
                   <button onClick={() => onApply('SRM Chennai')}
                     className="border-2 border-white/30 text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">
@@ -222,16 +214,17 @@ export default function CollegeGrid({ onApply, onViewCollege }) {
               {/* Right: sliding photos */}
               <SRMSlider />
             </div>
-          </motion.div>
-        )}
+        </motion.div>
+      </div>
 
-        {tab === 'blr' && (
-          <motion.div key="blr"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
-            <BangaloreAccordion onApply={onApply} onViewCollege={onViewCollege} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Bangalore Colleges — always visible */}
+      <div>
+        <div className="flex items-center gap-2 mb-4 px-1">
+          <span className="bg-blue-100 text-[#1e3a8a] text-[10px] font-black px-2 py-0.5 rounded-full">TOP 11</span>
+          <h3 className="text-lg md:text-xl font-black text-[#102C57]">🏙️ Bangalore Colleges</h3>
+        </div>
+        <BangaloreAccordion onApply={onApply} onViewCollege={onViewCollege} />
+      </div>
     </section>
   )
 }
