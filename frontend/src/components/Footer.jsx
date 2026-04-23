@@ -46,7 +46,9 @@ export default function Footer() {
           <h4 className="font-bold text-sm mb-4 text-[#1E3A8A] uppercase tracking-wider">Quick Links</h4>
           <ul className="space-y-2 text-sm md:text-base text-white/70">
             {['Direct Admission Guidance', 'Management Quota Seats', 'KCET Counselling', 'COMEDK Guidance', 'Top 10 Colleges', 'College Predictor'].map(l => (
-              <li key={l}><a href="#" className="hover:text-[#1E3A8A] transition-colors">{l}</a></li>
+              <li key={l}>
+                <button type="button" onClick={() => navTo('/')} className="text-left hover:text-[#1E3A8A] transition-colors">{l}</button>
+              </li>
             ))}
           </ul>
         </div>
