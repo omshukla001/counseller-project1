@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useReducer } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin, GraduationCap, Building2, Users, ChevronDown, Shield } from 'lucide-react'
+import AnimatedCounter from './AnimatedCounter'
 
 const COLLEGES = [
   { name: 'SRM Chennai', img: '/srm1.jpg' },
@@ -106,7 +107,7 @@ export default function Hero({ onApply }) {
             exit={{ x: '-100%' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-0">
-            <img src={COLLEGES[idx].img} alt="" loading="eager" decoding="async"
+            <img src={COLLEGES[idx].img} alt={`${COLLEGES[idx].name} campus`} loading="eager" decoding="async"
               fetchPriority={idx === 0 ? 'high' : 'auto'}
               className="w-full h-full object-cover scale-105" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#080e1e]/70 via-[#12244a]/55 to-[#080e1e]/80" />
@@ -143,11 +144,11 @@ export default function Hero({ onApply }) {
 
           {/* Headline */}
           <motion.div {...fadeUp(0.15)} className="mb-3">
-            <h1 className="text-[2rem] font-extrabold leading-[1.12] tracking-tight text-white">
+            <div role="heading" aria-level="2" className="text-[2rem] font-extrabold leading-[1.12] tracking-tight text-white">
               Secure Your Seat at
               <br />
               <span className="inline-block min-h-[1.2em]"><RotatingCollege idx={idx} /></span>
-            </h1>
+            </div>
             <p className="text-white/45 text-sm font-bold mt-1.5">& Top Engineering Colleges</p>
           </motion.div>
 
@@ -180,10 +181,17 @@ export default function Hero({ onApply }) {
 
             {/* Stat boxes */}
             <motion.div {...fadeUp(0.3)} className="grid grid-cols-4 gap-2 mb-3">
-              {[['6+', 'Years'], ['12+', 'Colleges'], ['13k+', 'Students'], ['12k+', 'Admissions']].map(([v, l]) => (
-                <div key={l} className="bg-white/[0.08] backdrop-blur border border-white/[0.12] rounded-xl py-2 text-center">
-                  <div className="text-white font-black text-sm leading-none">{v}</div>
-                  <div className="text-white/45 text-[9px] font-medium mt-1">{l}</div>
+              {[
+                { to: 6, suffix: '+', l: 'Years' },
+                { to: 12, suffix: '+', l: 'Colleges' },
+                { to: 13, suffix: 'k+', l: 'Students' },
+                { to: 12, suffix: 'k+', l: 'Admissions' },
+              ].map(s => (
+                <div key={s.l} className="bg-white/[0.08] backdrop-blur border border-white/[0.12] rounded-xl py-2 text-center">
+                  <div className="text-white font-black text-sm leading-none">
+                    <AnimatedCounter to={s.to} suffix={s.suffix} duration={1400} />
+                  </div>
+                  <div className="text-white/45 text-[9px] font-medium mt-1">{s.l}</div>
                 </div>
               ))}
             </motion.div>
@@ -255,16 +263,18 @@ export default function Hero({ onApply }) {
               <motion.div {...fadeUp(0.5)}
                 className="flex items-center gap-8 pt-4 border-t border-white/[0.07]">
                 {[
-                  { icon: GraduationCap, val: '13,000+', label: 'Students Guided' },
-                  { icon: Building2, val: '12+', label: 'Partner Colleges' },
-                  { icon: Users, val: '12,000+', label: 'Admissions Done' },
+                  { icon: GraduationCap, to: 13000, suffix: '+', label: 'Students Guided' },
+                  { icon: Building2, to: 12, suffix: '+', label: 'Partner Colleges' },
+                  { icon: Users, to: 12000, suffix: '+', label: 'Admissions Done' },
                 ].map(s => (
                   <div key={s.label} className="flex items-center gap-2.5">
                     <div className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
                       <s.icon size={16} className="text-blue-400" />
                     </div>
                     <div>
-                      <p className="text-white font-bold text-[15px] leading-none">{s.val}</p>
+                      <p className="text-white font-bold text-[15px] leading-none">
+                        <AnimatedCounter to={s.to} suffix={s.suffix} />
+                      </p>
                       <p className="text-white/40 text-[10px] font-medium mt-0.5">{s.label}</p>
                     </div>
                   </div>

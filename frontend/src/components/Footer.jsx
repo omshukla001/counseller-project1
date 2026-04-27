@@ -37,7 +37,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="md:col-span-1">
           <div className="flex items-center gap-2 mb-3">
-            <img src="/logo2.png" alt="logo" className="h-10 w-10 object-contain rounded-xl bg-white p-0.5" />
+            <img src="/logo1.png" alt="logo" className="h-10 w-10 object-contain rounded-xl bg-white p-0.5" />
             <div className="flex flex-col leading-tight">
               <span className="text-white font-black text-sm">Knowledge Park 360</span>
               <span className="text-[#1E3A8A] font-bold text-[9px] tracking-widest uppercase">360</span>
@@ -83,8 +83,16 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-sm mb-4 text-[#1E3A8A] uppercase tracking-wider">Contact Us</h4>
           <div className="space-y-3 text-sm md:text-base text-white/70">
-            <div className="flex gap-2"><MapPin size={14} className="text-[#1E3A8A] shrink-0 mt-0.5" /><span>17/B/5 & 17/B/5, Samruddhi, 3rd Floor, Opp. Rail Wheel Factory, Doddaballapura Road, Bangalore – 560064</span></div>
-            <div className="flex gap-2"><MapPin size={14} className="text-[#1E3A8A] shrink-0 mt-0.5" /><span>House No. 43, Kumar Sinha, Bailey Road, Near Shiv Mandir, Kusumpuram Colony, Patna, Bihar – 801503</span></div>
+            <a href="https://share.google/tGBSttE3KGMk6fkcH" target="_blank" rel="noreferrer"
+              className="flex gap-2 hover:text-white transition-colors group">
+              <MapPin size={14} className="text-[#1E3A8A] shrink-0 mt-0.5 group-hover:text-cyan-300 transition-colors" />
+              <span className="group-hover:underline underline-offset-2">17/B/5 & 17/B/5, Samruddhi, 3rd Floor, Opp. Rail Wheel Factory, Doddaballapura Road, Bangalore – 560064 <span className="text-cyan-400 text-[10px] font-semibold whitespace-nowrap">↗ View on Maps</span></span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=House+No+43+Kumar+Sinha+Bailey+Road+Kusumpuram+Colony+Patna+Bihar+801503" target="_blank" rel="noreferrer"
+              className="flex gap-2 hover:text-white transition-colors group">
+              <MapPin size={14} className="text-[#1E3A8A] shrink-0 mt-0.5 group-hover:text-cyan-300 transition-colors" />
+              <span className="group-hover:underline underline-offset-2">House No. 43, Kumar Sinha, Bailey Road, Near Shiv Mandir, Kusumpuram Colony, Patna, Bihar – 801503 <span className="text-cyan-400 text-[10px] font-semibold whitespace-nowrap">↗ View on Maps</span></span>
+            </a>
             <div className="flex gap-2"><Phone size={14} className="text-[#1E3A8A] shrink-0 mt-0.5" /><div className="flex flex-col"><a href="tel:+917296087953" className="hover:text-white transition-colors">+91 72960 87953</a><a href="tel:+919108783191" className="hover:text-white transition-colors">+91 91087 83191</a><a href="tel:+918217033492" className="hover:text-white transition-colors">+91 82170 33492</a></div></div>
             <div className="flex gap-2"><Mail size={14} className="text-[#1E3A8A]" /><span>knowledgeparkedu360@gmail.com</span></div>
           </div>

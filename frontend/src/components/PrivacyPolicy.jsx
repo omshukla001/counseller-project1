@@ -12,8 +12,8 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mt-8 mb-3">1. Who We Are</h2>
             <p>Knowledge Park 360 ("we", "us", "our") is an independent educational consultancy that provides admission guidance for engineering colleges across India. We are <strong>not</strong> affiliated with, endorsed by, or part of any college or university.</p>
-            <p><strong>Bangalore Office:</strong> 17/B/5 & 17/B/5, Samruddhi, 3rd Floor, Opp. Rail Wheel Factory, Doddaballapura Road, Bangalore – 560064</p>
-            <p><strong>Registered Address:</strong> House No. 43, Kumar Sinha, Bailey Road, Near Shiv Mandir, Kusumpuram Colony, Patna, Bihar – 801503</p>
+            <p><strong>Bangalore Office:</strong> <a href="https://share.google/tGBSttE3KGMk6fkcH" target="_blank" rel="noreferrer" className="text-blue-700 underline hover:text-blue-900">17/B/5 & 17/B/5, Samruddhi, 3rd Floor, Opp. Rail Wheel Factory, Doddaballapura Road, Bangalore – 560064 ↗</a></p>
+            <p><strong>Registered Address:</strong> <a href="https://www.google.com/maps/search/?api=1&query=House+No+43+Kumar+Sinha+Bailey+Road+Kusumpuram+Colony+Patna+Bihar+801503" target="_blank" rel="noreferrer" className="text-blue-700 underline hover:text-blue-900">House No. 43, Kumar Sinha, Bailey Road, Near Shiv Mandir, Kusumpuram Colony, Patna, Bihar – 801503 ↗</a></p>
             <p><strong>Contact:</strong> +91 72960 87953 | knowledgeparkedu360@gmail.com</p>
           </section>
 

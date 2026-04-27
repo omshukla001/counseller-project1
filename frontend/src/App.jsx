@@ -14,7 +14,11 @@ import { WhyBangalore, WhySRM, Expertise, Testimonials } from './components/Sect
 import CounselorSidebar from './components/CounselorSidebar'
 import Footer from './components/Footer'
 import LeadModal from './components/LeadModal'
-import { ScrollProgress, WhatsAppFAB } from './components/Floaters'
+import InlineLeadForm from './components/InlineLeadForm'
+import GoogleReviews from './components/GoogleReviews'
+import { ScrollProgress, WhatsAppFAB, KunalChat } from './components/Floaters'
+import LiveTicker from './components/LiveTicker'
+import LiveActivity from './components/LiveActivity'
 import CookieConsent from './components/CookieConsent'
 import { COLLEGES, SRM_COLLEGE } from './data'
 
@@ -34,10 +38,13 @@ function SiteLayout({ onApply, showLead, leadCollege, closeLead, markLeadSubmitt
   return (
     <>
       <ScrollProgress />
+      <LiveTicker />
       <Header onApply={onApply} />
       <Outlet />
       <Footer />
       <WhatsAppFAB />
+      <KunalChat />
+      <LiveActivity />
       <CookieConsent />
       {showLead && !hideLead && (
         <LeadModal college={leadCollege} onSubmitted={markLeadSubmitted} onClose={closeLead} />
@@ -68,6 +75,8 @@ function HomePage({ onApply }) {
 
       <Expertise />
       <Testimonials />
+      <GoogleReviews />
+      <InlineLeadForm />
     </>
   )
 }

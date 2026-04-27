@@ -71,8 +71,8 @@ export default function TermsConditions() {
             <h2 className="text-xl font-bold text-gray-900 mt-8 mb-3">10. Contact</h2>
             <p>For questions about these Terms & Conditions:</p>
             <p><strong>Knowledge Park 360</strong><br />
-            <strong>Bangalore Office:</strong> 17/B/5 & 17/B/5, Samruddhi, 3rd Floor, Opp. Rail Wheel Factory, Doddaballapura Road, Bangalore – 560064<br />
-            <strong>Registered:</strong> House No. 43, Kumar Sinha, Bailey Road, Near Shiv Mandir, Kusumpuram Colony, Patna, Bihar – 801503<br />
+            <strong>Bangalore Office:</strong> <a href="https://share.google/tGBSttE3KGMk6fkcH" target="_blank" rel="noreferrer" className="text-blue-700 underline hover:text-blue-900">17/B/5 & 17/B/5, Samruddhi, 3rd Floor, Opp. Rail Wheel Factory, Doddaballapura Road, Bangalore – 560064 ↗</a><br />
+            <strong>Registered:</strong> <a href="https://www.google.com/maps/search/?api=1&query=House+No+43+Kumar+Sinha+Bailey+Road+Kusumpuram+Colony+Patna+Bihar+801503" target="_blank" rel="noreferrer" className="text-blue-700 underline hover:text-blue-900">House No. 43, Kumar Sinha, Bailey Road, Near Shiv Mandir, Kusumpuram Colony, Patna, Bihar – 801503 ↗</a><br />
             Phone: +91 72960 87953<br />
             Email: knowledgeparkedu360@gmail.com</p>
           </section>
