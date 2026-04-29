@@ -167,7 +167,7 @@ export default function CollegeGrid({ onApply, onViewCollege }) {
                     <Sparkles size={20} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-black text-xl text-white">{SRM_COLLEGE.short}</h3>
+                    <h3 className="font-black text-xl text-white">SRM Chennai</h3>
                     <p className="text-white/70 text-sm flex items-center gap-1"><MapPin size={11} />{SRM_COLLEGE.location}</p>
                   </div>
                 </div>

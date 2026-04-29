@@ -274,19 +274,20 @@ export const WHY_SRM = [
 ]
 
 export const SRM_COLLEGE = {
-  rank: 0, slug: 'srm', short: 'SRM Chennai',
+  rank: 0, slug: 'srm', short: 'SRMIST',
   name: 'SRM Institute of Science and Technology',
-  fullName: 'SRM Institute of Science and Technology',
+  fullName: 'SRMIST',
   location: 'Kattankulathur, Chennai, Tamil Nadu',
   highlight: 'Top 10 NIRF | 92 LPA Highest Package',
   badge: 'UGC | NAAC A++',
   color: 'from-[#1e3a8a] to-[#0f172a]',
   img: 'https://images.unsplash.com/photo-1568626231555-03e303627953?w=1600&q=80&auto=format&fit=crop',
-  bannerImg: 'https://images.unsplash.com/photo-1568626231555-03e303627953?w=1600&q=80&auto=format&fit=crop',
+  bannerImg: '/srm-banner.png',
+  hideBannerOverlay: true,
   seats: '10,000+', cutoff: 'SRMJEE / Management Quota',
   highestPkg: '92 LPA',
   type: 'Deemed University', accreditation: 'NAAC A++ / UGC', approval: 'UGC, AICTE',
-  about: `SRM Institute of Science and Technology (SRMIST), established in 1985, is one of India's top-ranked private deemed universities. Located in Kattankulathur, Chennai, SRM is consistently ranked among the Top 10 private universities by NIRF and holds the prestigious NAAC A++ accreditation.\n\nSRM offers an extensive range of undergraduate, postgraduate and doctoral programs across engineering, medicine, management, sciences, and humanities. The 250-acre Kattankulathur campus features world-class infrastructure: modern lecture halls, 500+ labs, innovation centers, a sprawling library, hostels, sports complexes, and global partnerships with top universities abroad.\n\nSRM is known for record-breaking placements — 92 LPA highest package — and recruiters like Google, Microsoft, Amazon, Goldman Sachs, Deloitte, and 800+ others visit the campus every year. The university is research-driven with 500+ patents and international collaborations.`,
+  about: `SRM Institute of Science and Technology (SRMIST), established in 1985, is one of India's top-ranked private deemed universities. Located in Kattankulathur, Chennai, SRMIST is consistently ranked among the Top 10 private universities by NIRF and holds the prestigious NAAC A++ accreditation.\n\nSRMIST offers an extensive range of undergraduate, postgraduate and doctoral programs across engineering, medicine, management, sciences, and humanities. The 250-acre Kattankulathur campus features world-class infrastructure: modern lecture halls, 500+ labs, innovation centers, a sprawling library, hostels, sports complexes, and global partnerships with top universities abroad.\n\nSRMIST is known for record-breaking placements — 92 LPA highest package — and recruiters like Google, Microsoft, Amazon, Goldman Sachs, Deloitte, and 800+ others visit the campus every year. The university is research-driven with 500+ patents and international collaborations.`,
   placements: {
     rate: '92%', avg: '₹7–12 LPA', highest: '92 LPA',
     companies: ['Google', 'Microsoft', 'Amazon', 'Goldman Sachs', 'Deloitte', 'EY', 'Infosys', 'Wipro', 'TCS', 'Accenture', 'Cognizant', 'HCL'],

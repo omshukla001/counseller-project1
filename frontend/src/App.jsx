@@ -19,7 +19,6 @@ import { ScrollProgress, WhatsAppFAB, CallFAB, KunalChat } from './components/Fl
 import LiveTicker from './components/LiveTicker'
 import CookieConsent from './components/CookieConsent'
 import { COLLEGES, SRM_COLLEGE } from './data'
-import { getSettings } from './utils/leads'
 
 const ALL_COLLEGES = [SRM_COLLEGE, ...COLLEGES]
 
@@ -119,37 +118,7 @@ export default function App() {
     try { sessionStorage.setItem('kp360_lead_submitted', '1') } catch {}
   }
 
-  // Form-popup feature flag from backend (admin-controlled)
-  const [popupEnabled, setPopupEnabled] = useState(true)
-  useEffect(() => {
-    let cancelled = false
-    getSettings()
-      .then(s => { if (!cancelled) setPopupEnabled(s.formPopupEnabled !== false) })
-      .catch(() => {})
-    return () => { cancelled = true }
-  }, [])
-
-  // Auto-popup lead modal: 10s after load, then every 30s — stops once submitted
-  // or when admin disables it via /admin
-  useEffect(() => {
-    if (leadSubmitted || !popupEnabled) return
-    let intervalId
-    const trigger = () => {
-      setShowLead(prev => {
-        if (prev) return prev
-        setLeadCollege('')
-        return true
-      })
-    }
-    const timeoutId = setTimeout(() => {
-      trigger()
-      intervalId = setInterval(trigger, 30000)
-    }, 10000)
-    return () => {
-      clearTimeout(timeoutId)
-      if (intervalId) clearInterval(intervalId)
-    }
-  }, [leadSubmitted, popupEnabled])
+  // Auto-popup permanently disabled — modal only opens when the user clicks Apply.
 
   return (
     <>

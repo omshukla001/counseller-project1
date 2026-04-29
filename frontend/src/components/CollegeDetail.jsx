@@ -15,16 +15,18 @@ export default function CollegeDetail({ college, onBack, onApply }) {
       {/* Hero Banner */}
       <div className="relative h-64 md:h-80 overflow-hidden">
         <img src={college.bannerImg} alt={college.name} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/55" />
+        {!college.hideBannerOverlay && <div className="absolute inset-0 bg-black/55" />}
         <button onClick={onBack}
           className="absolute top-6 left-6 flex items-center gap-2 bg-white/20 backdrop-blur text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-white/30 transition-colors border border-white/30 z-10">
           <ArrowLeft size={16} /> Back to Colleges
         </button>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-3xl md:text-5xl font-black text-white text-center drop-shadow-lg px-6">
-            {college.fullName}
-          </h1>
-        </div>
+        {!college.hideBannerOverlay && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1 className="text-3xl md:text-5xl font-black text-white text-center drop-shadow-lg px-6">
+              {college.fullName}
+            </h1>
+          </div>
+        )}
       </div>
 
       {/* Stats Cards */}

@@ -9,7 +9,7 @@ const SocialIcons = [
 
 const QUICK_LINKS = [
   { label: 'About Us', to: '/about' },
-  { label: 'SRM Chennai', to: '/college/srm' },
+  { label: 'SRMIST', to: '/college/srm' },
   { label: 'RV College of Engineering', to: '/college/rvce' },
   { label: 'BMS College of Engineering', to: '/college/bmsce' },
   { label: 'PES University', to: '/college/pesu' },

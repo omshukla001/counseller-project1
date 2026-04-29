@@ -63,49 +63,6 @@ function CircularProgress({ pct = 96 }) {
 
 const fadeUp = (d = 0) => ({ initial: { opacity: 0, y: 25 }, animate: { opacity: 1, y: 0, transition: { duration: 0.55, delay: d, ease: [0.22, 1, 0.36, 1] } } })
 
-// IST hour (real-time, polled every minute) — used by LiveStatus
-function useIstHour() {
-  const [hour, setHour] = useState(() => {
-    const utc = Date.now()
-    const ist = new Date(utc + 5.5 * 3600000 - new Date().getTimezoneOffset() * 60000)
-    return ist.getUTCHours()
-  })
-  useEffect(() => {
-    const tick = () => {
-      const utc = Date.now()
-      const ist = new Date(utc + 5.5 * 3600000 - new Date().getTimezoneOffset() * 60000)
-      setHour(ist.getUTCHours())
-    }
-    const t = setInterval(tick, 60000)
-    return () => clearInterval(t)
-  }, [])
-  return hour
-}
-
-// Live availability — green if 9 AM – 9 PM IST, amber otherwise.
-// Honest, dynamic, no fabricated numbers — Ads-policy-safe.
-function LiveStatus() {
-  const h = useIstHour()
-  const online = h >= 9 && h < 21
-  if (online) {
-    return (
-      <span className="inline-flex items-center gap-1.5">
-        <span className="relative flex h-2 w-2 shrink-0">
-          <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
-        </span>
-        <span>Counsellors online · replies in minutes</span>
-      </span>
-    )
-  }
-  return (
-    <span className="inline-flex items-center gap-1.5">
-      <span className="h-2 w-2 rounded-full bg-amber-400 shrink-0" />
-      <span>Off-duty · first reply by 9 AM IST</span>
-    </span>
-  )
-}
-
 // 3-step process — sets honest expectations, no scarcity claims.
 function HowItWorks({ compact = false }) {
   const steps = [
@@ -248,10 +205,8 @@ export default function Hero({ onApply }) {
               </div>
             </motion.div>
 
-            {/* Live availability + trust */}
+            {/* Trust strip */}
             <motion.div {...fadeUp(0.35)} className="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 text-white/55 text-[11px]">
-              <LiveStatus />
-              <span className="w-px h-3 bg-white/15" />
               <span className="flex items-center gap-1.5"><Shield size={11} className="text-blue-400" /> Free · 6+ Years Trusted</span>
             </motion.div>
           </div>
@@ -272,9 +227,6 @@ export default function Hero({ onApply }) {
                     <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
                   </span>
                   <span className="text-white/90 text-xs font-semibold tracking-wide">Admissions Open 2026–27</span>
-                </span>
-                <span className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] rounded-full px-4 py-2 backdrop-blur-sm text-white/90 text-xs font-semibold">
-                  <LiveStatus />
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-400/20 rounded-full px-3.5 py-2 backdrop-blur-sm text-emerald-300 text-xs font-bold">
                   100% Free · No fees from students
@@ -316,7 +268,7 @@ export default function Hero({ onApply }) {
               </motion.div>
 
               <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-2 mb-5">
-                {['SRMJEE', 'KCET', 'COMEDK', 'Management Quota', 'Direct Admission'].map(b => (
+                {['SRMJEE', 'KCET', 'COMEDK', 'Management Quota'].map(b => (
                   <span key={b} className="flex items-center gap-1.5 text-xs text-white font-semibold bg-white/[0.12] border border-white/[0.2] px-3.5 py-1.5 rounded-full shadow-sm shadow-white/5 backdrop-blur-sm">
                     <CheckCircle size={11} className="text-cyan-400" /> {b}
                   </span>
