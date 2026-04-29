@@ -173,18 +173,6 @@ export function Expertise() {
             className="text-3xl md:text-4xl font-black text-gray-900">Why Choose Us</motion.h2>
         </div>
 
-        {/* Photo banner */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="relative rounded-3xl overflow-hidden h-52 mb-12 shadow-xl">
-          <img src={EXPERTISE_BG} alt="students" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/85 via-[#1e3a8a]/50 to-transparent flex items-center px-10">
-            <div>
-              <p className="text-white font-black text-3xl">13,000+ Students</p>
-              <p className="text-blue-400 font-semibold text-lg mt-1">Successfully Placed in Top Colleges</p>
-            </div>
-          </div>
-        </motion.div>
-
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {EXPERTISE.map((e, i) => (
             <motion.div key={e.title}
@@ -242,15 +230,39 @@ export function Testimonials() {
               transition={{ duration: 0.4, ease: 'easeInOut' }}
               className="bg-white rounded-3xl p-8 md:p-12 relative shadow-lg border border-gray-100">
               <Quote size={48} className="text-blue-100 absolute top-6 left-6" />
-              <div className="flex justify-center mb-5">
+              {t.source === 'google' && (
+                <span className="absolute top-6 right-6 inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-2.5 py-1 shadow-sm text-[10px] md:text-[11px] font-bold text-gray-700 tracking-wide uppercase">
+                  <svg width="12" height="12" viewBox="0 0 48 48" aria-hidden="true">
+                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
+                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/>
+                    <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.5-5.2l-6.3-5.3C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.7l6.3 5.3C41.5 35.6 44 30.2 44 24c0-1.3-.1-2.4-.4-3.5z"/>
+                  </svg>
+                  Google
+                </span>
+              )}
+              <div className="flex justify-center mb-5 mt-2">
                 {[...Array(t.stars)].map((_, i) => <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />)}
               </div>
               <p className="text-gray-700 text-sm md:text-base italic mb-8 max-w-2xl mx-auto leading-relaxed">"{t.text}"</p>
               <div className="flex items-center justify-center gap-4">
-                <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-blue-500 shadow" />
+                {t.avatar ? (
+                  <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-blue-500 shadow" />
+                ) : (
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white font-black flex items-center justify-center shadow border-2 border-blue-500">
+                    {t.initials || t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
+                  </div>
+                )}
                 <div className="text-left">
-                  <p className="font-black text-gray-900 text-base">{t.name}</p>
-                  <p className="text-[#1e3a8a] text-sm md:text-base font-medium">{t.college}</p>
+                  <p className="font-black text-gray-900 text-base flex items-center gap-1.5">
+                    {t.name}
+                    {t.isLocalGuide && (
+                      <span className="text-[10px] font-semibold bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">Local Guide</span>
+                    )}
+                  </p>
+                  {t.college && (
+                    <p className="text-[#1e3a8a] text-sm md:text-base font-medium">{t.college}</p>
+                  )}
                 </div>
               </div>
             </motion.div>

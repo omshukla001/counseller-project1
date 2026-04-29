@@ -1,13 +1,6 @@
 import { motion } from 'framer-motion'
 import { Award, Users, Star, CheckCircle, Phone, ArrowRight, GraduationCap, Heart } from 'lucide-react'
 
-const STATS = [
-  { value: '6+', label: 'Years Experience' },
-  { value: '13k+', label: 'Students Guided' },
-  { value: '1500+', label: 'Admissions Done' },
-  { value: '12+', label: 'Partner Colleges' },
-]
-
 const VALUES = [
   { icon: Heart, title: 'Student-First Approach', desc: 'Every decision is made keeping the student\'s best interest at heart.' },
   { icon: Award, title: 'Transparent Guidance', desc: 'No hidden fees, no false promises — just honest, expert advice.' },
@@ -36,19 +29,6 @@ export default function AboutPage({ onApply, onBack }) {
           className="text-white/70 max-w-xl mx-auto text-base">
           Knowledge Park 360 is Bangalore's most trusted engineering admission consultancy, founded with one mission — making quality engineering education accessible to every deserving student.
         </motion.p>
-      </div>
-
-      {/* Stats */}
-      <div className="max-w-4xl mx-auto px-4 -mt-8 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {STATS.map((s, i) => (
-            <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
-              className="bg-white rounded-2xl shadow-lg p-4 text-center border border-gray-100">
-              <p className="text-2xl font-black text-blue-800">{s.value}</p>
-              <p className="text-gray-600 text-sm mt-1">{s.label}</p>
-            </motion.div>
-          ))}
-        </div>
       </div>
 
       {/* Meet Kunal — Main Counsellor */}
@@ -85,13 +65,13 @@ export default function AboutPage({ onApply, onBack }) {
               <p className="text-gray-500 text-sm mb-5">Knowledge Park 360 · Bangalore, Karnataka</p>
 
               <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
-                With over <strong>6 years of experience</strong> in engineering admissions, Kunal Issar has personally guided more than <strong>13,000 students</strong> into top colleges like RVCE, BMSCE, PES University, SRM, and Jain University. His deep knowledge of KCET, COMEDK, SRMJEE, and Management Quota processes has made him the go-to counsellor for families across Karnataka and beyond.
+                With over <strong>6 years of experience</strong> in engineering admissions, Kunal Issar has guided students into top colleges like RVCE, BMSCE, PES University, SRM, and Jain University. His deep knowledge of KCET, COMEDK, SRMJEE, and Management Quota processes has made him the go-to counsellor for families across Karnataka and beyond.
               </p>
 
               <div className="space-y-2 mb-6">
                 {[
                   'Expert in KCET, COMEDK, SRMJEE & Management Quota',
-                  'Personally handled 13,000+ admissions',
+                  'Hands-on with every counselling round, start to finish',
                   'Strong network with Jain, SRM, RV, PES & top colleges',
                   'Free, transparent & student-first counselling',
                 ].map((pt, i) => (

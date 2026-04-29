@@ -8,6 +8,7 @@ import rateLimit from 'express-rate-limit'
 import { connectDB } from './config/db.js'
 import leadRoutes from './routes/leads.js'
 import authRoutes from './routes/auth.js'
+import settingsRoutes from './routes/settings.js'
 import { errorHandler, notFound } from './middleware/error.js'
 
 const app = express()
@@ -25,6 +26,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok', ts: Date.now() }))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/leads', leadRoutes)
+app.use('/api/settings', settingsRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

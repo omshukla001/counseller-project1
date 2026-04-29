@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { getLeads, updateLead, deleteLead, loginAdmin, logoutAdmin, getToken } from '../utils/leads'
+import { getLeads, updateLead, deleteLead, loginAdmin, logoutAdmin, getToken, getSettings, updateSettings } from '../utils/leads'
 import {
   Users, Phone, Clock, CheckCircle, XCircle, Search,
   Trash2, Eye, ArrowLeft, PhoneCall, MessageCircle,
-  Filter, Download, RefreshCw, UserCheck, AlertCircle
+  Filter, Download, RefreshCw, UserCheck, AlertCircle, Settings as SettingsIcon
 } from 'lucide-react'
 
 const STATUS_CONFIG = {
@@ -152,6 +152,8 @@ export default function Dashboard({ onBack }) {
   const [filterStatus, setFilterStatus] = useState('all')
   const [selected, setSelected] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
+  const [popupEnabled, setPopupEnabled] = useState(true)
+  const [savingPopup, setSavingPopup] = useState(false)
 
   const fetchLeads = async () => {
     setLoading(true)
@@ -165,8 +167,27 @@ export default function Dashboard({ onBack }) {
   }
 
   useEffect(() => {
-    if (authed) fetchLeads()
+    if (authed) {
+      fetchLeads()
+      getSettings()
+        .then(s => setPopupEnabled(s.formPopupEnabled !== false))
+        .catch(() => {})
+    }
   }, [authed])
+
+  const togglePopup = async () => {
+    const next = !popupEnabled
+    setPopupEnabled(next)
+    setSavingPopup(true)
+    try {
+      const saved = await updateSettings({ formPopupEnabled: next })
+      setPopupEnabled(saved.formPopupEnabled !== false)
+    } catch {
+      setPopupEnabled(!next) // revert on failure
+    } finally {
+      setSavingPopup(false)
+    }
+  }
 
   const refresh = () => fetchLeads()
 
@@ -317,6 +338,32 @@ export default function Dashboard({ onBack }) {
           <StatCard icon={PhoneCall} label="Contacted" value={stats.contacted} color="bg-yellow-500" />
           <StatCard icon={UserCheck} label="Converted" value={stats.converted} color="bg-green-500" />
           <StatCard icon={Clock} label="Today" value={stats.today} color="bg-purple-500" />
+        </div>
+
+        {/* Site settings */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-6 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-11 h-11 md:w-12 md:h-12 bg-indigo-100 rounded-xl flex items-center justify-center shrink-0">
+              <SettingsIcon size={20} className="text-[#1E3A8A]" />
+            </div>
+            <div className="min-w-0">
+              <p className="font-bold text-gray-900 text-[15px] md:text-base">Auto-popup lead form</p>
+              <p className="text-gray-400 text-[12px] md:text-sm">
+                {popupEnabled
+                  ? 'Form popup shows automatically on the public site.'
+                  : 'Auto-popup is OFF. Visitors must click an Apply button to open the form.'}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={popupEnabled}
+            disabled={savingPopup}
+            onClick={togglePopup}
+            className={`relative w-14 h-8 rounded-full transition-colors shrink-0 ${popupEnabled ? 'bg-emerald-500' : 'bg-gray-300'} ${savingPopup ? 'opacity-60 cursor-wait' : ''}`}>
+            <span className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow transition-transform ${popupEnabled ? 'translate-x-6' : ''}`} />
+          </button>
         </div>
 
         {/* Search + Filters */}

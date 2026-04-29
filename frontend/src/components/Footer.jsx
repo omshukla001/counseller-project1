@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-white/70 text-sm md:text-base leading-relaxed">
-            Trusted engineering admission consultancy. 6+ years, 13,000+ students placed.
+            Trusted engineering admission consultancy with 6+ years of experience.
           </p>
           <div className="flex gap-3 mt-4">
             {SocialIcons.map(s => (

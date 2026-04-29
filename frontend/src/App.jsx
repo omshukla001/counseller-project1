@@ -15,12 +15,11 @@ import CounselorSidebar from './components/CounselorSidebar'
 import Footer from './components/Footer'
 import LeadModal from './components/LeadModal'
 import InlineLeadForm from './components/InlineLeadForm'
-import GoogleReviews from './components/GoogleReviews'
-import { ScrollProgress, WhatsAppFAB, KunalChat } from './components/Floaters'
+import { ScrollProgress, WhatsAppFAB, CallFAB, KunalChat } from './components/Floaters'
 import LiveTicker from './components/LiveTicker'
-import LiveActivity from './components/LiveActivity'
 import CookieConsent from './components/CookieConsent'
 import { COLLEGES, SRM_COLLEGE } from './data'
+import { getSettings } from './utils/leads'
 
 const ALL_COLLEGES = [SRM_COLLEGE, ...COLLEGES]
 
@@ -43,8 +42,8 @@ function SiteLayout({ onApply, showLead, leadCollege, closeLead, markLeadSubmitt
       <Outlet />
       <Footer />
       <WhatsAppFAB />
+      <CallFAB />
       <KunalChat />
-      <LiveActivity />
       <CookieConsent />
       {showLead && !hideLead && (
         <LeadModal college={leadCollege} onSubmitted={markLeadSubmitted} onClose={closeLead} />
@@ -75,7 +74,6 @@ function HomePage({ onApply }) {
 
       <Expertise />
       <Testimonials />
-      <GoogleReviews />
       <InlineLeadForm />
     </>
   )
@@ -121,9 +119,20 @@ export default function App() {
     try { sessionStorage.setItem('kp360_lead_submitted', '1') } catch {}
   }
 
-  // Auto-popup lead modal: 10s after load, then every 30s — stops once submitted
+  // Form-popup feature flag from backend (admin-controlled)
+  const [popupEnabled, setPopupEnabled] = useState(true)
   useEffect(() => {
-    if (leadSubmitted) return
+    let cancelled = false
+    getSettings()
+      .then(s => { if (!cancelled) setPopupEnabled(s.formPopupEnabled !== false) })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [])
+
+  // Auto-popup lead modal: 10s after load, then every 30s — stops once submitted
+  // or when admin disables it via /admin
+  useEffect(() => {
+    if (leadSubmitted || !popupEnabled) return
     let intervalId
     const trigger = () => {
       setShowLead(prev => {
@@ -140,7 +149,7 @@ export default function App() {
       clearTimeout(timeoutId)
       if (intervalId) clearInterval(intervalId)
     }
-  }, [leadSubmitted])
+  }, [leadSubmitted, popupEnabled])
 
   return (
     <>

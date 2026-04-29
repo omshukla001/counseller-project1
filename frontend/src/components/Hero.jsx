@@ -1,21 +1,20 @@
 import { useEffect, useState, useRef, useReducer } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin, GraduationCap, Building2, Users, ChevronDown, Shield } from 'lucide-react'
-import AnimatedCounter from './AnimatedCounter'
+import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin, ChevronDown, Shield } from 'lucide-react'
 
 const COLLEGES = [
-  { name: 'SRM Chennai', img: '/srm1.jpg' },
+  { name: 'SRM Chennai', img: 'https://images.unsplash.com/photo-1576495199011-eb94736d05d6?w=1600&q=80&auto=format&fit=crop' },
   { name: 'RVCE Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/RV_College_Admin_block.JPG' },
-  { name: 'BMSCE Bangalore', img: '/bmsce1.webp' },
+  { name: 'BMSCE Bangalore', img: 'https://images.unsplash.com/photo-1583373834259-46cc92173cb7?w=1600&q=80&auto=format&fit=crop' },
   { name: 'MSRIT Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/a/af/MSRIT_from_front_gate.jpg' },
-  { name: 'PES University', img: '/pes12.jpeg' },
-  { name: 'BMSIT Bangalore', img: '/bmsit1.webp' },
-  { name: 'BIT Bangalore', img: '/bit1.webp' },
-  { name: 'DSCE Bangalore', img: '/dsce12.webp' },
-  { name: 'NMIT Bangalore', img: '/nmit1.webp' },
-  { name: 'RNSIT Bangalore', img: '/rnsit1.webp' },
-  { name: 'Sir MVIT Bangalore', img: '/smvit12.jpeg' },
-  { name: 'Jain University', img: '/jain1.webp' },
+  { name: 'PES University', img: 'https://images.unsplash.com/flagged/photo-1554473675-d0904f3cbf38?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'BMSIT Bangalore', img: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'BIT Bangalore', img: 'https://images.unsplash.com/photo-1590579491624-f98f36d4c763?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'DSCE Bangalore', img: 'https://images.unsplash.com/photo-1689686610856-3bcf921eb1f0?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'NMIT Bangalore', img: 'https://images.unsplash.com/photo-1559135197-8a45ea74d367?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'RNSIT Bangalore', img: 'https://images.unsplash.com/photo-1592066575517-58df903152f2?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'Sir MVIT Bangalore', img: 'https://images.unsplash.com/photo-1641160616553-a9d21a846e49?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'Jain University', img: 'https://images.unsplash.com/photo-1617584387223-5dd8f36511a0?w=1600&q=80&auto=format&fit=crop' },
 ]
 
 function RotatingCollege({ idx }) {
@@ -63,6 +62,71 @@ function CircularProgress({ pct = 96 }) {
 }
 
 const fadeUp = (d = 0) => ({ initial: { opacity: 0, y: 25 }, animate: { opacity: 1, y: 0, transition: { duration: 0.55, delay: d, ease: [0.22, 1, 0.36, 1] } } })
+
+// IST hour (real-time, polled every minute) — used by LiveStatus
+function useIstHour() {
+  const [hour, setHour] = useState(() => {
+    const utc = Date.now()
+    const ist = new Date(utc + 5.5 * 3600000 - new Date().getTimezoneOffset() * 60000)
+    return ist.getUTCHours()
+  })
+  useEffect(() => {
+    const tick = () => {
+      const utc = Date.now()
+      const ist = new Date(utc + 5.5 * 3600000 - new Date().getTimezoneOffset() * 60000)
+      setHour(ist.getUTCHours())
+    }
+    const t = setInterval(tick, 60000)
+    return () => clearInterval(t)
+  }, [])
+  return hour
+}
+
+// Live availability — green if 9 AM – 9 PM IST, amber otherwise.
+// Honest, dynamic, no fabricated numbers — Ads-policy-safe.
+function LiveStatus() {
+  const h = useIstHour()
+  const online = h >= 9 && h < 21
+  if (online) {
+    return (
+      <span className="inline-flex items-center gap-1.5">
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
+          <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
+        </span>
+        <span>Counsellors online · replies in minutes</span>
+      </span>
+    )
+  }
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <span className="h-2 w-2 rounded-full bg-amber-400 shrink-0" />
+      <span>Off-duty · first reply by 9 AM IST</span>
+    </span>
+  )
+}
+
+// 3-step process — sets honest expectations, no scarcity claims.
+function HowItWorks({ compact = false }) {
+  const steps = [
+    { n: 1, t: 'Free 15-min call' },
+    { n: 2, t: 'Personalised college shortlist' },
+    { n: 3, t: 'We help with the application' },
+  ]
+  return (
+    <div className={`flex flex-wrap items-center ${compact ? 'gap-1.5' : 'gap-2'}`}>
+      {steps.map((s, i) => (
+        <span key={s.n} className="inline-flex items-center gap-2">
+          <span className={`inline-flex items-center gap-1.5 bg-white/[0.08] border border-white/[0.15] backdrop-blur rounded-full text-white/90 ${compact ? 'pl-1 pr-2.5 py-0.5 text-[11px]' : 'pl-1.5 pr-3 py-1 text-xs'} font-semibold`}>
+            <span className={`bg-cyan-400 text-[#0a1230] rounded-full flex items-center justify-center font-black ${compact ? 'w-4 h-4 text-[9px]' : 'w-5 h-5 text-[10px]'}`}>{s.n}</span>
+            {s.t}
+          </span>
+          {i < steps.length - 1 && <ArrowRight size={compact ? 10 : 12} className="text-white/30" />}
+        </span>
+      ))}
+    </div>
+  )
+}
 
 export default function Hero({ onApply }) {
   const [idx, setIdx] = useState(0)
@@ -136,7 +200,7 @@ export default function Hero({ onApply }) {
           </span>
           <span className="flex items-center gap-0.5">
             {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-yellow-400 text-yellow-400" />)}
-            <span className="text-white/50 text-[10px] font-semibold ml-1">Google</span>
+            <span className="text-white/50 text-[10px] font-semibold ml-1">4.9 · 11 Google reviews</span>
           </span>
         </motion.div>
 
@@ -155,8 +219,13 @@ export default function Hero({ onApply }) {
           {/* Description */}
           <motion.p {...fadeUp(0.2)} className="text-white/65 text-sm leading-relaxed">
             Expert guidance for <span className="text-white font-semibold">SRMJEE, KCET & COMEDK</span>.{' '}
-            <span className="text-cyan-400 font-semibold">13,000+ students</span> placed in top colleges.
+            Honest counselling — no false promises.
           </motion.p>
+
+          {/* How it works — mobile */}
+          <motion.div {...fadeUp(0.25)} className="mt-3">
+            <HowItWorks compact />
+          </motion.div>
 
           {/* CTA + boxes pinned to bottom */}
           <div className="mt-auto flex flex-col gap-2">
@@ -179,28 +248,11 @@ export default function Hero({ onApply }) {
               </div>
             </motion.div>
 
-            {/* Stat boxes */}
-            <motion.div {...fadeUp(0.3)} className="grid grid-cols-4 gap-2 mb-3">
-              {[
-                { to: 6, suffix: '+', l: 'Years' },
-                { to: 12, suffix: '+', l: 'Colleges' },
-                { to: 13, suffix: 'k+', l: 'Students' },
-                { to: 12, suffix: 'k+', l: 'Admissions' },
-              ].map(s => (
-                <div key={s.l} className="bg-white/[0.08] backdrop-blur border border-white/[0.12] rounded-xl py-2 text-center">
-                  <div className="text-white font-black text-sm leading-none">
-                    <AnimatedCounter to={s.to} suffix={s.suffix} duration={1400} />
-                  </div>
-                  <div className="text-white/45 text-[9px] font-medium mt-1">{s.l}</div>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Trust strip */}
-            <motion.div {...fadeUp(0.35)} className="flex items-center justify-center gap-4 text-white/40 text-[11px]">
-              <span className="flex items-center gap-1.5"><CheckCircle size={11} className="text-emerald-400" /> 6+ Years Trusted</span>
+            {/* Live availability + trust */}
+            <motion.div {...fadeUp(0.35)} className="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 text-white/55 text-[11px]">
+              <LiveStatus />
               <span className="w-px h-3 bg-white/15" />
-              <span className="flex items-center gap-1.5"><Shield size={11} className="text-blue-400" /> Verified Consultancy</span>
+              <span className="flex items-center gap-1.5"><Shield size={11} className="text-blue-400" /> Free · 6+ Years Trusted</span>
             </motion.div>
           </div>
         </div>
@@ -213,13 +265,19 @@ export default function Hero({ onApply }) {
 
             {/* LEFT — 3 cols */}
             <div className="col-span-3">
-              <motion.div {...fadeUp(0.1)} className="mb-4">
+              <motion.div {...fadeUp(0.1)} className="mb-4 flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] rounded-full px-4 py-2 backdrop-blur-sm">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative rounded-full h-2 w-2 bg-emerald-400" />
                   </span>
                   <span className="text-white/90 text-xs font-semibold tracking-wide">Admissions Open 2026–27</span>
+                </span>
+                <span className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] rounded-full px-4 py-2 backdrop-blur-sm text-white/90 text-xs font-semibold">
+                  <LiveStatus />
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-400/20 rounded-full px-3.5 py-2 backdrop-blur-sm text-emerald-300 text-xs font-bold">
+                  100% Free · No fees from students
                 </span>
               </motion.div>
 
@@ -235,10 +293,15 @@ export default function Hero({ onApply }) {
                 <span className="text-white/45 font-bold text-[0.52em]">& Top Engineering Colleges</span>
               </motion.h1>
 
-              <motion.p {...fadeUp(0.3)} className="text-white/65 text-base max-w-xl leading-relaxed mb-6">
+              <motion.p {...fadeUp(0.3)} className="text-white/65 text-base max-w-xl leading-relaxed mb-5">
                 Expert counselling for <span className="text-white font-semibold">SRMJEE, KCET & COMEDK</span>.
-                {' '}We've helped <span className="text-cyan-400 font-semibold">13,000+ students</span> secure seats in India's top engineering colleges.
+                {' '}Personalised guidance to help you secure a seat in India's top engineering colleges.
               </motion.p>
+
+              {/* How it works — desktop */}
+              <motion.div {...fadeUp(0.35)} className="mb-6">
+                <HowItWorks />
+              </motion.div>
 
               <motion.div {...fadeUp(0.4)} className="flex flex-wrap gap-3 mb-6">
                 <button onClick={onApply}
@@ -261,31 +324,11 @@ export default function Hero({ onApply }) {
               </motion.div>
 
               <motion.div {...fadeUp(0.5)}
-                className="flex items-center gap-8 pt-4 border-t border-white/[0.07]">
-                {[
-                  { icon: GraduationCap, to: 13000, suffix: '+', label: 'Students Guided' },
-                  { icon: Building2, to: 12, suffix: '+', label: 'Partner Colleges' },
-                  { icon: Users, to: 12000, suffix: '+', label: 'Admissions Done' },
-                ].map(s => (
-                  <div key={s.label} className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
-                      <s.icon size={16} className="text-blue-400" />
-                    </div>
-                    <div>
-                      <p className="text-white font-bold text-[15px] leading-none">
-                        <AnimatedCounter to={s.to} suffix={s.suffix} />
-                      </p>
-                      <p className="text-white/40 text-[10px] font-medium mt-0.5">{s.label}</p>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-
-              <motion.div {...fadeUp(0.55)}
-                className="flex items-center gap-4 text-white/40 text-xs mt-4">
+                className="flex items-center gap-4 text-white/50 text-xs pt-4 border-t border-white/[0.07]">
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-yellow-400 text-yellow-400" />)}
-                  <span className="ml-1 text-white/60 font-semibold">Google Rated</span>
+                  <span className="ml-1 text-white font-bold">4.9</span>
+                  <span className="ml-1 text-white/60 font-semibold">· 11 Google reviews</span>
                 </div>
                 <span className="w-px h-3 bg-white/15" />
                 <span className="flex items-center gap-1"><CheckCircle size={11} className="text-emerald-400" /> 6+ Years Trusted</span>
@@ -356,15 +399,6 @@ export default function Hero({ onApply }) {
                 </motion.div>
               </div>
 
-              {/* Mini stats */}
-              <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
-                {[['1,500+', 'Seats Filled 2024'], ['12+ Colleges', 'Pan India Network']].map(([v, l]) => (
-                  <div key={l} className="bg-white/[0.08] backdrop-blur rounded-xl px-3 py-2.5 border border-white/[0.12] text-center">
-                    <div className="text-white font-bold text-sm">{v}</div>
-                    <div className="text-white/50 text-[10px] mt-0.5">{l}</div>
-                  </div>
-                ))}
-              </div>
             </motion.div>
           </div>
         </div>

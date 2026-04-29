@@ -59,6 +59,14 @@ export async function deleteLead(id) {
   return { id }
 }
 
+export async function getSettings() {
+  return request('/api/settings')
+}
+
+export async function updateSettings(updates) {
+  return request('/api/settings', { method: 'PATCH', body: updates, auth: true })
+}
+
 function normalize(lead) {
   return { ...lead, id: lead._id || lead.id, createdAt: lead.createdAt }
 }

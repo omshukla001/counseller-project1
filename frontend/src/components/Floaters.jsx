@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Send, Phone, ArrowLeft, MessageCircle, Sparkles, TrendingUp, Clock, Users, Award, Zap, ChevronRight } from 'lucide-react'
+import { X, Send, Phone, ArrowLeft, MessageCircle, Sparkles, Clock, Award, Zap, ChevronRight } from 'lucide-react'
 import { saveLead } from '../utils/leads'
 import { COLLEGES, SRM_COLLEGE } from '../data'
 
@@ -32,19 +32,6 @@ function WhatsAppIcon({ size = 28 }) {
 }
 
 // ─── Kunal chatbot — categorised topics + keyword brain + lead form ───
-
-// Urgency banner messages — rotated every 4s in chat header
-const URGENCY_MESSAGES = [
-  { icon: '🔥', text: 'Hot picks — 27 students viewing colleges now' },
-  { icon: '⏰', text: 'KCET counselling Round 1 closing soon' },
-  { icon: '✨', text: '12 admissions confirmed this week' },
-  { icon: '🎯', text: 'Free counselling — only a few slots left today' },
-  { icon: '📈', text: 'PESU CSE seats filling fast' },
-  { icon: '🚀', text: 'Aditya R. from Mysore secured RVCE CSE — 2 hrs ago' },
-  { icon: '⚡', text: 'Counsellor available right now' },
-  { icon: '💼', text: 'Sneha got BMSCE ECE — confirmed last hour' },
-  { icon: '🏆', text: 'SRM Phase 2 results — 14 admissions handled this week' },
-]
 
 // KCET rank → college tier mapping (slugs from data.js)
 const KCET_TIERS = [
@@ -272,29 +259,6 @@ export function KunalChat() {
   const [wizard, setWizard] = useState({ exam: '', rank: '', branch: '' })
   const [matches, setMatches] = useState([])
 
-  // Rotating urgency messages
-  const [urgencyIdx, setUrgencyIdx] = useState(0)
-  useEffect(() => {
-    const t = setInterval(() => setUrgencyIdx(i => (i + 1) % URGENCY_MESSAGES.length), 4000)
-    return () => clearInterval(t)
-  }, [])
-
-  // Live viewer count — starts 18-32, drifts +/-1 every 8-15s, caps at 38
-  const [viewerCount, setViewerCount] = useState(() => 18 + Math.floor(Math.random() * 15))
-  useEffect(() => {
-    const tick = () => {
-      setViewerCount(c => {
-        const delta = Math.random() < 0.7 ? 1 : -1
-        const next = c + delta
-        if (next < 14) return 14
-        if (next > 38) return 38
-        return next
-      })
-    }
-    const t = setInterval(tick, 8000 + Math.random() * 7000)
-    return () => clearInterval(t)
-  }, [])
-
   // Countdown to next Friday
   const [countdown, setCountdown] = useState(() => formatCountdown(nextFridayDeadline()))
   useEffect(() => {
@@ -499,9 +463,7 @@ export function KunalChat() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-white font-bold text-sm leading-tight">Kunal — Career Guide</p>
-                <p className="text-white/70 text-[11px] mt-0.5 flex items-center gap-1.5">
-                  <Users size={9} /> {viewerCount} students online now
-                </p>
+                <p className="text-white/70 text-[11px] mt-0.5">Online · replies in minutes</p>
               </div>
               <button onClick={resetChat} aria-label="Restart chat" title="Restart chat"
                 className="p-1.5 rounded-full hover:bg-white/10 transition-colors">
@@ -513,18 +475,6 @@ export function KunalChat() {
               </button>
             </div>
 
-            {/* Urgency banner — rotating */}
-            <div className="bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border-b border-orange-100 px-4 py-1.5 shrink-0 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div key={urgencyIdx}
-                  initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-[11px] font-semibold text-orange-900 flex items-center gap-1.5 truncate">
-                  <span className="text-sm">{URGENCY_MESSAGES[urgencyIdx].icon}</span>
-                  <span className="truncate">{URGENCY_MESSAGES[urgencyIdx].text}</span>
-                </motion.div>
-              </AnimatePresence>
-            </div>
 
             {/* Messages */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-[#F8FAFC]">
@@ -719,10 +669,6 @@ export function KunalChat() {
                       )
                     })
                   )}
-                  <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 text-[11px]">
-                    <TrendingUp size={14} className="text-amber-700 shrink-0" />
-                    <span className="text-amber-900 font-semibold">⚡ {viewerCount} other students viewing similar colleges right now</span>
-                  </div>
                   <button onClick={() => setView('topics')}
                     className="w-full text-xs text-gray-500 hover:text-gray-700 py-2 flex items-center justify-center gap-1.5">
                     <ArrowLeft size={12} /> Try another search
@@ -819,7 +765,7 @@ export function KunalChat() {
   )
 }
 
-// WhatsApp FAB
+// WhatsApp FAB — bottom-right
 export function WhatsAppFAB() {
   const [tip, setTip] = useState(false)
   return (
@@ -832,8 +778,31 @@ export function WhatsAppFAB() {
       <a href="https://wa.me/917296087953" target="_blank" rel="noreferrer"
         onMouseEnter={() => setTip(true)} onMouseLeave={() => setTip(false)}
         onClick={() => setTip(false)}
+        aria-label="Chat on WhatsApp"
         className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/30 hover:scale-110 hover:shadow-xl hover:shadow-[#25D366]/40 transition-all">
         <WhatsAppIcon size={28} />
+      </a>
+    </div>
+  )
+}
+
+// Call FAB — sits just above the WhatsApp FAB
+export function CallFAB() {
+  const [tip, setTip] = useState(false)
+  return (
+    <div className="fixed bottom-24 right-6 z-50 flex items-center gap-2.5">
+      {tip && (
+        <div className="bg-white text-[#102C57] text-xs font-semibold px-3.5 py-2.5 rounded-xl shadow-xl whitespace-nowrap border border-gray-100">
+          Call now
+        </div>
+      )}
+      <a href="tel:+917296087953"
+        onMouseEnter={() => setTip(true)} onMouseLeave={() => setTip(false)}
+        onClick={() => setTip(false)}
+        aria-label="Call counsellor"
+        className="relative w-14 h-14 bg-[#1E3A8A] rounded-full flex items-center justify-center shadow-lg shadow-[#1E3A8A]/30 hover:scale-110 hover:shadow-xl hover:shadow-[#1E3A8A]/40 transition-all">
+        <span className="absolute inset-0 rounded-full bg-[#1E3A8A] opacity-40 animate-ping" />
+        <Phone size={26} className="relative text-white" />
       </a>
     </div>
   )
