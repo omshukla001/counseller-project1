@@ -3,17 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin, ChevronDown, Shield } from 'lucide-react'
 
 const COLLEGES = [
-  { name: 'SRM Chennai', img: 'https://images.unsplash.com/photo-1576495199011-eb94736d05d6?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'SRM Chennai', img: 'https://images.unsplash.com/photo-1568626231555-03e303627953?w=1600&q=80&auto=format&fit=crop' },
   { name: 'RVCE Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/RV_College_Admin_block.JPG' },
-  { name: 'BMSCE Bangalore', img: 'https://images.unsplash.com/photo-1583373834259-46cc92173cb7?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'BMSCE Bangalore', img: 'https://images.unsplash.com/photo-1635403981075-f639da783aac?w=1600&q=80&auto=format&fit=crop' },
   { name: 'MSRIT Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/a/af/MSRIT_from_front_gate.jpg' },
-  { name: 'PES University', img: 'https://images.unsplash.com/flagged/photo-1554473675-d0904f3cbf38?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'BMSIT Bangalore', img: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'BIT Bangalore', img: 'https://images.unsplash.com/photo-1590579491624-f98f36d4c763?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'DSCE Bangalore', img: 'https://images.unsplash.com/photo-1689686610856-3bcf921eb1f0?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'NMIT Bangalore', img: 'https://images.unsplash.com/photo-1559135197-8a45ea74d367?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'PES University', img: 'https://images.unsplash.com/photo-1614460646652-2094b060b5be?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'BMSIT Bangalore', img: 'https://images.unsplash.com/photo-1600903308878-bf5e554ab841?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'BIT Bangalore', img: 'https://images.unsplash.com/photo-1642915680258-6aaca62d3849?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'DSCE Bangalore', img: 'https://images.unsplash.com/photo-1622650049370-3957f114ec60?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'NMIT Bangalore', img: 'https://images.unsplash.com/photo-1680060731105-325991d05343?w=1600&q=80&auto=format&fit=crop' },
   { name: 'RNSIT Bangalore', img: 'https://images.unsplash.com/photo-1592066575517-58df903152f2?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'Sir MVIT Bangalore', img: 'https://images.unsplash.com/photo-1641160616553-a9d21a846e49?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'Sir MVIT Bangalore', img: 'https://images.unsplash.com/photo-1542404937-2132aa1fa6fc?w=1600&q=80&auto=format&fit=crop' },
   { name: 'Jain University', img: 'https://images.unsplash.com/photo-1617584387223-5dd8f36511a0?w=1600&q=80&auto=format&fit=crop' },
 ]
 
