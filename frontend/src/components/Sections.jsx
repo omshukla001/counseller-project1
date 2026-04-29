@@ -3,16 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Star, Quote, CheckCircle, MapPin, TrendingUp } from 'lucide-react'
 import { TESTIMONIALS, WHY_BLR, WHY_SRM, SRM_COLLEGE, EXPERTISE } from '../data'
 
-const BLR_BG = 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1400&q=80'
-const EXPERTISE_BG = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80'
+const BLR_BG = '/bg-bangalore.jpg'
+const EXPERTISE_BG = '/bg-expertise.jpg'
 
 const SRM_PHOTOS = [
-  'https://upload.wikimedia.org/wikipedia/commons/9/9d/Tech_Park.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/3/3e/0J9A0195.jpg',
-  'https://images.unsplash.com/photo-1562774053-701939374585?w=1400&q=80',
-  'https://upload.wikimedia.org/wikipedia/commons/4/4e/SRM_University_Auditorium.JPG',
-  'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1400&q=80',
-  'https://upload.wikimedia.org/wikipedia/commons/8/82/Biotech_Block_1.jpg',
+  '/srm-photo-1.jpg',
+  '/srm-photo-2.jpg',
+  '/srm-photo-3.jpg',
+  '/srm-photo-4.jpg',
+  '/srm-photo-3.jpg',
+  '/srm-photo-6.jpg',
 ]
 
 function SRMPhotoSlider() {

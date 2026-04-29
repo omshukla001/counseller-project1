@@ -4,12 +4,11 @@ import { MapPin, ChevronRight, TrendingUp, ChevronLeft, CheckCircle, Sparkles } 
 import { COLLEGES, SRM_COLLEGE } from '../data'
 
 const SRM_PHOTOS = [
-  'https://upload.wikimedia.org/wikipedia/commons/4/4e/SRM_University_Auditorium.JPG',
-  'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1400&q=80',
-  'https://upload.wikimedia.org/wikipedia/commons/9/9d/Tech_Park.jpg',
-  'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1400&q=80',
-  'https://upload.wikimedia.org/wikipedia/commons/3/3e/0J9A0195.jpg',
-  'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1400&q=80',
+  '/srm-photo-4.jpg',
+  '/srm-photo-1.jpg',
+  '/srm-photo-2.jpg',
+  '/srm-photo-3.jpg',
+  '/srm-photo-6.jpg',
 ]
 
 function SRMSlider() {

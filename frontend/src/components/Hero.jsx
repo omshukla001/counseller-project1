@@ -3,18 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Star, ArrowRight, CheckCircle, Sparkles, MapPin, ChevronDown, Shield } from 'lucide-react'
 
 const COLLEGES = [
-  { name: 'SRM Chennai', img: 'https://images.unsplash.com/photo-1568626231555-03e303627953?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'RVCE Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/RV_College_Admin_block.JPG' },
-  { name: 'BMSCE Bangalore', img: 'https://images.unsplash.com/photo-1635403981075-f639da783aac?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'MSRIT Bangalore', img: 'https://upload.wikimedia.org/wikipedia/commons/a/af/MSRIT_from_front_gate.jpg' },
-  { name: 'PES University', img: 'https://images.unsplash.com/photo-1614460646652-2094b060b5be?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'BMSIT Bangalore', img: 'https://images.unsplash.com/photo-1600903308878-bf5e554ab841?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'BIT Bangalore', img: 'https://images.unsplash.com/photo-1642915680258-6aaca62d3849?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'DSCE Bangalore', img: 'https://images.unsplash.com/photo-1622650049370-3957f114ec60?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'NMIT Bangalore', img: 'https://images.unsplash.com/photo-1680060731105-325991d05343?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'RNSIT Bangalore', img: 'https://images.unsplash.com/photo-1592066575517-58df903152f2?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'Sir MVIT Bangalore', img: 'https://images.unsplash.com/photo-1542404937-2132aa1fa6fc?w=1600&q=80&auto=format&fit=crop' },
-  { name: 'Jain University', img: 'https://images.unsplash.com/photo-1617584387223-5dd8f36511a0?w=1600&q=80&auto=format&fit=crop' },
+  { name: 'SRM Chennai', img: '/college-srm.jpg' },
+  { name: 'RVCE Bangalore', img: '/college-rvce.jpg' },
+  { name: 'BMSCE Bangalore', img: '/college-bmsce.jpg' },
+  { name: 'MSRIT Bangalore', img: '/college-msrit.jpg' },
+  { name: 'PES University', img: '/college-pes.jpg' },
+  { name: 'BMSIT Bangalore', img: '/college-bmsit.jpg' },
+  { name: 'BIT Bangalore', img: '/college-bit.jpg' },
+  { name: 'DSCE Bangalore', img: '/college-dsce.jpg' },
+  { name: 'NMIT Bangalore', img: '/college-nmit.jpg' },
+  { name: 'RNSIT Bangalore', img: '/college-rnsit.jpg' },
+  { name: 'Sir MVIT Bangalore', img: '/college-smvit.jpg' },
+  { name: 'Jain University', img: '/college-jain.jpg' },
 ]
 
 function RotatingCollege({ idx }) {
