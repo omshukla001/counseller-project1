@@ -119,7 +119,26 @@ export default function App() {
     try { sessionStorage.setItem('kp360_lead_submitted', '1') } catch {}
   }
 
-  // Auto-popup permanently disabled — modal only opens when the user clicks Apply.
+  useEffect(() => {
+    if (leadSubmitted) return
+    let timer
+    const open = () => setShowLead(true)
+    const t1 = setTimeout(() => {
+      open()
+      const t2 = setTimeout(() => {
+        open()
+        timer = setInterval(open, 35000)
+      }, 20000)
+      timer = t2
+    }, 2000)
+    return () => {
+      clearTimeout(t1)
+      if (timer) {
+        clearTimeout(timer)
+        clearInterval(timer)
+      }
+    }
+  }, [leadSubmitted])
 
   return (
     <>
