@@ -20,6 +20,7 @@ import { ScrollProgress, WhatsAppFAB, CallFAB, KunalChat } from './components/Fl
 import LiveTicker from './components/LiveTicker'
 import CookieConsent from './components/CookieConsent'
 import { COLLEGES, SRM_COLLEGE } from './data'
+import { getSettings } from './utils/leads'
 
 const ALL_COLLEGES = [SRM_COLLEGE, ...COLLEGES]
 
@@ -100,9 +101,18 @@ function AdminRoute() {
 export default function App() {
   const [showLead, setShowLead] = useState(false)
   const [leadCollege, setLeadCollege] = useState('')
+  const [popupEnabled, setPopupEnabled] = useState(false)
   const [leadSubmitted, setLeadSubmitted] = useState(() => {
     try { return sessionStorage.getItem('kp360_lead_submitted') === '1' } catch { return false }
   })
+
+  useEffect(() => {
+    let cancelled = false
+    getSettings()
+      .then(s => { if (!cancelled) setPopupEnabled(s.formPopupEnabled === true) })
+      .catch(() => { if (!cancelled) setPopupEnabled(false) })
+    return () => { cancelled = true }
+  }, [])
 
   const openApply = (college) => {
     setLeadCollege(typeof college === 'string' ? college : '')
@@ -120,25 +130,15 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (leadSubmitted) return
-    let timer
+    if (leadSubmitted || !popupEnabled) return
     const open = () => setShowLead(true)
-    const t1 = setTimeout(() => {
-      open()
-      const t2 = setTimeout(() => {
-        open()
-        timer = setInterval(open, 35000)
-      }, 20000)
-      timer = t2
-    }, 2000)
+    const initialTimer = setTimeout(open, 2000)
+    const intervalTimer = setInterval(open, 45000)
     return () => {
-      clearTimeout(t1)
-      if (timer) {
-        clearTimeout(timer)
-        clearInterval(timer)
-      }
+      clearTimeout(initialTimer)
+      clearInterval(intervalTimer)
     }
-  }, [leadSubmitted])
+  }, [leadSubmitted, popupEnabled])
 
   return (
     <>
