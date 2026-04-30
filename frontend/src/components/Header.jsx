@@ -22,6 +22,7 @@ export default function Header({ onApply }) {
   const handleNav = (item) => {
     setOpen(false)
     if (item === 'About') { navigate('/about'); return }
+    if (item === 'Colleges') { navigate('/colleges'); return }
     const anchorId = item.toLowerCase()
     if (location.pathname === '/') {
       scrollToAnchor(anchorId)
@@ -43,6 +44,14 @@ export default function Header({ onApply }) {
     if (n === 'About') {
       return (
         <Link key={n} to="/about" onClick={() => setOpen(false)}
+          className="text-white/80 hover:text-blue-500 text-sm font-medium transition-colors">
+          {n}
+        </Link>
+      )
+    }
+    if (n === 'Colleges') {
+      return (
+        <Link key={n} to="/colleges" onClick={() => setOpen(false)}
           className="text-white/80 hover:text-blue-500 text-sm font-medium transition-colors">
           {n}
         </Link>

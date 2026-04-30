@@ -7,6 +7,7 @@ We help families compare colleges by rank, fee, placement record, and entrance-e
 ## Pages
 
 - [Home](https://knowledgepark360.com/): Overview of services, featured colleges, testimonials, and counsellor contact.
+- [All Colleges](https://knowledgepark360.com/colleges): Complete listing of SRMIST and top Bangalore engineering colleges with quick filters.
 - [About Knowledge Park 360](https://knowledgepark360.com/about): Mission, team, methodology, and admission track record.
 - [Privacy Policy](https://knowledgepark360.com/privacy): How we collect, use, and protect lead information.
 - [Terms and Conditions](https://knowledgepark360.com/terms): Service terms governing the consultancy engagement.

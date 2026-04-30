@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import CollegeGrid from './components/CollegeGrid'
 import CollegeDetail from './components/CollegeDetail'
+import CollegesPage from './components/CollegesPage'
 import AboutPage from './components/AboutPage'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import TermsConditions from './components/TermsConditions'
@@ -137,6 +138,7 @@ export default function App() {
           }
         >
           <Route path="/" element={<HomePage onApply={openApply} />} />
+          <Route path="/colleges" element={<CollegesPage onApply={openApply} />} />
           <Route path="/about" element={<AboutRoute onApply={openApply} />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsConditions />} />

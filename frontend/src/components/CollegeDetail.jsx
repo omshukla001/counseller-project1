@@ -1,5 +1,81 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, TrendingUp, Building2, Award, Shield, CheckCircle, Phone, MapPin, Users, BookOpen } from 'lucide-react'
+import { ArrowLeft, TrendingUp, Building2, Award, Shield, CheckCircle, Phone, BookOpen, ArrowRight } from 'lucide-react'
+import { saveLead } from '../utils/leads'
+
+const BRANCHES = ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'AI & ML', 'Data Science', 'Other']
+
+function SidebarLeadForm({ collegeName }) {
+  const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
+  const [form, setForm] = useState({ name: '', phone: '', email: '', rank: '', branch: '' })
+
+  const submit = async e => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError('')
+    try {
+      await saveLead({ ...form, source: 'College Page Sidebar', college: collegeName })
+      setSent(true)
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (sent) {
+    return (
+      <div className="bg-green-50 border border-green-200 rounded-2xl p-5 text-center">
+        <CheckCircle size={36} className="text-green-600 mx-auto mb-2" />
+        <p className="text-green-900 font-black text-base">You're All Set!</p>
+        <p className="text-green-800/80 text-sm mt-1">Our counsellor will call {form.phone} within 30 minutes.</p>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={submit} className="bg-white rounded-2xl p-5 border border-gray-200 shadow-md space-y-3">
+      <div>
+        <h4 className="font-black text-[#102C57] text-base">Apply for Admission</h4>
+        <p className="text-gray-500 text-xs mt-0.5">Free callback within 30 minutes</p>
+      </div>
+      <input required type="text" placeholder="Full Name *" value={form.name}
+        autoComplete="name"
+        onChange={e => setForm({ ...form, name: e.target.value })}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
+      <input required type="tel" placeholder="Phone Number *" value={form.phone}
+        inputMode="tel" autoComplete="tel"
+        onChange={e => setForm({ ...form, phone: e.target.value })}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
+      <input type="email" placeholder="Email (optional)" value={form.email}
+        autoComplete="email"
+        onChange={e => setForm({ ...form, email: e.target.value })}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
+      <input required type="text" inputMode="numeric" placeholder="KCET / COMEDK / SRMJEE Rank *"
+        value={form.rank}
+        onChange={e => setForm({ ...form, rank: e.target.value })}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
+      <select required value={form.branch}
+        onChange={e => setForm({ ...form, branch: e.target.value })}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all bg-white">
+        <option value="">Preferred Branch *</option>
+        {BRANCHES.map(b => <option key={b}>{b}</option>)}
+      </select>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-red-700 text-xs text-center">{error}</div>
+      )}
+
+      <button type="submit" disabled={submitting}
+        className="w-full bg-gradient-to-r from-[#1E3A8A] to-indigo-700 hover:from-blue-900 hover:to-indigo-800 disabled:opacity-60 text-white font-bold py-2.5 rounded-lg transition-all text-sm flex items-center justify-center gap-2">
+        {submitting ? 'Sending…' : <>Request Callback <ArrowRight size={14} /></>}
+      </button>
+      <p className="text-center text-[10px] text-gray-400">🔒 Your data stays private</p>
+    </form>
+  )
+}
 
 export default function CollegeDetail({ college, onBack, onApply }) {
   const stats = [
@@ -154,18 +230,7 @@ export default function CollegeDetail({ college, onBack, onApply }) {
               </a>
             </div>
 
-            <div className="bg-[#F8FAFC] rounded-2xl p-4 border border-gray-100 space-y-2.5">
-              <p className="font-bold text-[#102C57] text-sm mb-1">Quick Info</p>
-              {[
-                [MapPin, college.location],
-                [Users, `${college.seats} total seats`],
-                [Award, college.accreditation],
-              ].map(([Icon, text], i) => (
-                <div key={i} className="flex gap-2 text-sm text-gray-700">
-                  <Icon size={13} className="text-[#1E3A8A] shrink-0 mt-0.5" />{text}
-                </div>
-              ))}
-            </div>
+            <SidebarLeadForm collegeName={college.fullName || college.name} />
 
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
               <p className="text-amber-800 text-sm leading-relaxed">
