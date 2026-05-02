@@ -38,7 +38,7 @@ function SidebarLeadForm({ collegeName }) {
   return (
     <form onSubmit={submit} className="bg-white rounded-2xl p-5 border border-gray-200 shadow-md space-y-3">
       <div>
-        <h4 className="font-black text-[#102C57] text-base">Apply for Admission</h4>
+        <h4 className="font-black text-[#102C57] text-base">Request Admission Counselling</h4>
         <p className="text-gray-500 text-xs mt-0.5">Free callback within 30 minutes</p>
       </div>
       <input required type="text" placeholder="Full Name *" value={form.name}
@@ -79,7 +79,7 @@ function SidebarLeadForm({ collegeName }) {
 
 export default function CollegeDetail({ college, onBack, onApply }) {
   const stats = [
-    { value: college.highestPkg, label: 'HIGHEST PACKAGE', icon: TrendingUp, bg: 'bg-blue-50', color: 'text-blue-600' },
+    { value: college.highestPkg, label: 'TOP REPORTED PACKAGE*', icon: TrendingUp, bg: 'bg-blue-50', color: 'text-blue-600' },
     { value: college.type, label: 'COLLEGE TYPE', icon: Building2, bg: 'bg-orange-50', color: 'text-orange-500' },
     { value: college.accreditation, label: 'ACCREDITATION', icon: Award, bg: 'bg-green-50', color: 'text-green-600' },
     { value: college.approval, label: 'APPROVAL', icon: Shield, bg: 'bg-purple-50', color: 'text-purple-600' },
@@ -146,7 +146,7 @@ export default function CollegeDetail({ college, onBack, onApply }) {
               Placement at {college.fullName}
             </h3>
             <div className="grid grid-cols-3 gap-3 mb-5">
-              {[['Placement Rate', college.placements.rate], ['Avg Package', college.placements.avg], ['Highest Package', college.placements.highest]].map(([l, v]) => (
+              {[['Placement Rate*', college.placements.rate], ['Avg Package*', college.placements.avg], ['Top Reported Package*', college.placements.highest]].map(([l, v]) => (
                 <div key={l} className="bg-[#F8FAFC] rounded-xl p-3 text-center border border-gray-100">
                   <p className="font-black text-[#102C57] text-lg">{v}</p>
                   <p className="text-gray-400 text-xs mt-0.5">{l}</p>

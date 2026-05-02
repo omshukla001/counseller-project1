@@ -107,15 +107,15 @@ const TOPICS = [
       },
       {
         q: 'Top 5 engineering colleges in Bangalore',
-        a: '1️⃣ RVCE  2️⃣ BMSCE  3️⃣ MSRIT  4️⃣ PES University  5️⃣ Dayananda Sagar (DSCE). All NAAC A/A+ accredited with strong placements (avg 7–12 LPA, highest 67 LPA at RVCE).',
+        a: '1️⃣ RVCE  2️⃣ BMSCE  3️⃣ MSRIT  4️⃣ PES University  5️⃣ Dayananda Sagar (DSCE). All NAAC A/A+ accredited. Reported placements: avg ₹7–12 LPA across branches, RVCE has reported a top package up to ₹67 LPA (per institution disclosures — verify with college).',
       },
       {
         q: 'Tell me about RVCE',
-        a: 'RVCE — #1 ranked in Karnataka, est. 1963, 52-acre campus on Mysore Road. KCET cutoff < 500. Highest placement 67 LPA, 98% placement rate. Top recruiters: Google, Microsoft, Amazon.',
+        a: 'RVCE — among Karnataka\'s top-ranked engineering colleges, est. 1963, 52-acre campus on Mysore Road. KCET cutoff typically under 500. Reported top package up to ₹67 LPA, ~98% placement rate (per institution disclosures). Top recruiters include Google, Microsoft, Amazon.',
       },
       {
         q: 'Tell me about SRM Chennai',
-        a: 'SRM Institute of Science & Technology, Kattankulathur. Top 10 NIRF ranked, 50,000+ students. Highest package 92 LPA. Accepts SRMJEE Phase 1 & 2 + management quota for CSE / AI&ML / Data Science.',
+        a: 'SRM Institute of Science & Technology, Kattankulathur. NAAC A++, ranked among India\'s top 10 private universities (NIRF), 50,000+ students. Reported top package up to ₹92 LPA (per institution disclosures). Admits via SRMJEE Phase 1 & 2 and management quota — popular branches: CSE, AI&ML, Data Science.',
       },
     ],
   },
@@ -149,7 +149,7 @@ const TOPICS = [
     questions: [
       {
         q: 'How does management quota work?',
-        a: "Management quota is a direct seat reserved by private colleges for students who don't qualify through merit cutoffs. Fees are higher (₹2–8L/yr depending on college). We have tie-ups across 12+ Bangalore colleges & SRM Chennai. Call us for exact college quotes.",
+        a: "Management quota is a non-merit seat category offered by private colleges to students who don't clear merit cutoffs. Fees are higher (₹2–8L/yr depending on college). We've helped students apply to 12+ Bangalore colleges & SRM Chennai through this route. Call us to discuss your eligibility and indicative fees.",
       },
       {
         q: 'Average fees in top colleges',
@@ -160,8 +160,8 @@ const TOPICS = [
         a: 'Yes — KCET government scholarships (SC/ST/OBC), private college merit scholarships (RVCE, PESU offer up to 50% off for top KCET ranks), and central schemes like AICTE Pragati / Saksham. We help you apply.',
       },
       {
-        q: 'NRI / Direct admission options',
-        a: 'NRI quota requires foreign citizenship or passport with NRE/NRO documentation. Most colleges reserve 5–15% seats for NRI at higher fees ($4k–$10k/yr). Direct admission (without entrance) is via management quota — call us for college-wise availability.',
+        q: 'NRI quota & non-entrance admission routes',
+        a: 'NRI quota requires foreign citizenship or NRE/NRO documentation. Most colleges reserve 5–15% seats for NRI at higher fees ($4k–$10k/yr). Non-entrance admission routes (e.g. management quota) are available at select colleges — eligibility, seat availability and fees vary by institution. Call us for college-wise details.',
       },
     ],
   },
@@ -172,7 +172,7 @@ const TOPICS = [
     questions: [
       {
         q: 'Is your guidance really free?',
-        a: "Yes — counselling is 100% free for students. We earn from college tie-ups, not from you. No hidden charges. You only pay the college's official admission fee directly to them.",
+        a: "Yes — counselling is 100% free for students. We're paid referral fees by partner colleges, not by you. No hidden charges. You only pay the college's official admission fee directly to them.",
       },
       {
         q: 'How many colleges do you cover?',
@@ -200,12 +200,12 @@ function brainReply(text) {
   if (/(kcet)/.test(t)) return 'KCET (Karnataka Common Entrance Test) is conducted by KEA for engineering admissions in Karnataka government & private colleges. Cutoffs vary — share your rank for a personalised college list.'
   if (/(comedk)/.test(t)) return 'COMEDK UGET is for admission to private engineering colleges in Karnataka (separate from KCET). Conducted online in May. Score valid only for COMEDK-affiliated colleges.'
   if (/(srmjee|srm jee)/.test(t)) return 'SRMJEE has Phase 1 (Jan–Apr) and Phase 2 (May–Jun). Apply Phase 1 first for best branch options at SRM Chennai. We can help you prep & apply.'
-  if (/\b(srm)\b/.test(t)) return 'SRM Chennai (Kattankulathur) — Top 10 NIRF, highest package 92 LPA, popular for CSE / AI&ML / Data Science. Accepts SRMJEE + management quota.'
-  if (/(rvce|rv college)/.test(t)) return 'RVCE — #1 in Karnataka. KCET cutoff under 500, highest package 67 LPA, est. 1963, NAAC A+. Strong CSE / ECE / ISE programs.'
-  if (/(bmsce|bms college)/.test(t)) return 'BMSCE — established 1946 (oldest private engineering college in India), Basavanagudi, KCET cutoff under 800, highest package 52 LPA.'
+  if (/\b(srm)\b/.test(t)) return 'SRM Chennai (Kattankulathur) — NAAC A++, top 10 NIRF (private), reported top package up to ₹92 LPA (per institution disclosures). Popular branches: CSE / AI&ML / Data Science. Admits via SRMJEE + management quota.'
+  if (/(rvce|rv college)/.test(t)) return 'RVCE — among Karnataka\'s top engineering colleges. KCET cutoff typically under 500, reported top package up to ₹67 LPA (per institution disclosures), est. 1963, NAAC A+. Strong CSE / ECE / ISE programs.'
+  if (/(bmsce|bms college)/.test(t)) return 'BMSCE — established 1946 (oldest private engineering college in India), Basavanagudi, KCET cutoff typically under 800, reported top package up to ₹52 LPA (per institution disclosures).'
   if (/(bmsit)/.test(t)) return 'BMSIT — Yelahanka, sister college of BMSCE. KCET cutoff under 8,000. Solid placements & infrastructure.'
-  if (/(pes|pesu|pesit)/.test(t)) return 'PES University — RR Campus, Bangalore. PESSAT entrance. Tier 1 infrastructure, popular for CSE & AI&ML, average 8–12 LPA placements.'
-  if (/(msrit|ramaiah)/.test(t)) return 'MSRIT — Ramaiah Road, est. 1962, NAAC A. Strong industry ties, average 6–9 LPA, highest 45 LPA. KCET cutoff under 1,200.'
+  if (/(pes|pesu|pesit)/.test(t)) return 'PES University — RR Campus, Bangalore. PESSAT entrance. Modern infrastructure, popular for CSE & AI&ML; reported average ₹8–12 LPA placements (per institution disclosures).'
+  if (/(msrit|ramaiah)/.test(t)) return 'MSRIT — Ramaiah Road, est. 1962, NAAC A. Strong industry ties; reported average ₹6–9 LPA, top package up to ₹45 LPA (per institution disclosures). KCET cutoff typically under 1,200.'
   if (/(jain)/.test(t)) return 'Jain University — deemed-to-be university. JET entrance. Strong for BBA / Liberal Arts / Engineering. We handle full JET counselling.'
   if (/(dsce|dayananda)/.test(t)) return 'Dayananda Sagar (DSCE) — Banashankari. NAAC A. KCET cutoff under 3,500. Good CSE & ISE placements.'
   if (/(nmit|nitte)/.test(t)) return 'NMIT (Nitte Meenakshi) — Yelahanka, est. 2001. NAAC A+. Constituent of Nitte University. Modern campus & active placements.'
@@ -214,13 +214,13 @@ function brainReply(text) {
   if (/(bit)\b/.test(t)) return 'BIT (Bangalore Institute of Technology) — V V Puram, Basavanagudi. Est. 1979. Autonomous, VTU affiliated. Popular for core branches.'
   if (/(fee|cost|price|expensive|cheap|charge)/.test(t)) return 'Fees vary widely: KCET government quota ₹70k–₹1.2L/yr • COMEDK ₹2–4L/yr • Management quota ₹3–8L/yr. Plus hostel ~₹1.5–2.5L. Counselling is free!'
   if (/(rank|score|cutoff)/.test(t)) return 'Share your rank + exam (KCET/COMEDK/SRMJEE) and I\'ll suggest realistic college options. You can also tap "Get my college list" below.'
-  if (/(management|quota|direct)/.test(t)) return "Management quota = direct admission without merit cutoff. Higher fees but guaranteed seat. We have tie-ups in 12+ Bangalore colleges + SRM. Call for exact quotes."
+  if (/(management|quota|direct)/.test(t)) return "Management quota = non-merit seat category at private colleges. Fees are higher and seat availability depends on the college. We've guided students through this route across 12+ Bangalore colleges + SRM. Call us to check eligibility & indicative fees."
   if (/(scholarship|aid|financial)/.test(t)) return 'Scholarships: KCET government (SC/ST/OBC), college merit scholarships at RVCE/PESU (up to 50% off for top ranks), AICTE Pragati/Saksham. We help you apply.'
   if (/(nri|foreign|abroad)/.test(t)) return 'NRI quota needs foreign citizenship or NRE/NRO docs. 5–15% seats reserved at private colleges, fees ~$4k–$10k/yr. We process the paperwork.'
   if (/(call|whatsapp|phone|number|contact)/.test(t)) return '📞 +91 72960 87953 (also +91 91087 83191, +91 82170 33492). WhatsApp button below 👇'
   if (/(office|location|address|where)/.test(t)) return '📍 Main: Samruddhi, Doddaballapura Road, Bangalore 560064. 📍 Patna: Bailey Road, Kusumpuram. Visit anytime or video call.'
   if (/(branch|cse|ece|ai|ml|mechanical|civil|data)/.test(t)) return 'Popular branches: CSE, ISE, ECE, AI&ML, Data Science, Cyber Security. Demand-wise: CSE > AI&ML > Data Science > ECE > Mechanical. Need branch-specific cutoffs?'
-  if (/(2024|2025|2026|placement|package|salary|lpa)/.test(t)) return 'Top packages 2024–25: RVCE 67 LPA • BMSCE 52 LPA • MSRIT 45 LPA • PESU 40 LPA • SRM Chennai 92 LPA. Average 6–12 LPA across branches.'
+  if (/(2024|2025|2026|placement|package|salary|lpa)/.test(t)) return 'Reported top packages (per institution disclosures, 2024–25): RVCE up to 67 LPA • BMSCE 52 LPA • MSRIT 45 LPA • PESU 40 LPA • SRM Chennai 92 LPA. Averages typically 6–12 LPA across branches. Past placements do not guarantee future outcomes — please verify current data with the college.'
   return null
 }
 

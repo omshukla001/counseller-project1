@@ -27,7 +27,7 @@ export default function AboutPage({ onApply, onBack }) {
         </motion.h1>
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
           className="text-white/70 max-w-xl mx-auto text-base">
-          Knowledge Park 360 is Bangalore's most trusted engineering admission consultancy, founded with one mission — making quality engineering education accessible to every deserving student.
+          Knowledge Park 360 is an experienced engineering admission consultancy based in Bangalore, founded with one mission — making quality engineering education accessible to every deserving student.
         </motion.p>
       </div>
 
@@ -65,14 +65,14 @@ export default function AboutPage({ onApply, onBack }) {
               <p className="text-gray-500 text-sm mb-5">Knowledge Park 360 · Bangalore, Karnataka</p>
 
               <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
-                With over <strong>6 years of experience</strong> in engineering admissions, Kunal Issar has guided students into top colleges like RVCE, BMSCE, PES University, SRM, and Jain University. His deep knowledge of KCET, COMEDK, SRMJEE, and Management Quota processes has made him the go-to counsellor for families across Karnataka and beyond.
+                With over <strong>6 years of experience</strong> in engineering admissions counselling, Kunal Issar has supported students applying to colleges such as RVCE, BMSCE, PES University, SRM, and Jain University. His working knowledge of KCET, COMEDK, SRMJEE, and quota-based admission processes makes him a trusted counsellor for families across Karnataka and beyond.
               </p>
 
               <div className="space-y-2 mb-6">
                 {[
-                  'Expert in KCET, COMEDK, SRMJEE & Management Quota',
+                  'Counselling for KCET, COMEDK, SRMJEE & quota-based admissions',
                   'Hands-on with every counselling round, start to finish',
-                  'Strong network with Jain, SRM, RV, PES & top colleges',
+                  'Familiar with admission processes at Jain, SRM, RV, PES & other leading colleges',
                   'Free, transparent & student-first counselling',
                 ].map((pt, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm md:text-base text-gray-700">
@@ -123,11 +123,11 @@ export default function AboutPage({ onApply, onBack }) {
 
       {/* CTA */}
       <div className="py-16 px-4 text-center bg-white">
-        <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">Ready to Secure Your Seat?</h2>
+        <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">Ready to Start Your Application?</h2>
         <p className="text-gray-600 mb-6 text-base">Book a free 30-minute session with Kunal Issar today.</p>
         <button onClick={onApply}
           className="bg-[#1E3A8A] hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full text-base transition-all hover:scale-105 hover:shadow-xl hover:shadow-blue-700/30 inline-flex items-center gap-2">
-          Get Free Consultation <ArrowRight size={16} />
+          Book a Counselling Call <ArrowRight size={16} />
         </button>
       </div>
     </motion.div>

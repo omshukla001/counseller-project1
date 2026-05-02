@@ -10,6 +10,7 @@ export default function InlineLeadForm() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', phone: '', email: '', rank: '', branch: '', message: '' })
+  const [consent, setConsent] = useState(false)
 
   const submit = async e => {
     e.preventDefault()
@@ -39,13 +40,13 @@ export default function InlineLeadForm() {
           transition={{ duration: 0.5 }}
           className="lg:col-span-2 text-white">
           <div className="inline-flex items-center gap-1.5 bg-yellow-400/15 text-yellow-300 text-xs font-black px-3 py-1 rounded-full border border-yellow-400/30 mb-4">
-            <Sparkles size={12} /> 100% FREE COUNSELLING
+            <Sparkles size={12} /> FREE COUNSELLING — NO COST TO STUDENTS
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-4">
-            Ready to Secure Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-cyan-300">Engineering Seat?</span>
+            Ready to Plan Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-cyan-300">Engineering Application?</span>
           </h2>
           <p className="text-white/70 text-base md:text-lg leading-relaxed mb-6">
-            Fill out the form and our senior counsellor will call you within 30 minutes with personalised college and branch options based on your rank.
+            Share your details and a senior counsellor will call you within 30 minutes to discuss college and branch options based on your rank.
           </p>
 
           <div className="space-y-3">
@@ -101,8 +102,8 @@ export default function InlineLeadForm() {
             </div>
           ) : (
             <form onSubmit={submit} className="p-6 md:p-10">
-              <h3 className="text-[#102C57] font-black text-xl md:text-2xl mb-1">Request Free Callback</h3>
-              <p className="text-gray-500 text-sm mb-6">Takes less than 30 seconds. No payment required.</p>
+              <h3 className="text-[#102C57] font-black text-xl md:text-2xl mb-1">Request a Counselling Callback</h3>
+              <p className="text-gray-500 text-sm mb-6">Takes less than 30 seconds. We'll call you to discuss admission options — no cost to students.</p>
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
@@ -155,20 +156,31 @@ export default function InlineLeadForm() {
                 </div>
               </div>
 
+              {/* Consent */}
+              <label className="mt-5 flex items-start gap-2.5 cursor-pointer select-none">
+                <input type="checkbox" required checked={consent}
+                  onChange={e => setConsent(e.target.checked)}
+                  className="mt-0.5 w-4 h-4 accent-[#1E3A8A] shrink-0" />
+                <span className="text-gray-600 text-[13px] leading-snug">
+                  I agree to be contacted by Knowledge Park 360 about admission counselling, and I have read the{' '}
+                  <a href="/privacy" className="text-blue-600 underline">Privacy Policy</a>.
+                </span>
+              </label>
+
               {error && (
                 <div className="mt-4 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5 text-red-700 text-sm text-center">
                   {error}
                 </div>
               )}
 
-              <button type="submit" disabled={submitting}
+              <button type="submit" disabled={submitting || !consent}
                 className="mt-6 w-full bg-gradient-to-r from-[#1E3A8A] to-indigo-700 hover:from-blue-900 hover:to-indigo-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all text-base flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
                 {submitting ? 'Sending…' : (
-                  <>Request Free Callback <ArrowRight size={18} /></>
+                  <>Request Counselling Callback <ArrowRight size={18} /></>
                 )}
               </button>
               <p className="text-center text-xs text-gray-400 mt-3">
-                🔒 Your data is protected per our Privacy Policy
+                🔒 We don't sell your data. See our <a href="/privacy" className="text-blue-600 underline">Privacy Policy</a>.
               </p>
             </form>
           )}

@@ -22,7 +22,7 @@ export default function TermsConditions() {
               <li>Guidance on KCET, COMEDK, SRMJEE, and other entrance exams</li>
               <li>Information about colleges, courses, cutoffs, and placements</li>
               <li>Documentation support and application assistance</li>
-              <li>Management quota and direct admission guidance</li>
+              <li>Guidance on management quota and other quota-based admission processes</li>
             </ul>
           </section>
 

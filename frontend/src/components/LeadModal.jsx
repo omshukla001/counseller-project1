@@ -10,12 +10,13 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', phone: '', rank: '', branch: '' })
+  const [consent, setConsent] = useState(false)
 
-  const source = college ? `${college} Admission` : 'Lead Modal'
-  const title = college ? `Apply for ${college}` : 'Get Free Guidance'
+  const source = college ? `${college} Counselling` : 'Lead Modal'
+  const title = college ? `Get ${college} Counselling` : 'Book a Counselling Call'
   const subtitle = college
-    ? `Expert counseling for ${college} admission`
-    : 'Our expert will call you within 30 minutes'
+    ? `Free counselling for ${college} applicants — we'll call within 30 minutes`
+    : 'A counsellor will call you within 30 minutes to discuss your options'
 
   // Lock body scroll while modal is open
   useEffect(() => {
@@ -70,7 +71,7 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
             <div className="relative flex justify-between items-start gap-3">
               <div className="min-w-0 flex-1">
                 <div className="inline-flex items-center gap-1 bg-yellow-400/20 text-yellow-200 text-[10px] font-black px-2 py-0.5 rounded-full border border-yellow-400/30 mb-1.5">
-                  <Sparkles size={10} /> 100% FREE
+                  <Sparkles size={10} /> NO COST TO STUDENTS
                 </div>
                 <h3 className="text-white font-black text-lg md:text-xl leading-tight">{title}</h3>
                 <p className="text-white/70 text-[12px] md:text-sm mt-0.5 leading-snug">{subtitle}</p>
@@ -130,6 +131,12 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
                   </div>
                 )}
 
+                {/* Form purpose */}
+                <p className="text-gray-500 text-[12px] md:text-[13px] leading-snug">
+                  Share your details and a counsellor will call you within 30 minutes to discuss admission options. No fees charged to students.
+                </p>
+
+
                 {[
                   { key: 'name', label: 'Full Name', placeholder: 'Enter your name', type: 'text', inputMode: 'text', autoComplete: 'name' },
                   { key: 'phone', label: 'Phone Number', placeholder: '+91 XXXXX XXXXX', type: 'tel', inputMode: 'tel', autoComplete: 'tel' },
@@ -171,6 +178,17 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
                   </div>
                 )}
 
+                {/* Consent */}
+                <label className="flex items-start gap-2 cursor-pointer select-none pt-1">
+                  <input type="checkbox" required checked={consent}
+                    onChange={e => setConsent(e.target.checked)}
+                    className="mt-0.5 w-4 h-4 accent-[#1E3A8A] shrink-0" />
+                  <span className="text-gray-600 text-[12px] md:text-[13px] leading-snug">
+                    I agree to be contacted by Knowledge Park 360 about admission counselling, and I have read the{' '}
+                    <button type="button" onClick={() => { onClose(); navigate('/privacy') }} className="text-blue-600 underline">Privacy Policy</button>.
+                  </span>
+                </label>
+
                 {error && (
                   <div className="bg-red-50 border border-red-200 rounded-xl px-3 py-2 text-red-700 text-[13px] text-center">
                     {error}
@@ -180,13 +198,13 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
 
               {/* Sticky submit bar */}
               <div className="shrink-0 border-t border-gray-100 bg-white/95 backdrop-blur px-5 md:px-6 pt-3 pb-[max(env(safe-area-inset-bottom),12px)] md:pb-5 space-y-2">
-                <button type="submit" disabled={submitting}
+                <button type="submit" disabled={submitting || !consent}
                   className="w-full bg-gradient-to-r from-[#1E3A8A] to-indigo-700 active:from-blue-900 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl transition-all text-[15px] md:text-base flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
-                  <Phone size={16} /> {submitting ? 'Sending…' : (college ? `Apply for ${college}` : 'Request Free Callback')}
+                  <Phone size={16} /> {submitting ? 'Sending…' : 'Request Counselling Callback'}
                 </button>
                 <p className="text-center text-[11px] md:text-xs text-gray-400">
-                  🔒 Your data is protected per our{' '}
-                  <button type="button" onClick={() => { onClose(); navigate('/privacy') }} className="text-blue-600 underline">Privacy Policy</button>
+                  🔒 We don't sell your data. See our{' '}
+                  <button type="button" onClick={() => { onClose(); navigate('/privacy') }} className="text-blue-600 underline">Privacy Policy</button>.
                 </p>
               </div>
             </form>

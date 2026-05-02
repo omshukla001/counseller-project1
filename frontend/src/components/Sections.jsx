@@ -78,7 +78,7 @@ export function WhySRM({ onApply }) {
             className="text-2xl md:text-4xl font-black text-white">Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-cyan-300">SRM Chennai?</span></motion.h2>
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
             className="text-white/80 mt-2 max-w-lg mx-auto text-sm md:text-base">
-            India's top-ranked private university with world-class placements, research & campus life.
+            One of India's top-ranked private universities, with strong reported placements, an active research culture & vibrant campus life.
           </motion.p>
         </div>
 
@@ -115,7 +115,7 @@ export function WhySRM({ onApply }) {
           </div>
           <button onClick={() => onApply('SRM Chennai')}
             className="mt-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-black text-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-yellow-500/30">
-            Apply for SRM Admission →
+            Get SRM Counselling →
           </button>
         </motion.div>
       </div>
@@ -136,7 +136,7 @@ export function WhyBangalore() {
             className="text-2xl md:text-4xl font-black text-gray-900">India's Engineering Capital</motion.h2>
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
             className="text-gray-600 mt-2 max-w-lg mx-auto text-sm md:text-base px-2">
-            Home to 2000+ IT companies, world-class research institutes, and India's highest engineering placements.
+            Home to 2000+ IT companies and leading research institutes — making it a strong destination for engineering graduates seeking placements.
           </motion.p>
         </div>
 

@@ -22,10 +22,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- Paint dark immediately to avoid white flash before React mounts.
+         SEO fallback content stays in the DOM for crawlers but is positioned off-screen
+         so users never see it during the brief mount window. -->
+    <style>
+      html, body, #root { background-color: #0A192F; }
+      body { margin: 0; color: #fff; }
+      #root > header, #root > main {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+
     <!-- SEO Meta Tags -->
     <title>Knowledge Park 360 | SRM &amp; Bangalore Admissions</title>
-    <meta name="description" content="Knowledge Park 360: trusted consultancy for SRM Chennai &amp; top Bangalore engineering colleges. Expert KCET, COMEDK and SRMJEE guidance with honest, student-first counselling." />
-    <meta name="keywords" content="engineering admission consultancy, SRM admission, Bangalore college admission, KCET counselling, COMEDK guidance, SRMJEE, management quota, direct admission, RVCE, PES University, Jain University, BMSCE, Knowledge Park 360" />
+    <meta name="description" content="Knowledge Park 360 is an independent admission consultancy for SRM Chennai &amp; top Bangalore engineering colleges. KCET, COMEDK and SRMJEE counselling — student-first, no cost to students." />
+    <meta name="keywords" content="engineering admission consultancy, SRM admission counselling, Bangalore college admission counselling, KCET counselling, COMEDK guidance, SRMJEE, management quota counselling, RVCE, PES University, Jain University, BMSCE, Knowledge Park 360" />
     <meta name="author" content="Knowledge Park 360" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://knowledgepark360.com/" />
@@ -33,7 +50,7 @@
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Knowledge Park 360 | SRM & Bangalore Admissions" />
-    <meta property="og:description" content="Expert admission guidance for SRM Chennai &amp; top Bangalore engineering colleges. Honest, student-first counselling. Call +91 72960 87953." />
+    <meta property="og:description" content="Independent admission consultancy for SRM Chennai &amp; top Bangalore engineering colleges. Student-first counselling — no cost to students. Call +91 72960 87953." />
     <meta property="og:url" content="https://knowledgepark360.com/" />
     <meta property="og:site_name" content="Knowledge Park 360" />
     <meta property="og:image" content="https://knowledgepark360.com/college-srm.jpg" />
@@ -41,7 +58,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Knowledge Park 360 | SRM & Bangalore Admissions" />
-    <meta name="twitter:description" content="Trusted admission consultancy for SRM Chennai &amp; top Bangalore engineering colleges. KCET, COMEDK, SRMJEE expert guidance." />
+    <meta name="twitter:description" content="Independent admission consultancy for SRM Chennai &amp; top Bangalore engineering colleges. KCET, COMEDK, SRMJEE counselling." />
     <meta name="twitter:image" content="https://knowledgepark360.com/college-srm.jpg" />
 
     <!-- JSON-LD: Organization + LocalBusiness + EducationalOrganization -->
@@ -56,7 +73,7 @@
           "alternateName": "KP360",
           "url": "https://knowledgepark360.com/",
           "logo": "https://knowledgepark360.com/logo1.png",
-          "description": "Admission consultancy guiding students into SRM Chennai and Bangalore's top engineering colleges. KCET, COMEDK, SRMJEE, JET, and management quota counselling.",
+          "description": "Independent admission consultancy providing counselling for applicants to SRM Chennai and Bangalore's top engineering colleges. KCET, COMEDK, SRMJEE, JET, and quota-based admission process guidance.",
           "telephone": ["+91-72960-87953", "+91-91087-83191", "+91-82170-33492"],
           "email": "knowledgeparkedu360@gmail.com",
           "sameAs": [
@@ -152,49 +169,52 @@
       <main>
         <h1>Knowledge Park 360 — SRM &amp; Bangalore Engineering Admission Consultancy</h1>
         <p>
-          Knowledge Park 360 is a trusted admission consultancy guiding students into
-          SRM Institute of Science and Technology (Chennai) and the top engineering
-          colleges in Bangalore — including RV College of Engineering (RVCE), BMS
-          College of Engineering (BMSCE), MS Ramaiah Institute of Technology (MSRIT),
-          PES University, BMS Institute of Technology (BMSIT), Bangalore Institute of
-          Technology (BIT), Dayananda Sagar College of Engineering (DSCE), Nitte
-          Meenakshi Institute of Technology (NMIT), RNS Institute of Technology
-          (RNSIT), Sir M. Visvesvaraya Institute of Technology (Sir MVIT), and Jain
-          (Deemed-to-be University). With over six years of dedicated admission
-          counselling, our team helps families
-          shortlist colleges, decode KCET, COMEDK, SRMJEE, JET, and PESSAT cutoffs,
-          and complete every counselling round end to end.
+          Knowledge Park 360 is an independent admission consultancy supporting
+          students who are applying to SRM Institute of Science and Technology
+          (Chennai) and leading engineering colleges in Bangalore — including RV
+          College of Engineering (RVCE), BMS College of Engineering (BMSCE), MS
+          Ramaiah Institute of Technology (MSRIT), PES University, BMS Institute of
+          Technology (BMSIT), Bangalore Institute of Technology (BIT), Dayananda
+          Sagar College of Engineering (DSCE), Nitte Meenakshi Institute of Technology
+          (NMIT), RNS Institute of Technology (RNSIT), Sir M. Visvesvaraya Institute
+          of Technology (Sir MVIT), and Jain (Deemed-to-be University). We are not
+          affiliated with or authorised representatives of any of these institutions.
+          With over six years of admission counselling experience, our team helps
+          families shortlist colleges, understand KCET, COMEDK, SRMJEE, JET, and
+          PESSAT cutoffs, and navigate counselling rounds.
         </p>
 
         <section>
           <h2>Admission Counselling Services</h2>
           <p>
-            We offer end-to-end admission guidance for engineering aspirants across
-            Karnataka and Tamil Nadu. Our counsellors specialise in KCET counselling,
-            COMEDK UGET seat allotment, SRMJEE Phase 1 and Phase 2 admissions,
-            management quota and direct admission seats, scholarship eligibility,
-            documentation support, branch selection between Computer Science (CSE),
-            Information Science (ISE), Electronics and Communication (ECE), Artificial
+            We offer admission counselling for engineering aspirants across Karnataka
+            and Tamil Nadu. Our counsellors guide families through KCET counselling,
+            COMEDK UGET seat allotment, SRMJEE Phase 1 and Phase 2 application
+            processes, management quota and other quota-based admission routes
+            (subject to each college's policy), scholarship eligibility, documentation
+            support, and branch selection across Computer Science (CSE), Information
+            Science (ISE), Electronics and Communication (ECE), Artificial
             Intelligence and Machine Learning (AI &amp; ML), Data Science, Cyber
-            Security, Mechanical, Civil, and Biotechnology programs.
+            Security, Mechanical, Civil, and Biotechnology programs. We do not
+            guarantee admission to any institution.
           </p>
         </section>
 
         <section>
           <h2>Featured Engineering Colleges</h2>
           <ul>
-            <li><a href="/college/srm">SRM Institute of Science and Technology, Chennai</a> — NAAC A++, Top 10 NIRF, 92 LPA highest package, 800+ recruiters.</li>
-            <li><a href="/college/rvce">RV College of Engineering (RVCE)</a> — #1 ranked engineering college in Karnataka, NAAC A+, 67 LPA highest package.</li>
-            <li><a href="/college/bmsce">BMS College of Engineering (BMSCE)</a> — Established 1946, oldest private engineering college, NAAC A+, 52 LPA highest package.</li>
-            <li><a href="/college/msrit">MS Ramaiah Institute of Technology (MSRIT)</a> — Established 1962, NAAC A, 45 LPA highest package.</li>
-            <li><a href="/college/pesu">PES University</a> — NAAC A+, 58 LPA highest package, COMEDK and PESSAT admissions.</li>
-            <li><a href="/college/bmsit">BMS Institute of Technology (BMSIT)</a> — Yelahanka, Bangalore, NAAC A, 38 LPA highest package.</li>
-            <li><a href="/college/bit">Bangalore Institute of Technology (BIT)</a> — Central V.V. Puram campus, NAAC A, 32 LPA highest package.</li>
-            <li><a href="/college/dsce">Dayananda Sagar College of Engineering (DSCE)</a> — NAAC A, vibrant Kumaraswamy Layout campus, 30 LPA highest package.</li>
-            <li><a href="/college/nmit">Nitte Meenakshi Institute of Technology (NMIT)</a> — Autonomous, NAAC A+, 28 LPA highest package.</li>
-            <li><a href="/college/rnsit">RNS Institute of Technology (RNSIT)</a> — Strong CSE placements, NAAC A, 26 LPA highest package.</li>
-            <li><a href="/college/smvit">Sir M. Visvesvaraya Institute of Technology (Sir MVIT)</a> — Legacy autonomous college, NAAC A, 24 LPA highest package.</li>
-            <li><a href="/college/jain">Jain (Deemed-to-be University)</a> — NAAC A++, multidisciplinary deemed university, 50 LPA highest package, JET admissions.</li>
+            <li><a href="/college/srm">SRM Institute of Science and Technology, Chennai</a> — NAAC A++, top 10 NIRF (private), 800+ recruiters; reported top package up to ₹92 LPA (per institution disclosures).</li>
+            <li><a href="/college/rvce">RV College of Engineering (RVCE)</a> — among Karnataka's top-ranked engineering colleges, NAAC A+; reported top package up to ₹67 LPA (per institution disclosures).</li>
+            <li><a href="/college/bmsce">BMS College of Engineering (BMSCE)</a> — established 1946, NAAC A+; reported top package up to ₹52 LPA (per institution disclosures).</li>
+            <li><a href="/college/msrit">MS Ramaiah Institute of Technology (MSRIT)</a> — established 1962, NAAC A; reported top package up to ₹45 LPA (per institution disclosures).</li>
+            <li><a href="/college/pesu">PES University</a> — NAAC A+, COMEDK and PESSAT admissions; reported top package up to ₹58 LPA (per institution disclosures).</li>
+            <li><a href="/college/bmsit">BMS Institute of Technology (BMSIT)</a> — Yelahanka, Bangalore, NAAC A; reported top package up to ₹38 LPA (per institution disclosures).</li>
+            <li><a href="/college/bit">Bangalore Institute of Technology (BIT)</a> — V.V. Puram campus, NAAC A; reported top package up to ₹32 LPA (per institution disclosures).</li>
+            <li><a href="/college/dsce">Dayananda Sagar College of Engineering (DSCE)</a> — Kumaraswamy Layout campus, NAAC A; reported top package up to ₹30 LPA (per institution disclosures).</li>
+            <li><a href="/college/nmit">Nitte Meenakshi Institute of Technology (NMIT)</a> — autonomous, NAAC A+; reported top package up to ₹28 LPA (per institution disclosures).</li>
+            <li><a href="/college/rnsit">RNS Institute of Technology (RNSIT)</a> — NAAC A; reported top package up to ₹26 LPA (per institution disclosures).</li>
+            <li><a href="/college/smvit">Sir M. Visvesvaraya Institute of Technology (Sir MVIT)</a> — autonomous, NAAC A; reported top package up to ₹24 LPA (per institution disclosures).</li>
+            <li><a href="/college/jain">Jain (Deemed-to-be University)</a> — NAAC A++ multidisciplinary deemed university, JET admissions; reported top package up to ₹50 LPA (per institution disclosures).</li>
           </ul>
         </section>
 

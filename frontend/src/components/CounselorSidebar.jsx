@@ -56,7 +56,7 @@ export default function CounselorSidebar({ onApply }) {
         )}
 
         <div className="px-5 pb-5 space-y-2">
-          {['KCET Guidance', 'COMEDK Support', 'Management Quota', 'Direct Admission'].map(s => (
+          {['KCET Guidance', 'COMEDK Support', 'Quota Application Help', 'Application Support'].map(s => (
             <div key={s} className="flex items-center gap-2 text-xs text-gray-500">
               <CheckCircle size={12} className="text-[#1E3A8A]" />
               {s}

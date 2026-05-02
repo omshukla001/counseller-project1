@@ -166,7 +166,7 @@ export default function Hero({ onApply }) {
           {/* Headline */}
           <motion.div {...fadeUp(0.15)} className="mb-3">
             <div role="heading" aria-level="2" className="text-[2rem] font-extrabold leading-[1.12] tracking-tight text-white">
-              Secure Your Seat at
+              Find Your Seat at
               <br />
               <span className="inline-block min-h-[1.2em]"><RotatingCollege idx={idx} /></span>
             </div>
@@ -190,7 +190,7 @@ export default function Hero({ onApply }) {
             <motion.div {...fadeUp(0.25)} className="flex flex-col gap-2 mb-3">
               <button onClick={onApply}
                 className="w-full bg-white text-[#0f172a] font-extrabold py-3.5 rounded-2xl flex items-center justify-center gap-2 text-sm shadow-lg active:scale-[0.97] transition-transform">
-                Get Free Consultation <ArrowRight size={15} />
+                Book a Counselling Call <ArrowRight size={15} />
               </button>
               <div className="grid grid-cols-2 gap-2">
                 <a href="tel:+917296087953"
@@ -207,7 +207,7 @@ export default function Hero({ onApply }) {
 
             {/* Trust strip */}
             <motion.div {...fadeUp(0.35)} className="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 text-white/55 text-[11px]">
-              <span className="flex items-center gap-1.5"><Shield size={11} className="text-blue-400" /> Free · 6+ Years Trusted</span>
+              <span className="flex items-center gap-1.5"><Shield size={11} className="text-blue-400" /> Free counselling · 6+ years experience</span>
             </motion.div>
           </div>
         </div>
@@ -229,13 +229,13 @@ export default function Hero({ onApply }) {
                   <span className="text-white/90 text-xs font-semibold tracking-wide">Admissions Open 2026–27</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-400/20 rounded-full px-3.5 py-2 backdrop-blur-sm text-emerald-300 text-xs font-bold">
-                  100% Free · No fees from students
+                  Counselling at no cost to students
                 </span>
               </motion.div>
 
               <motion.h1 {...fadeUp(0.2)}
                 className="text-[2.6rem] lg:text-[3.2rem] font-extrabold leading-[1.08] tracking-[-0.01em] text-white mb-4">
-                Secure Your Seat at{' '}
+                Find Your Seat at{' '}
                 <span className="relative inline-block">
                   <RotatingCollege idx={idx} />
                   <motion.span className="absolute -bottom-1 left-0 h-[2px] w-full bg-gradient-to-r from-yellow-400 via-cyan-400 to-blue-400 rounded-full"
@@ -247,7 +247,7 @@ export default function Hero({ onApply }) {
 
               <motion.p {...fadeUp(0.3)} className="text-white/65 text-base max-w-xl leading-relaxed mb-5">
                 Expert counselling for <span className="text-white font-semibold">SRMJEE, KCET & COMEDK</span>.
-                {' '}Personalised guidance to help you secure a seat in India's top engineering colleges.
+                {' '}Personalised guidance to help you apply to India's top engineering colleges.
               </motion.p>
 
               {/* How it works — desktop */}
@@ -258,7 +258,7 @@ export default function Hero({ onApply }) {
               <motion.div {...fadeUp(0.4)} className="flex flex-wrap gap-3 mb-6">
                 <button onClick={onApply}
                   className="group bg-white text-[#0f172a] font-extrabold px-7 py-3 rounded-full flex items-center gap-2 text-sm shadow-xl shadow-white/10 hover:shadow-white/20 hover:scale-[1.03] transition-all">
-                  Get Free Consultation
+                  Book a Counselling Call
                   <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
                 </button>
                 <a href="tel:+917296087953"
@@ -268,7 +268,7 @@ export default function Hero({ onApply }) {
               </motion.div>
 
               <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-2 mb-5">
-                {['SRMJEE', 'KCET', 'COMEDK', 'Management Quota'].map(b => (
+                {['SRMJEE', 'KCET', 'COMEDK', 'NRI / Quota Counselling'].map(b => (
                   <span key={b} className="flex items-center gap-1.5 text-xs text-white font-semibold bg-white/[0.12] border border-white/[0.2] px-3.5 py-1.5 rounded-full shadow-sm shadow-white/5 backdrop-blur-sm">
                     <CheckCircle size={11} className="text-cyan-400" /> {b}
                   </span>
@@ -283,7 +283,7 @@ export default function Hero({ onApply }) {
                   <span className="ml-1 text-white/60 font-semibold">· 11 Google reviews</span>
                 </div>
                 <span className="w-px h-3 bg-white/15" />
-                <span className="flex items-center gap-1"><CheckCircle size={11} className="text-emerald-400" /> 6+ Years Trusted</span>
+                <span className="flex items-center gap-1"><CheckCircle size={11} className="text-emerald-400" /> 6+ years experience</span>
               </motion.div>
             </div>
 
@@ -306,7 +306,7 @@ export default function Hero({ onApply }) {
                   </div>
                 </div>
                 <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
-                  {[['Top 10', 'NIRF Rank'], ['50k+', 'Students'], ['92 LPA', 'Highest Pkg']].map(([v, l]) => (
+                  {[['Top 10', 'NIRF Rank'], ['50k+', 'Students'], ['NAAC A++', 'Accredited']].map(([v, l]) => (
                     <div key={l} className="py-3 text-center">
                       <div className="text-white font-bold text-sm">{v}</div>
                       <div className="text-white/50 text-[10px] mt-0.5">{l}</div>
@@ -314,7 +314,7 @@ export default function Hero({ onApply }) {
                   ))}
                 </div>
                 <div className="px-5 py-3.5 space-y-1.5 border-t border-white/[0.08]">
-                  {['SRMJEE Phase 1 & 2 Guidance', 'Management Quota Available', 'CSE, AI/ML, Data Science & more'].map(t => (
+                  {['SRMJEE Phase 1 & 2 Counselling', 'Management & NRI Quota Guidance', 'CSE, AI/ML, Data Science & more'].map(t => (
                     <div key={t} className="flex items-center gap-2 text-xs text-white/75">
                       <CheckCircle size={11} className="text-cyan-400 shrink-0" /> {t}
                     </div>
@@ -323,7 +323,7 @@ export default function Hero({ onApply }) {
                 <div className="px-5 pb-4">
                   <button onClick={() => onApply('SRM Chennai')}
                     className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-sm py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-shadow">
-                    Apply for SRM <ArrowRight size={13} />
+                    Get SRM Counselling <ArrowRight size={13} />
                   </button>
                 </div>
               </motion.div>

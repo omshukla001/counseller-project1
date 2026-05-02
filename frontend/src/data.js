@@ -12,12 +12,12 @@ export const COLLEGES = [
       rate: '98%', avg: '₹8–12 LPA', highest: '67 LPA',
       companies: ['Google', 'Microsoft', 'Amazon', 'IBM', 'Accenture', 'Infosys', 'Wipro', 'TCS'],
       points: [
-        'High Placement Rates: Strong placement record across most programs.',
-        'Diverse Recruiters: Google, Microsoft, Amazon, IBM, Accenture, Infosys, Wipro, and TCS.',
-        'Competitive Salaries: Average 6–8 LPA; top performers 20+ LPA in CSE & ECE.',
-        'Internships: Facilitated with leading companies, often leading to PPOs.',
-        'Support: Resume workshops, mock interviews, soft skills & technical training.',
-        'Alumni Network: Strong network for job opportunities and mentorship.',
+        'High placement rates: strong placement record across most programs (per institution disclosures).',
+        'Diverse recruiters: Google, Microsoft, Amazon, IBM, Accenture, Infosys, Wipro, and TCS.',
+        'Reported average ₹6–8 LPA; top performers ₹20+ LPA in CSE & ECE (per institution disclosures).',
+        'Internships: facilitated with leading companies, often leading to PPOs.',
+        'Support: resume workshops, mock interviews, soft skills & technical training.',
+        'Alumni network: strong network for job opportunities and mentorship.',
       ]
     },
     courses: ['Computer Science and Engineering (CSE)', 'Information Science and Engineering (ISE)', 'Electronics and Communication Engineering (ECE)', 'Electrical and Electronics Engineering (EEE)', 'Mechanical Engineering', 'Civil Engineering', 'Biotechnology', 'Artificial Intelligence and Machine Learning', 'Data Science', 'Cyber Security', 'Aerospace Engineering', 'Chemical Engineering'],
@@ -40,7 +40,7 @@ export const COLLEGES = [
     placements: {
       rate: '95%', avg: '₹7–10 LPA', highest: '52 LPA',
       companies: ['Flipkart', 'Oracle', 'Cisco', 'Bosch', 'SAP', 'Cognizant', 'Capgemini', 'L&T'],
-      points: ['95%+ placement rate across engineering branches.', 'Top recruiters include Flipkart, Oracle, Cisco, Bosch, SAP.', 'Average package 7–10 LPA; highest 52 LPA.', 'Strong internship program with PPO opportunities.', 'Dedicated placement cell with year-round training.']
+      points: ['Reported 95%+ placement rate across engineering branches (per institution disclosures).', 'Top recruiters include Flipkart, Oracle, Cisco, Bosch, SAP.', 'Reported average package ₹7–10 LPA; reported top package up to ₹52 LPA (per institution disclosures).', 'Strong internship program with PPO opportunities.', 'Dedicated placement cell with year-round training.']
     },
     courses: ['Computer Science and Engineering', 'Electronics and Communication Engineering', 'Mechanical Engineering', 'Civil Engineering', 'Information Science', 'Electrical Engineering', 'AI & ML', 'Data Science'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score', 'Minimum 45% aggregate in PCM'],
@@ -62,7 +62,7 @@ export const COLLEGES = [
     placements: {
       rate: '92%', avg: '₹6–9 LPA', highest: '45 LPA',
       companies: ['Infosys', 'Wipro', 'TCS', 'HCL', 'Mindtree', 'Mphasis', 'Honeywell', 'ABB'],
-      points: ['92% placement rate.', 'Top recruiters: Infosys, Wipro, TCS, HCL, Mindtree.', 'Average 6–9 LPA; highest 45 LPA.', 'Active internship and PPO program.']
+      points: ['Reported 92% placement rate (per institution disclosures).', 'Top recruiters: Infosys, Wipro, TCS, HCL, Mindtree.', 'Reported average ₹6–9 LPA; reported top package up to ₹45 LPA (per institution disclosures).', 'Active internship and PPO program.']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE', 'AI & ML', 'Biotechnology'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score', 'Minimum 45% in PCM'],
@@ -84,7 +84,7 @@ export const COLLEGES = [
     placements: {
       rate: '96%', avg: '₹9–14 LPA', highest: '58 LPA',
       companies: ['Google', 'Amazon', 'Microsoft', 'Goldman Sachs', 'Morgan Stanley', 'Uber', 'Ola', 'Zomato'],
-      points: ['96% placement rate.', 'Top tech and finance recruiters.', 'Average 9–14 LPA; highest 58 LPA.', 'Strong startup ecosystem and entrepreneurship support.']
+      points: ['Reported 96% placement rate (per institution disclosures).', 'Top tech and finance recruiters.', 'Reported average ₹9–14 LPA; reported top package up to ₹58 LPA (per institution disclosures).', 'Strong startup ecosystem and entrepreneurship support.']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'AI & ML', 'Data Science', 'Robotics', 'Biotechnology'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid COMEDK / JEE / PESSAT score', 'Minimum 60% in PCM'],
@@ -106,7 +106,7 @@ export const COLLEGES = [
     placements: {
       rate: '88%', avg: '₹5–8 LPA', highest: '38 LPA',
       companies: ['Infosys', 'Wipro', 'Cognizant', 'Capgemini', 'Tech Mahindra', 'Accenture', 'IBM'],
-      points: ['88% placement rate.', 'Growing recruiter base with top IT companies.', 'Average 5–8 LPA; highest 38 LPA.', 'Active research and innovation programs.']
+      points: ['Reported 88% placement rate (per institution disclosures).', 'Growing recruiter base with top IT companies.', 'Reported average ₹5–8 LPA; reported top package up to ₹38 LPA (per institution disclosures).', 'Active research and innovation programs.']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'AI & ML', 'Data Science'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score', 'Minimum 45% in PCM'],
@@ -128,7 +128,7 @@ export const COLLEGES = [
     placements: {
       rate: '85%', avg: '₹5–7 LPA', highest: '32 LPA',
       companies: ['TCS', 'Infosys', 'Wipro', 'HCL', 'Mphasis', 'Mindtree'],
-      points: ['85% placement rate.', 'Strong core engineering and IT placements.', 'Average 5–7 LPA; highest 32 LPA.']
+      points: ['Reported 85% placement rate (per institution disclosures).', 'Strong core engineering and IT placements.', 'Reported average ₹5–7 LPA; reported top package up to ₹32 LPA (per institution disclosures).']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'EEE', 'ISE'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
@@ -150,7 +150,7 @@ export const COLLEGES = [
     placements: {
       rate: '82%', avg: '₹4–7 LPA', highest: '30 LPA',
       companies: ['Infosys', 'Wipro', 'TCS', 'Cognizant', 'Accenture', 'L&T Infotech'],
-      points: ['82% placement rate.', 'Diverse recruiter base.', 'Average 4–7 LPA; highest 30 LPA.']
+      points: ['Reported 82% placement rate (per institution disclosures).', 'Diverse recruiter base.', 'Reported average ₹4–7 LPA; reported top package up to ₹30 LPA (per institution disclosures).']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE', 'AI & ML'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
@@ -172,7 +172,7 @@ export const COLLEGES = [
     placements: {
       rate: '86%', avg: '₹5–8 LPA', highest: '28 LPA',
       companies: ['Infosys', 'Wipro', 'TCS', 'HCL', 'Bosch', 'Siemens'],
-      points: ['86% placement rate.', 'Strong core and IT placements.', 'Average 5–8 LPA; highest 28 LPA.']
+      points: ['Reported 86% placement rate (per institution disclosures).', 'Strong core and IT placements.', 'Reported average ₹5–8 LPA; reported top package up to ₹28 LPA (per institution disclosures).']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'AI & ML', 'Data Science'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
@@ -194,7 +194,7 @@ export const COLLEGES = [
     placements: {
       rate: '84%', avg: '₹5–7 LPA', highest: '26 LPA',
       companies: ['TCS', 'Infosys', 'Wipro', 'Cognizant', 'Capgemini', 'Mphasis'],
-      points: ['84% placement rate.', 'Strong CSE and ISE placements.', 'Average 5–7 LPA; highest 26 LPA.']
+      points: ['Reported 84% placement rate (per institution disclosures).', 'Strong CSE and ISE placements.', 'Reported average ₹5–7 LPA; reported top package up to ₹26 LPA (per institution disclosures).']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
@@ -216,7 +216,7 @@ export const COLLEGES = [
     placements: {
       rate: '80%', avg: '₹4–6 LPA', highest: '24 LPA',
       companies: ['TCS', 'Infosys', 'Wipro', 'HCL', 'Tech Mahindra'],
-      points: ['80% placement rate.', 'Growing IT and core engineering placements.', 'Average 4–6 LPA; highest 24 LPA.']
+      points: ['Reported 80% placement rate (per institution disclosures).', 'Growing IT and core engineering placements.', 'Reported average ₹4–6 LPA; reported top package up to ₹24 LPA (per institution disclosures).']
     },
     courses: ['Computer Science', 'ECE', 'Mechanical', 'Civil', 'ISE', 'EEE'],
     eligibility: ['10+2 with Physics and Mathematics', 'Valid KCET / COMEDK score'],
@@ -232,23 +232,23 @@ export const COLLEGES = [
     badge: 'UGC | NAAC A++', color: 'from-[#1e3a8a] to-[#172554]',
     img: '/college-jain.jpg',
     bannerImg: '/college-jain.jpg',
-    seats: '5,000+', cutoff: 'JET / Management Quota',
+    seats: '5,000+', cutoff: 'JET / Quota Routes',
     highestPkg: '50 LPA', type: 'Deemed University', accreditation: 'NAAC A++ / UGC', approval: 'UGC, AICTE',
     about: `Jain (Deemed-to-be University), established in 1990, is one of Bangalore's top-ranked universities. It holds the prestigious NAAC A++ accreditation and is recognized by UGC. Located in Jayanagar, Bangalore, Jain University is known for its multidisciplinary approach, strong placement record, and world-class infrastructure.\n\nThe university offers a wide range of programs across engineering, management, sciences, humanities, and commerce. With a sprawling campus, modern labs, research centers, incubation hubs, and excellent sports facilities, Jain University provides a holistic learning environment. It has strong industry partnerships and an extensive alumni network across the globe.`,
     placements: {
       rate: '95%', avg: '₹6–12 LPA', highest: '50 LPA',
       companies: ['Google', 'Amazon', 'Deloitte', 'EY', 'KPMG', 'Wipro', 'Infosys', 'Bosch', 'Goldman Sachs'],
       points: [
-        '95%+ placement rate across programs.',
+        'Reported 95%+ placement rate across programs (per institution disclosures).',
         'Top recruiters include Google, Amazon, Deloitte, EY, KPMG.',
-        'Average package 6–12 LPA; highest 50 LPA.',
+        'Reported average package ₹6–12 LPA; reported top package up to ₹50 LPA (per institution disclosures).',
         'Strong internship and live project opportunities.',
         'Dedicated Career Development Centre with year-round training.',
         'Active startup incubation center for entrepreneurial students.',
       ]
     },
     courses: ['Computer Science and Engineering', 'Electronics and Communication Engineering', 'Mechanical Engineering', 'Civil Engineering', 'AI & Machine Learning', 'Data Science', 'Biotechnology', 'BBA', 'MBA', 'B.Com', 'BCA', 'MCA'],
-    eligibility: ['10+2 from a recognized board', 'Valid JET / KCET / COMEDK score or Management Quota', 'Minimum 50% aggregate'],
+    eligibility: ['10+2 from a recognized board', 'Valid JET / KCET / COMEDK score, or admission via management quota subject to college policy', 'Minimum 50% aggregate'],
     reviews: [
       { name: 'Ananya Deshmukh', batch: 'BBA 2025', stars: 5, text: 'Jain University offered me a multidisciplinary environment. The BBA program had excellent industry connects and live projects. Placed at a leading consulting firm.' },
       { name: 'Kiran Pai', batch: 'CSE 2024', stars: 5, text: 'NAAC A++ accreditation shows in the quality of faculty and infrastructure. The startup incubation center helped me build my own venture. Highly recommend.' },
@@ -260,13 +260,13 @@ export const COLLEGES = [
 export const WHY_BLR = [
   { icon: '🏢', title: '2000+ IT Companies', desc: 'Silicon Valley of India' },
   { icon: '🚀', title: 'Startup Hub', desc: '10,000+ active startups' },
-  { icon: '🎓', title: 'Top Placements', desc: 'Avg package ₹8–25 LPA' },
+  { icon: '🎓', title: 'Strong Placement Hub', desc: 'Reported avg packages ₹8–25 LPA across top Bangalore colleges*' },
   { icon: '🔬', title: 'Research Excellence', desc: 'IISc & top labs nearby' },
 ]
 
 export const WHY_SRM = [
   { icon: '🏆', title: 'Top 10 NIRF', desc: 'Ranked among India\'s best universities' },
-  { icon: '💼', title: '92 LPA Highest', desc: 'Record-breaking placement packages' },
+  { icon: '💼', title: 'Strong Placements', desc: 'Avg ₹7–12 LPA · top packages reported up to ₹92 LPA*' },
   { icon: '🌍', title: '50,000+ Students', desc: 'Largest private university campus' },
   { icon: '🤝', title: '800+ Recruiters', desc: 'Google, Microsoft, Amazon & more' },
   { icon: '🔬', title: 'Research Driven', desc: '500+ patents & funded projects' },
@@ -278,23 +278,23 @@ export const SRM_COLLEGE = {
   name: 'SRMIST',
   fullName: 'SRMIST',
   location: 'Kattankulathur, Chennai, Tamil Nadu',
-  highlight: 'Top 10 NIRF | 92 LPA Highest Package',
+  highlight: 'NAAC A++ | Top 10 Private University (NIRF)',
   badge: 'UGC | NAAC A++',
   color: 'from-[#1e3a8a] to-[#0f172a]',
   img: '/college-srm.jpg',
   bannerImg: '/srm-banner.jpg',
   hideBannerOverlay: true,
-  seats: '10,000+', cutoff: 'SRMJEE / Management Quota',
+  seats: '10,000+', cutoff: 'SRMJEE / Quota Routes',
   highestPkg: '92 LPA',
   type: 'Deemed University', accreditation: 'NAAC A++ / UGC', approval: 'UGC, AICTE',
-  about: `SRMIST, established in 1985, is one of India's top-ranked private deemed universities. Located in Kattankulathur, Chennai, SRMIST is consistently ranked among the Top 10 private universities by NIRF and holds the prestigious NAAC A++ accreditation.\n\nSRMIST offers an extensive range of undergraduate, postgraduate and doctoral programs across engineering, medicine, management, sciences, and humanities. The 250-acre Kattankulathur campus features world-class infrastructure: modern lecture halls, 500+ labs, innovation centers, a sprawling library, hostels, sports complexes, and global partnerships with top universities abroad.\n\nSRMIST is known for record-breaking placements — 92 LPA highest package — and recruiters like Google, Microsoft, Amazon, Goldman Sachs, Deloitte, and 800+ others visit the campus every year. The university is research-driven with 500+ patents and international collaborations.`,
+  about: `SRMIST, established in 1985, is one of India's top-ranked private deemed universities. Located in Kattankulathur, Chennai, SRMIST is consistently ranked among the top 10 private universities by NIRF and holds NAAC A++ accreditation.\n\nSRMIST offers undergraduate, postgraduate and doctoral programs across engineering, medicine, management, sciences, and humanities. The 250-acre Kattankulathur campus has modern lecture halls, 500+ labs, innovation centres, a large library, hostels, sports complexes, and academic partnerships with universities abroad.\n\nSRMIST has reported strong placement outcomes — top package up to ₹92 LPA per institution disclosures — with recruiters like Google, Microsoft, Amazon, Goldman Sachs, Deloitte, and 800+ others visiting campus annually. Research output includes 500+ patents and international collaborations. (Placement and ranking data sourced from publicly available institution disclosures; verify current figures with the university.)`,
   placements: {
     rate: '92%', avg: '₹7–12 LPA', highest: '92 LPA',
     companies: ['Google', 'Microsoft', 'Amazon', 'Goldman Sachs', 'Deloitte', 'EY', 'Infosys', 'Wipro', 'TCS', 'Accenture', 'Cognizant', 'HCL'],
     points: [
-      '92%+ placement rate across engineering programs.',
+      'Reported 92%+ placement rate across engineering programs (per institution disclosures).',
       'Top recruiters: Google, Microsoft, Amazon, Goldman Sachs, Deloitte.',
-      'Record-breaking highest package of 92 LPA; average 7–12 LPA.',
+      'Reported top package up to ₹92 LPA; average ₹7–12 LPA (per institution disclosures).',
       '800+ recruiters visit campus annually.',
       'Strong internship culture with international exposure.',
       'Dedicated Career Centre with year-round training and mock interviews.',
@@ -302,8 +302,8 @@ export const SRM_COLLEGE = {
     ],
   },
   courses: ['Computer Science and Engineering (CSE)', 'AI & Machine Learning', 'Data Science', 'Cyber Security', 'Electronics and Communication Engineering', 'Mechanical Engineering', 'Biomedical Engineering', 'Civil Engineering', 'Biotechnology', 'Aerospace Engineering', 'Automobile Engineering', 'Chemical Engineering'],
-  eligibility: ['10+2 with Physics, Chemistry and Mathematics from a recognized board', 'Valid SRMJEE score (Phase 1 or Phase 2) or JEE Main score', 'Management Quota seats available with direct admission', 'Minimum 50% aggregate in PCM'],
-  stats: [['Top 10', 'NIRF Rank'], ['92 LPA', 'Highest Pkg'], ['800+', 'Recruiters'], ['50k+', 'Students']],
+  eligibility: ['10+2 with Physics, Chemistry and Mathematics from a recognized board', 'Valid SRMJEE score (Phase 1 or Phase 2) or JEE Main score', 'Management quota seats also available subject to college policy', 'Minimum 50% aggregate in PCM'],
+  stats: [['Top 10', 'NIRF Rank'], ['NAAC A++', 'Accredited'], ['800+', 'Recruiters'], ['50k+', 'Students']],
   reviews: [
     { name: 'Rohan Mehta', batch: 'CSE 2025', stars: 5, text: 'SRM Kattankulathur exceeded my expectations. The campus is massive, faculty is world-class, and placements are outstanding. Got placed at a top product company during campus drives.' },
     { name: 'Kavya Srinivasan', batch: 'Data Science 2025', stars: 5, text: 'SRM was my dream college and it lived up to it. The Data Science curriculum is industry-aligned and the research opportunities are excellent. Placement cell is phenomenal.' },

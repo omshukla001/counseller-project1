@@ -31,7 +31,7 @@ function SRMSlider() {
       <div className="absolute bottom-4 left-4 right-4 z-10">
         <div className="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-3">
           <p className="text-white font-bold text-sm">Admission Open 2026–27</p>
-          <p className="text-white/70 text-xs mt-0.5">SRMJEE Phase 2 & Management Quota seats available</p>
+          <p className="text-white/70 text-xs mt-0.5">Counselling for SRMJEE Phase 2 & management/NRI quota applicants</p>
         </div>
       </div>
       <div className="absolute top-3 right-3 flex gap-1.5 z-10">
@@ -172,7 +172,7 @@ export default function CollegeGrid({ onApply, onViewCollege }) {
                 </div>
 
                 <p className="text-white/90 text-sm md:text-base leading-relaxed">
-                  India's top-ranked private engineering university. Get expert guidance for <strong className="text-yellow-300">SRMJEE Phase 1 & 2</strong> and <strong className="text-cyan-300">Management Quota</strong> admissions.
+                  One of India's top-ranked private engineering universities. We provide independent counselling for <strong className="text-yellow-300">SRMJEE Phase 1 & 2</strong> applicants and guidance on <strong className="text-cyan-300">management/NRI quota</strong> admission processes.
                 </p>
 
                 {/* Stats */}
@@ -201,7 +201,7 @@ export default function CollegeGrid({ onApply, onViewCollege }) {
                   </button>
                   <button onClick={() => onApply('SRM Chennai')}
                     className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-black text-sm px-5 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-yellow-500/30">
-                    Apply for SRM
+                    Get SRM Counselling
                   </button>
                   <button onClick={() => onApply('SRM Chennai')}
                     className="border-2 border-white/30 text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors">

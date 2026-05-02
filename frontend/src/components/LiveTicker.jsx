@@ -7,7 +7,7 @@ const TICKER_ITEMS = [
   '⚡ Get your personalised college list in 30 seconds',
   '🎯 Specialists for KCET · COMEDK · SRMJEE',
   '📚 12+ partner colleges in Bangalore + SRM Chennai',
-  '💼 Management quota · NRI quota · Direct admission',
+  '💼 Guidance for KCET · COMEDK · SRMJEE · Management & NRI quota',
 ]
 
 export default function LiveTicker() {
