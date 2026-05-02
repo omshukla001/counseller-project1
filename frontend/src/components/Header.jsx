@@ -81,7 +81,7 @@ export default function Header({ onApply }) {
         </Link>
 
         <nav className="hidden md:flex gap-6">
-          {['Home', 'Colleges', 'About', 'Contact'].map(renderNavItem)}
+          {['Home', 'About', 'Contact'].map(renderNavItem)}
         </nav>
 
         <button onClick={onApply} className="hidden md:block bg-[#1E3A8A] hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors">
@@ -95,7 +95,7 @@ export default function Header({ onApply }) {
 
       {open && (
         <div className="md:hidden bg-gray-900/95 backdrop-blur px-4 pb-4 flex flex-col gap-3">
-          {['Home', 'Colleges', 'About', 'Contact'].map(renderNavItem)}
+          {['Home', 'About', 'Contact'].map(renderNavItem)}
           <button onClick={() => { setOpen(false); onApply() }} className="bg-[#1E3A8A] text-white text-sm font-semibold px-5 py-2 rounded-full w-fit">
             Apply Now
           </button>
