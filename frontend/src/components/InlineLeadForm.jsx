@@ -14,8 +14,17 @@ export default function InlineLeadForm() {
 
   const submit = async e => {
     e.preventDefault()
-    setSubmitting(true)
     setError('')
+    if (!/^\d{10}$/.test(form.phone)) {
+      setError('Please enter a valid 10-digit mobile number.')
+      return
+    }
+    const rankNum = Number(form.rank)
+    if (!Number.isInteger(rankNum) || rankNum < 1 || rankNum > 200000) {
+      setError('Rank must be a number between 1 and 200000.')
+      return
+    }
+    setSubmitting(true)
     try {
       await saveLead({ ...form, source: 'Inline Homepage Form', college: '' })
       setSent(true)
@@ -115,9 +124,11 @@ export default function InlineLeadForm() {
                 </div>
                 <div>
                   <label className="text-gray-700 text-sm font-semibold block mb-1.5">Phone Number *</label>
-                  <input required type="tel" placeholder="+91 XXXXX XXXXX" value={form.phone}
-                    inputMode="tel" autoComplete="tel"
-                    onChange={e => setForm({ ...form, phone: e.target.value })}
+                  <input required type="tel" placeholder="10-digit mobile number" value={form.phone}
+                    inputMode="numeric" autoComplete="tel"
+                    pattern="[0-9]{10}" maxLength={10}
+                    title="Please enter a valid 10-digit mobile number"
+                    onChange={e => setForm({ ...form, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
                 </div>
 
@@ -131,10 +142,11 @@ export default function InlineLeadForm() {
 
                 <div>
                   <label className="text-gray-700 text-sm font-semibold block mb-1.5">KCET / COMEDK / SRMJEE Rank *</label>
-                  <input required type="text" inputMode="numeric"
-                    placeholder="e.g. KCET 5000"
+                  <input required type="number" inputMode="numeric"
+                    min={1} max={200000} step={1}
+                    placeholder="e.g. 5000 (1 - 200000)"
                     value={form.rank}
-                    onChange={e => setForm({ ...form, rank: e.target.value })}
+                    onChange={e => setForm({ ...form, rank: e.target.value.replace(/\D/g, '').slice(0, 6) })}
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
                 </div>
                 <div>

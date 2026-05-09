@@ -336,6 +336,17 @@ export function KunalChat() {
 
   const handleLeadSubmit = async (e) => {
     e.preventDefault()
+    if (!/^\d{10}$/.test(leadForm.phone)) {
+      pushBot('Please enter a valid 10-digit mobile number.', 200)
+      return
+    }
+    if (leadForm.rank) {
+      const rankNum = Number(leadForm.rank)
+      if (!Number.isInteger(rankNum) || rankNum < 1 || rankNum > 200000) {
+        pushBot('Rank must be a number between 1 and 200000.', 200)
+        return
+      }
+    }
     setLeadSubmitting(true)
     try {
       await saveLead({ ...leadForm, source: 'Kunal Chatbot', college: '' })
@@ -385,6 +396,11 @@ export function KunalChat() {
     e?.preventDefault()
     const r = wizard.rank.trim()
     if (!r) return
+    const rankNum = Number(r)
+    if (!Number.isInteger(rankNum) || rankNum < 1 || rankNum > 200000) {
+      pushBot('Please enter a rank between 1 and 200000.', 200)
+      return
+    }
     setMessages(m => [...m, { from: 'user', text: `Rank: ${r}` }])
     pushBot('Nice. And which branch are you targeting?', 500)
     setTimeout(() => setView('finder-branch'), 700)
@@ -581,10 +597,11 @@ export function KunalChat() {
               {view === 'finder-rank' && !typing && (
                 <form onSubmit={handleWizardRank} className="pt-1 space-y-2 bg-white border border-blue-200 rounded-2xl p-3">
                   <p className="text-[11px] text-gray-500 font-semibold">Step 2 of 3 · Your {wizard.exam.toUpperCase()} rank</p>
-                  <input autoFocus required type="text" inputMode="numeric"
-                    placeholder="e.g. 5000"
+                  <input autoFocus required type="number" inputMode="numeric"
+                    min={1} max={200000} step={1}
+                    placeholder="e.g. 5000 (1 - 200000)"
                     value={wizard.rank}
-                    onChange={e => setWizard(w => ({ ...w, rank: e.target.value }))}
+                    onChange={e => setWizard(w => ({ ...w, rank: e.target.value.replace(/\D/g, '').slice(0, 6) }))}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100" />
                   <div className="flex gap-2">
                     <button type="button" onClick={() => setView('finder-exam')}
@@ -699,12 +716,16 @@ export function KunalChat() {
                     autoComplete="name"
                     onChange={e => setLeadForm({ ...leadForm, name: e.target.value })}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#1E3A8A]" />
-                  <input required type="tel" placeholder="Phone (e.g. +91 98xxx xxxxx)" value={leadForm.phone}
-                    inputMode="tel" autoComplete="tel"
-                    onChange={e => setLeadForm({ ...leadForm, phone: e.target.value })}
+                  <input required type="tel" placeholder="10-digit mobile number" value={leadForm.phone}
+                    inputMode="numeric" autoComplete="tel"
+                    pattern="[0-9]{10}" maxLength={10}
+                    title="Please enter a valid 10-digit mobile number"
+                    onChange={e => setLeadForm({ ...leadForm, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#1E3A8A]" />
-                  <input type="text" placeholder="KCET / COMEDK / SRMJEE rank (optional)" value={leadForm.rank}
-                    onChange={e => setLeadForm({ ...leadForm, rank: e.target.value })}
+                  <input type="number" inputMode="numeric"
+                    min={1} max={200000} step={1}
+                    placeholder="Rank 1 - 200000 (optional)" value={leadForm.rank}
+                    onChange={e => setLeadForm({ ...leadForm, rank: e.target.value.replace(/\D/g, '').slice(0, 6) })}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#1E3A8A]" />
                   <div className="flex gap-2 pt-1">
                     <button type="button" onClick={() => setView('topics')}

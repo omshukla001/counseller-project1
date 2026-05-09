@@ -46,9 +46,15 @@ export default function Predictor() {
   const [form, setForm] = useState({ exam: '', rank: '', branch: '' })
   const [results, setResults] = useState(null)
 
+  const [error, setError] = useState('')
+
   const predict = () => {
-    const rank = parseInt(form.rank) || 99999
-    // Simple mock logic: lower rank = more colleges
+    setError('')
+    const rank = parseInt(form.rank, 10)
+    if (!Number.isInteger(rank) || rank < 1 || rank > 200000) {
+      setError('Rank must be a number between 1 and 200000.')
+      return
+    }
     const eligible = COLLEGES.filter((_, i) => {
       if (form.exam === 'KCET') return rank <= 5000 + i * 3000
       if (form.exam === 'COMEDK') return rank <= 10000 + i * 5000
@@ -79,8 +85,10 @@ export default function Predictor() {
             </div>
             <div>
               <label className="text-white/70 text-xs font-medium mb-1.5 block">Enter Rank</label>
-              <input type="number" placeholder="e.g. 5000" value={form.rank}
-                onChange={e => setForm({ ...form, rank: e.target.value })}
+              <input type="number" inputMode="numeric"
+                min={1} max={200000} step={1}
+                placeholder="e.g. 5000 (1 - 200000)" value={form.rank}
+                onChange={e => setForm({ ...form, rank: e.target.value.replace(/\D/g, '').slice(0, 6) })}
                 className="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1E3A8A]" />
             </div>
             <div>
@@ -97,6 +105,9 @@ export default function Predictor() {
             className="w-full sm:w-auto bg-[#1E3A8A] disabled:opacity-50 hover:bg-blue-800 text-white font-bold px-10 py-3 rounded-xl transition-all hover:scale-105">
             Predict Now →
           </button>
+          {error && (
+            <p className="mt-3 text-sm text-red-300 bg-red-900/30 border border-red-400/30 rounded-lg px-3 py-2">{error}</p>
+          )}
         </div>
       </div>
 

@@ -10,8 +10,12 @@ export default function CounselorSidebar({ onApply }) {
 
   const submit = async e => {
     e.preventDefault()
-    setSubmitting(true)
     setError('')
+    if (!/^\d{10}$/.test(form.phone)) {
+      setError('Please enter a valid 10-digit mobile number.')
+      return
+    }
+    setSubmitting(true)
     try {
       await saveLead({ ...form, rank: '', branch: '', source: 'Sidebar Callback' })
       setSent(true)
@@ -45,8 +49,11 @@ export default function CounselorSidebar({ onApply }) {
             <input required placeholder="Your Name" value={form.name}
               onChange={e => setForm({ ...form, name: e.target.value })}
               className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A]" />
-            <input required placeholder="Phone Number" type="tel" value={form.phone}
-              onChange={e => setForm({ ...form, phone: e.target.value })}
+            <input required placeholder="10-digit Mobile Number" type="tel" value={form.phone}
+              inputMode="numeric" autoComplete="tel"
+              pattern="[0-9]{10}" maxLength={10}
+              title="Please enter a valid 10-digit mobile number"
+              onChange={e => setForm({ ...form, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
               className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A]" />
             {error && <p className="text-red-500 text-xs text-center">{error}</p>}
             <button type="submit" disabled={submitting} className="w-full bg-[#1E3A8A] hover:bg-blue-800 disabled:opacity-60 text-white font-bold py-2.5 rounded-xl text-sm transition-colors flex items-center justify-center gap-2">

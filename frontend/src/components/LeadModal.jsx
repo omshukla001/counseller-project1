@@ -27,8 +27,17 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
 
   const submit = async e => {
     e.preventDefault()
-    setSubmitting(true)
     setError('')
+    if (!/^\d{10}$/.test(form.phone)) {
+      setError('Please enter a valid 10-digit mobile number.')
+      return
+    }
+    const rankNum = Number(form.rank)
+    if (!Number.isInteger(rankNum) || rankNum < 1 || rankNum > 200000) {
+      setError('Rank must be a number between 1 and 200000.')
+      return
+    }
+    setSubmitting(true)
     try {
       await saveLead({ ...form, source, college: college || '' })
       setSent(true)
@@ -137,32 +146,35 @@ export default function LeadModal({ onClose, college, onSubmitted }) {
                 </p>
 
 
-                {[
-                  { key: 'name', label: 'Full Name', placeholder: 'Enter your name', type: 'text', inputMode: 'text', autoComplete: 'name' },
-                  { key: 'phone', label: 'Phone Number', placeholder: '+91 XXXXX XXXXX', type: 'tel', inputMode: 'tel', autoComplete: 'tel' },
-                ].map(f => (
-                  <div key={f.key}>
-                    <label className="text-gray-700 text-[13px] md:text-sm font-semibold block mb-1.5">{f.label}</label>
-                    <input required type={f.type} placeholder={f.placeholder} value={form[f.key]}
-                      inputMode={f.inputMode} autoComplete={f.autoComplete}
-                      onChange={e => setForm({ ...form, [f.key]: e.target.value })}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3.5 md:py-3 text-[16px] md:text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
-                  </div>
-                ))}
+                <div>
+                  <label className="text-gray-700 text-[13px] md:text-sm font-semibold block mb-1.5">Full Name</label>
+                  <input required type="text" placeholder="Enter your name" value={form.name}
+                    inputMode="text" autoComplete="name"
+                    onChange={e => setForm({ ...form, name: e.target.value })}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3.5 md:py-3 text-[16px] md:text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
+                </div>
+                <div>
+                  <label className="text-gray-700 text-[13px] md:text-sm font-semibold block mb-1.5">Phone Number</label>
+                  <input required type="tel" placeholder="10-digit mobile number" value={form.phone}
+                    inputMode="numeric" autoComplete="tel"
+                    pattern="[0-9]{10}" maxLength={10}
+                    title="Please enter a valid 10-digit mobile number"
+                    onChange={e => setForm({ ...form, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3.5 md:py-3 text-[16px] md:text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
+                </div>
 
                 <div>
                   <label className="text-gray-700 text-[13px] md:text-sm font-semibold block mb-1.5">
                     {college && /srm/i.test(college) ? 'SRMJEE Rank' : 'KCET / COMEDK / SRMJEE Rank'}
                   </label>
-                  <input required type="text"
+                  <input required type="number"
                     inputMode="numeric"
-                    placeholder={college && /srm/i.test(college) ? 'e.g. 12000' : 'e.g. KCET 5000 / COMEDK 3200'}
+                    min={1} max={200000} step={1}
+                    placeholder={college && /srm/i.test(college) ? 'e.g. 12000' : 'e.g. 5000'}
                     value={form.rank}
-                    onChange={e => setForm({ ...form, rank: e.target.value })}
+                    onChange={e => setForm({ ...form, rank: e.target.value.replace(/\D/g, '').slice(0, 6) })}
                     className="w-full border border-gray-200 rounded-xl px-4 py-3.5 md:py-3 text-[16px] md:text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
-                  {!college && (
-                    <p className="text-gray-400 text-[11px] md:text-xs mt-1.5">Mention the exam and rank you wrote.</p>
-                  )}
+                  <p className="text-gray-400 text-[11px] md:text-xs mt-1.5">Enter a rank between 1 and 200000.</p>
                 </div>
 
                 {!college && (

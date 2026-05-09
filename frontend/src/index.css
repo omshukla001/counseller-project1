@@ -7,6 +7,11 @@
 
 body { font-family: 'Inter', sans-serif; }
 
+@layer base {
+  input, select, textarea { color: #111827; }
+  input::placeholder, textarea::placeholder { color: #9ca3af; }
+}
+
 @layer utilities {
   .hover-lift { transition: transform 0.25s ease, box-shadow 0.25s ease; }
   .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(16,44,87,0.15); }

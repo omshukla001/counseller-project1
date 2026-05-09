@@ -132,11 +132,14 @@ export default function App() {
   useEffect(() => {
     if (leadSubmitted || !popupEnabled) return
     const open = () => setShowLead(true)
-    const initialTimer = setTimeout(open, 2000)
-    const intervalTimer = setInterval(open, 45000)
+    let intervalTimer = null
+    const initialTimer = setTimeout(() => {
+      open()
+      intervalTimer = setInterval(open, 45000)
+    }, 20000)
     return () => {
       clearTimeout(initialTimer)
-      clearInterval(intervalTimer)
+      if (intervalTimer) clearInterval(intervalTimer)
     }
   }, [leadSubmitted, popupEnabled])
 

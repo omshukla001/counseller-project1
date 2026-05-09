@@ -13,8 +13,17 @@ function SidebarLeadForm({ collegeName }) {
 
   const submit = async e => {
     e.preventDefault()
-    setSubmitting(true)
     setError('')
+    if (!/^\d{10}$/.test(form.phone)) {
+      setError('Please enter a valid 10-digit mobile number.')
+      return
+    }
+    const rankNum = Number(form.rank)
+    if (!Number.isInteger(rankNum) || rankNum < 1 || rankNum > 200000) {
+      setError('Rank must be a number between 1 and 200000.')
+      return
+    }
+    setSubmitting(true)
     try {
       await saveLead({ ...form, source: 'College Page Sidebar', college: collegeName })
       setSent(true)
@@ -45,17 +54,21 @@ function SidebarLeadForm({ collegeName }) {
         autoComplete="name"
         onChange={e => setForm({ ...form, name: e.target.value })}
         className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
-      <input required type="tel" placeholder="Phone Number *" value={form.phone}
-        inputMode="tel" autoComplete="tel"
-        onChange={e => setForm({ ...form, phone: e.target.value })}
+      <input required type="tel" placeholder="10-digit Mobile Number *" value={form.phone}
+        inputMode="numeric" autoComplete="tel"
+        pattern="[0-9]{10}" maxLength={10}
+        title="Please enter a valid 10-digit mobile number"
+        onChange={e => setForm({ ...form, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
         className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
       <input type="email" placeholder="Email (optional)" value={form.email}
         autoComplete="email"
         onChange={e => setForm({ ...form, email: e.target.value })}
         className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
-      <input required type="text" inputMode="numeric" placeholder="KCET / COMEDK / SRMJEE Rank *"
+      <input required type="number" inputMode="numeric"
+        min={1} max={200000} step={1}
+        placeholder="Rank (1 - 200000) *"
         value={form.rank}
-        onChange={e => setForm({ ...form, rank: e.target.value })}
+        onChange={e => setForm({ ...form, rank: e.target.value.replace(/\D/g, '').slice(0, 6) })}
         className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-blue-100 transition-all" />
       <select required value={form.branch}
         onChange={e => setForm({ ...form, branch: e.target.value })}
