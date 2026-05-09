@@ -194,7 +194,7 @@ export default function Hero({ onApply }) {
               </button>
               <div className="grid grid-cols-2 gap-2">
                 <a href="tel:+917296087953"
-                  className="border border-white/20 text-white font-semibold py-2.5 rounded-2xl text-xs flex items-center justify-center gap-1.5 backdrop-blur-sm active:scale-[0.97] transition-transform">
+                  className="bg-red-600 hover:bg-red-700 border border-red-500 text-white font-semibold py-2.5 rounded-2xl text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-red-600/30 active:scale-[0.97] transition-transform">
                   <Phone size={13} /> 72960 87953
                 </a>
                 <a href="https://wa.me/917296087953" target="_blank" rel="noreferrer"

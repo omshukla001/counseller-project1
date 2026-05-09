@@ -435,7 +435,7 @@ export default function Dashboard({ onBack }) {
                         <div className="flex items-center justify-end gap-2.5">
                           <button onClick={() => setSelected(l)} className="p-2.5 hover:bg-blue-100 rounded-lg"><Eye size={18} className="text-blue-600" /></button>
                           <a href={`https://wa.me/${l.phone.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" className="p-2.5 hover:bg-green-100 rounded-lg"><MessageCircle size={18} className="text-green-600" /></a>
-                          <a href={`tel:${l.phone}`} className="p-2.5 hover:bg-blue-100 rounded-lg"><PhoneCall size={18} className="text-blue-600" /></a>
+                          <a href={`tel:${l.phone}`} title="Call" className="p-2.5 hover:bg-red-100 rounded-lg"><PhoneCall size={18} className="text-red-600" /></a>
                           {deleteConfirm === l.id ? (
                             <div className="flex items-center gap-1.5">
                               <button onClick={() => handleDelete(l.id)} className="p-2.5 bg-red-100 hover:bg-red-200 rounded-lg"><CheckCircle size={18} className="text-red-600" /></button>
@@ -482,13 +482,33 @@ export default function Dashboard({ onBack }) {
                       <Eye size={15} /> View
                     </button>
                     <a href={`tel:${l.phone}`}
-                      className="flex-1 bg-blue-50 border border-blue-200 text-blue-700 text-[14px] font-semibold py-2.5 rounded-xl flex items-center justify-center gap-1.5 active:scale-[0.97] transition-transform">
+                      className="flex-1 bg-red-50 border border-red-200 text-red-700 text-[14px] font-semibold py-2.5 rounded-xl flex items-center justify-center gap-1.5 active:scale-[0.97] transition-transform">
                       <PhoneCall size={15} /> Call
                     </a>
                     <a href={`https://wa.me/${l.phone.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"
                       className="flex-1 bg-green-50 border border-green-200 text-green-700 text-[14px] font-semibold py-2.5 rounded-xl flex items-center justify-center gap-1.5 active:scale-[0.97] transition-transform">
                       <MessageCircle size={15} /> WA
                     </a>
+                    {deleteConfirm === l.id ? (
+                      <>
+                        <button onClick={() => handleDelete(l.id)}
+                          aria-label="Confirm delete"
+                          className="px-3 bg-red-600 text-white text-[14px] font-semibold py-2.5 rounded-xl flex items-center justify-center active:scale-[0.97] transition-transform">
+                          <CheckCircle size={15} />
+                        </button>
+                        <button onClick={() => setDeleteConfirm(null)}
+                          aria-label="Cancel delete"
+                          className="px-3 bg-gray-100 border border-gray-200 text-gray-600 text-[14px] font-semibold py-2.5 rounded-xl flex items-center justify-center active:scale-[0.97] transition-transform">
+                          <XCircle size={15} />
+                        </button>
+                      </>
+                    ) : (
+                      <button onClick={() => setDeleteConfirm(l.id)}
+                        aria-label="Delete lead"
+                        className="px-3 bg-red-50 border border-red-200 text-red-600 text-[14px] font-semibold py-2.5 rounded-xl flex items-center justify-center active:scale-[0.97] transition-transform">
+                        <Trash2 size={15} />
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}

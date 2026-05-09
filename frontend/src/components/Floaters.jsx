@@ -821,8 +821,8 @@ export function CallFAB() {
         onMouseEnter={() => setTip(true)} onMouseLeave={() => setTip(false)}
         onClick={() => setTip(false)}
         aria-label="Call counsellor"
-        className="relative w-14 h-14 bg-[#1E3A8A] rounded-full flex items-center justify-center shadow-lg shadow-[#1E3A8A]/30 hover:scale-110 hover:shadow-xl hover:shadow-[#1E3A8A]/40 transition-all">
-        <span className="absolute inset-0 rounded-full bg-[#1E3A8A] opacity-40 animate-ping" />
+        className="relative w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/30 hover:scale-110 hover:shadow-xl hover:shadow-red-600/40 transition-all">
+        <span className="absolute inset-0 rounded-full bg-red-600 opacity-40 animate-ping" />
         <Phone size={26} className="relative text-white" />
       </a>
     </div>
